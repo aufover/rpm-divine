@@ -21,6 +21,9 @@ wget -N --continue https://divine.fi.muni.cz/download/divine-$version.tar.gz
 tar xzf divine-$version.tar.gz
 cd divine-$version
 
+# apply downstream patch(es)
+patch -p1 < ../disable-VC-checks.patch
+
 # without python2
 sudo dnf install -y perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel
 # gtest-devel is needed for install
@@ -33,7 +36,7 @@ sed -in 's/\${PROJECT_SOURCE_DIR}\/include/\${PROJECT_SOURCE_DIR}\/stp\/include/
 sed -in 's/^install( TARGETS divine-ui divine-vm divine-cc divine-ltl DESTINATION lib )/install( TARGETS divine-ui divine-vm divine-cc divine-ltl divine-sim divine-mc divine-dbg divine-smt DESTINATION lib )/g' divine/CMakeLists.txt 
 /bin/cp ../new-install-rpath.cmake releng/install-rpath.cmake
 
-make
+make CMAKE_GENERATE_VC=OFF
 sudo make install
 
 echo "DIVINE's binaries are installed in $prefix/bin"
