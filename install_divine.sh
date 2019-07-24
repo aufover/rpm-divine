@@ -30,10 +30,7 @@ ln -sf ${PWD}/_build.toolchain/lld/lib/Driver/DarwinLdOptions.inc lld/include/Da
 
 sed -in 's/python$/python3/g' dios/libcxx/utils/cat_files.py
 sed -in 's/\${PROJECT_SOURCE_DIR}\/include/\${PROJECT_SOURCE_DIR}\/stp\/include/g' stp/lib/Interface/CMakeLists.txt
-sed -in 's/^install( TARGETS divine-ui divine-vm divine-cc divine-ltl DESTINATION
-lib )/install( TARGETS divine-ui divine-vm divine-cc divine-ltl divine-sim
-divine-mc divine-dbg divine-smt DESTINATION lib )/g' divine/CMakeLists.txt
-
+sed -in 's/^install( TARGETS divine-ui divine-vm divine-cc divine-ltl DESTINATION lib )/install( TARGETS divine-ui divine-vm divine-cc divine-ltl divine-sim divine-mc divine-dbg divine-smt DESTINATION lib )/g' divine/CMakeLists.txt 
 /bin/cp ../new-install-rpath.cmake releng/install-rpath.cmake
 
 make
