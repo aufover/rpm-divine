@@ -15,14 +15,14 @@ if test -d $prefix; then
     exit 1
 fi
 
-dnf install -y wget tar
+sudo dnf install -y wget tar
 
 wget -N --continue https://divine.fi.muni.cz/download/divine-$version.tar.gz
 tar xzf divine-$version.tar.gz
 cd divine-$version
 
 # without python2
-dnf install -y perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel
+sudo dnf install -y perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel
 # gtest-devel is needed for install
 
 chmod +x dios/libcxx/utils/cat_files.py
@@ -34,12 +34,12 @@ sed -in 's/^install( TARGETS divine-ui divine-vm divine-cc divine-ltl DESTINATIO
 /bin/cp ../new-install-rpath.cmake releng/install-rpath.cmake
 
 make
-make install
+sudo make install
 
 echo "DIVINE's binaries are installed in $prefix/bin"
 
 if test -d /etc/profile.d; then
-    echo "PATH=$prefix/bin:"'$PATH' > /etc/profile.d/divine-path.sh
+    echo "PATH=$prefix/bin:"'$PATH' | sudo dd of=/etc/profile.d/divine-path.sh status=none
     echo "I have created /etc/profile.d/divine-path.sh to update system PATH"
     echo "After you log out and back in, it should be available as 'divine'"
 fi
