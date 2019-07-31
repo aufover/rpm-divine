@@ -56,7 +56,3 @@ rm -rf $RPM_BUILD_ROOT
 %files
 #TODO
 /opt/divine/
-
-%changelog
-* Fri Jul 26 2019 lukas
-
