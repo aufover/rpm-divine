@@ -47,7 +47,7 @@ sed -in 's/env python2.7$/python3/' clang/utils/check_cfc/check_cfc.py
 sed -in 's/env python2.7$/python3/' clang/utils/check_cfc/obj_diff.py
 
 %build
-%make_build
+%make_build CMAKE_GENERATE_VC=OFF
 
 %install
 rm -rf $RPM_BUILD_ROOT
