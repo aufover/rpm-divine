@@ -45,8 +45,8 @@ diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 +++ b/releng/install-rpath.cmake	2019-07-26 11:29:49.799835648 +0200
 @@ -1,177 +1,254 @@
  # the list of all installed files affected by our rpath hack
-+list( APPEND Fs lib/libc++.so.2.0 )
-+list( APPEND Fs lib/libc++abi.so.2.0 )
++list( APPEND Fs lib/libc++.so )
++list( APPEND Fs lib/libc++abi.so )
 -list( APPEND Fs lib/libLLVMSupport.so.3.7.0 )
 -list( APPEND Fs lib/libLLVMTableGen.so.3.7.0 )
 -list( APPEND Fs lib/libLLVMCore.so.3.7.0 )
@@ -205,6 +205,7 @@ diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 +list( APPEND Fs lib/libLLVMARMDesc.so )
 +list( APPEND Fs lib/libLLVMARMDisassembler.so )
 +list( APPEND Fs lib/libLLVMARMInfo.so )
++list( APPEND Fs lib/libLLVMARMUtils.so )
 +list( APPEND Fs lib/libLLVMAsmParser.so )
 +list( APPEND Fs lib/libLLVMAsmPrinter.so )
 +list( APPEND Fs lib/libLLVMBinaryFormat.so )
@@ -347,7 +348,7 @@ diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 +list( APPEND Fs lib/libclangToolingRefactor.so )
 +list( APPEND Fs lib/libclangTooling.so )
 +list( APPEND Fs lib/libdivine-cc.so )
-+list( APPEND Fs lib/libdivine-dgb.so )
++list( APPEND Fs lib/libdivine-dbg.so )
 +list( APPEND Fs lib/libdivine-ltl.so )
 +list( APPEND Fs lib/libdivine-mc.so )
 +list( APPEND Fs lib/libdivine-rt.so )
