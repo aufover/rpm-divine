@@ -46,14 +46,15 @@ sed -in 's/env python2.7$/python3/' clang/utils/check_cfc/test_check_cfc.py
 sed -in 's/env python2.7$/python3/' clang/utils/check_cfc/check_cfc.py
 sed -in 's/env python2.7$/python3/' clang/utils/check_cfc/obj_diff.py
 
-# skip rpath check for now
-export QA_RPATHS=$[ 0x0001 | 0x0010 | 0x0002 ]
-
 %build
 make CMAKE_GENERATE_VC=OFF
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
+# skip rpath check for now
+export QA_RPATHS=$[ 0x0001 | 0x0010 | 0x0002 ]
+
 %make_install
 
 %files
