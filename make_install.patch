@@ -43,7 +43,7 @@ diff -Nur a/Makefile b/Makefile
 diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 --- a/releng/install-rpath.cmake	2019-07-16 02:14:40.000000000 +0200
 +++ b/releng/install-rpath.cmake	2019-07-26 11:29:49.799835648 +0200
-@@ -1,177 +1,254 @@
+@@ -1,177 +1,255 @@
  # the list of all installed files affected by our rpath hack
 +list( APPEND Fs lib/libc++.so )
 +list( APPEND Fs lib/libc++abi.so )
