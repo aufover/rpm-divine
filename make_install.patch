@@ -43,8 +43,10 @@ diff -Nur a/Makefile b/Makefile
 diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 --- a/releng/install-rpath.cmake	2019-07-16 02:14:40.000000000 +0200
 +++ b/releng/install-rpath.cmake	2019-07-26 11:29:49.799835648 +0200
-@@ -1,177 +1,233 @@
+@@ -1,177 +1,254 @@
  # the list of all installed files affected by our rpath hack
++list( APPEND Fs lib/libc++.so.2.0 )
++list( APPEND Fs lib/libc++abi.so.2.0 )
 -list( APPEND Fs lib/libLLVMSupport.so.3.7.0 )
 -list( APPEND Fs lib/libLLVMTableGen.so.3.7.0 )
 -list( APPEND Fs lib/libLLVMCore.so.3.7.0 )
@@ -208,7 +210,7 @@ diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 +list( APPEND Fs lib/libLLVMBinaryFormat.so )
 +list( APPEND Fs lib/libLLVMBitReader.so )
 +list( APPEND Fs lib/libLLVMBitWriter.so )
-+list( APPEND Fs lib/libLLVMBPFAsmParser.so ) 
++list( APPEND Fs lib/libLLVMBPFAsmParser.so )
 +list( APPEND Fs lib/libLLVMBPFAsmPrinter.so )
 +list( APPEND Fs lib/libLLVMBPFCodeGen.so )
 +list( APPEND Fs lib/libLLVMBPFDesc.so )
@@ -344,6 +346,23 @@ diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 +list( APPEND Fs lib/libclangToolingInclusions.so )
 +list( APPEND Fs lib/libclangToolingRefactor.so )
 +list( APPEND Fs lib/libclangTooling.so )
++list( APPEND Fs lib/libdivine-cc.so )
++list( APPEND Fs lib/libdivine-dgb.so )
++list( APPEND Fs lib/libdivine-ltl.so )
++list( APPEND Fs lib/libdivine-mc.so )
++list( APPEND Fs lib/libdivine-rt.so )
++list( APPEND Fs lib/libdivine-sim.so )
++list( APPEND Fs lib/libdivine-smt.so )
++list( APPEND Fs lib/libdivine-ui.so )
++list( APPEND Fs lib/libdivine-vm.so )
++list( APPEND Fs lib/liblart.so )
++list( APPEND Fs lib/liblldCommon.so )
++list( APPEND Fs lib/liblldCore.so )
++list( APPEND Fs lib/liblldDriver.so )
++list( APPEND Fs lib/liblldELF.so )
++list( APPEND Fs lib/liblldMachO.so )
++list( APPEND Fs lib/liblldReaderWriter.so )
++list( APPEND Fs lib/liblldYAML.so )
 +
 +list( APPEND Fs bin/bugpoint )
 +list( APPEND Fs bin/c-index-test )
@@ -395,6 +414,7 @@ diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 +list( APPEND Fs bin/llvm-extract )
 +list( APPEND Fs bin/llvm-link )
 +list( APPEND Fs bin/llvm-lto2 )
++list( APPEND Fs bin/llvm-mc )
 +list( APPEND Fs bin/llvm-mca )
 +list( APPEND Fs bin/llvm-modextract )
 +list( APPEND Fs bin/llvm-mt )
@@ -416,6 +436,7 @@ diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 +list( APPEND Fs bin/llvm-split )
  list( APPEND Fs bin/llvm-stress )
 -list( APPEND Fs bin/llvm-mcmarkup )
++list( APPEND Fs bin/llvm-strings )
 -list( APPEND Fs bin/verify-uselistorder )
  list( APPEND Fs bin/llvm-symbolizer )
 -list( APPEND Fs bin/llvm-c-test )
