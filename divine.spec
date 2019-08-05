@@ -21,6 +21,8 @@ TODO
 chmod +x dios/libcxx/utils/cat_files.py
 ln -sf _build.toolchain/lld/lib/Driver/DarwinLdOptions.inc lld/include/DarwinLdOptions.inc
 
+sed -in '40 i set( LLVM_TARGETS_TO_BUILD "X86" CACHE STRING "" )' CMakeLists.txt
+
 # TODO: use build-id for divine build
 # may fail, untested, add '-Wl,--build-id' to DEFINE_DEFINES otherwise
 sed -in 's/ENABLE_LINKER_BUILD_ID OFF/ENABLE_LINKER_BUILD_ID ON/' clang/CMakeLists.txt
