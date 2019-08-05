@@ -19,7 +19,7 @@ TODO
 %autosetup -p1
 
 chmod +x dios/libcxx/utils/cat_files.py
-ln -sf `pwd`/_build.toolchain/lld/lib/Driver/DarwinLdOptions.inc lld/include/DarwinLdOptions.inc
+ln -sf _build.toolchain/lld/lib/Driver/DarwinLdOptions.inc lld/include/DarwinLdOptions.inc
 
 # TODO: use build-id for divine build
 # may fail, untested, add '-Wl,--build-id' to DEFINE_DEFINES otherwise
