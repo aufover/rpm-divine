@@ -56,6 +56,10 @@ export QA_RPATHS=$[ 0x0001 | 0x0010 | 0x0002 ]
 
 %make_install
 
+cd %{buildroot}
+mkdir -p ./%{_bindir}
+ln -sf /opt/divine/bin/divine ./%{_bindir}/divine
+
 %files
-#TODO
 /opt/divine/
+%{_bindir}
