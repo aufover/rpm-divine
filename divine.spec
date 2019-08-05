@@ -60,6 +60,9 @@ cd %{buildroot}
 mkdir -p ./%{_bindir}
 ln -sf /opt/divine/bin/divine ./%{_bindir}/divine
 
+%check
+make check
+
 %files
 /opt/divine/
 %{_bindir}
