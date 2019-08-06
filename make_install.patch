@@ -43,7 +43,7 @@ diff -Nur a/Makefile b/Makefile
 diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 --- a/releng/install-rpath.cmake	2019-07-16 02:14:40.000000000 +0200
 +++ b/releng/install-rpath.cmake	2019-07-26 11:29:49.799835648 +0200
-@@ -1,177 +1,255 @@
+@@ -1,177 +1,261 @@
  # the list of all installed files affected by our rpath hack
 +list( APPEND Fs lib/libc++.so )
 +list( APPEND Fs lib/libc++abi.so )
@@ -376,6 +376,9 @@ diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 +list( APPEND Fs bin/clang-refactor )
 +list( APPEND Fs bin/clang-rename )
 +list( APPEND Fs bin/diagtool )
++list( APPEND Fs bin/dioscc )
++list( APPEND Fs bin/divcc )
++list( APPEND Fs bin/divcheck )
  list( APPEND Fs bin/divine )
 -list( APPEND Fs bin/llvm-tblgen )
 -list( APPEND Fs bin/llvm-config )
@@ -387,6 +390,7 @@ diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 +list( APPEND Fs bin/git-clang-format )
 +list( APPEND Fs bin/hmaptool )
  list( APPEND Fs bin/llc )
++list( APPEND Fs bin/lart )
 +list( APPEND Fs bin/lli )
  list( APPEND Fs bin/llvm-ar )
 -list( APPEND Fs bin/llvm-nm )
@@ -446,6 +450,8 @@ diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 +list( APPEND Fs bin/llvm-xray )
  list( APPEND Fs bin/obj2yaml )
 +list( APPEND Fs bin/opt )
++list( APPEND Fs bin/runtime-cc )
++list( APPEND Fs bin/runtime-ld )
 +list( APPEND Fs bin/sancov )
 +list( APPEND Fs bin/sanstats )
 +list( APPEND Fs bin/scan-build )
