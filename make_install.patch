@@ -472,3 +472,16 @@ diff -Nur a/stp/lib/Interface/CMakeLists.txt b/stp/lib/Interface/CMakeLists.txt
                            )
      endforeach()
  endif()
+
+diff -Nur a/tools/CMakeLists.txt b/tools/CMakeLists.txt
+--- a/tools/CMakeLists.txt	2019-08-01 23:51:33.000000000 +0200
++++ b/tools/CMakeLists.txt	2019-08-06 16:10:49.335477692 +0200
+@@ -66,7 +66,7 @@
+   set( INSTALL_BIN_DEST bin )
+ endif( WIN32 )
+ 
++install( TARGETS divine divcc dioscc runtime-cc runtime-ld lart divcheck
+-install( TARGETS divine
+          DESTINATION ${INSTALL_BIN_DEST} COMPONENT console_tools )
+ 
+ # NB. Must be here (and not in the toplevel cmakelists) to ensure correct
