@@ -62,7 +62,14 @@ export QA_RPATHS=$[ 0x0001 | 0x0010 | 0x0002 ]
 
 cd %{buildroot}
 mkdir -p ./%{_bindir}
+ln -sf /opt/divine/bin/dioscc ./%{_bindir}/dioscc
+ln -sf /opt/divine/bin/divcc ./%{_bindir}/divcc
+ln -sf /opt/divine/bin/divcheck ./%{_bindir}/divcheck
 ln -sf /opt/divine/bin/divine ./%{_bindir}/divine
+ln -sf /opt/divine/bin/lart ./%{_bindir}/lart
+ln -sf /opt/divine/bin/runtime-cc ./%{_bindir}/runtime-cc
+ln -sf /opt/divine/bin/runtime-ld ./%{_bindir}/runtime-ld
+ln -sf /opt/divine/bin/lart ./%{_bindir}/divine
 
 %check
 make check
