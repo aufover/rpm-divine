@@ -19,7 +19,7 @@ TODO
 %autosetup -p1
 
 chmod +x dios/libcxx/utils/cat_files.py
-ln -sf _build.toolchain/lld/lib/Driver/DarwinLdOptions.inc lld/include/DarwinLdOptions.inc
+ln -rsf _build.toolchain/lld/lib/Driver/DarwinLdOptions.inc lld/include/DarwinLdOptions.inc
 
 sed -in '40 i set( LLVM_TARGETS_TO_BUILD "X86" CACHE STRING "" )' CMakeLists.txt
 
