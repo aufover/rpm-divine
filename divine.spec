@@ -10,7 +10,10 @@ Source0:        https://%{name}.fi.muni.cz/download/%{name}-%{version}.tar.gz
 Patch0:         make_install.patch
 Patch1:         disable-VC-checks.patch
 
-BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel
+BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel 
+
+# if some test fails, gdb is used to gather additional info
+BuildRequires: gdb
 
 %description
 TODO
