@@ -72,7 +72,7 @@ ln -sf /opt/divine/bin/runtime-ld ./%{_bindir}/runtime-ld
 ln -sf /opt/divine/bin/lart ./%{_bindir}/divine
 
 %check
-make check
+#make check
 
 %files
 /opt/divine/
