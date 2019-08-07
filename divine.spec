@@ -72,7 +72,9 @@ ln -sf /opt/divine/bin/runtime-ld ./%{_bindir}/runtime-ld
 ln -sf /opt/divine/bin/lart ./%{_bindir}/divine
 
 %check
-#make check
+# make check -- contains unit and functional
+make unit
+#make functional -- currently broken on fedora
 
 %files
 /opt/divine/
