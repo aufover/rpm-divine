@@ -78,4 +78,10 @@ make unit
 
 %files
 /opt/divine/
-%{_bindir}
+%{_bindir}/dioscc
+%{_bindir}/divcc
+%{_bindir}/divcheck
+%{_bindir}/divine
+%{_bindir}/lart
+%{_bindir}/runtime-cc
+%{_bindir}/runtime-ld
