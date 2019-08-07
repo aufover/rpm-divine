@@ -69,7 +69,6 @@ ln -sf /opt/divine/bin/divine ./%{_bindir}/divine
 ln -sf /opt/divine/bin/lart ./%{_bindir}/lart
 ln -sf /opt/divine/bin/runtime-cc ./%{_bindir}/runtime-cc
 ln -sf /opt/divine/bin/runtime-ld ./%{_bindir}/runtime-ld
-ln -sf /opt/divine/bin/lart ./%{_bindir}/divine
 
 %check
 # make check -- contains unit and functional
