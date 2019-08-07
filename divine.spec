@@ -15,6 +15,9 @@ BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurse
 # if some test fails, gdb is used to gather additional info
 BuildRequires: gdb
 
+# divcc on x86_64 does not work well when glibc-devel.i686 is not installed
+Requires: glibc-devel%(tmp="%{_isa}" && echo "${tmp/-64/-32}")
+
 %description
 TODO
 
