@@ -63,15 +63,10 @@ export QA_RPATHS=$[ 0x0001 | 0x0010 | 0x0002 ]
 
 %make_install
 
-cd %{buildroot}
-mkdir -p ./%{_bindir}
-ln -sf /opt/divine/bin/dioscc ./%{_bindir}/dioscc
-ln -sf /opt/divine/bin/divcc ./%{_bindir}/divcc
-ln -sf /opt/divine/bin/divcheck ./%{_bindir}/divcheck
-ln -sf /opt/divine/bin/divine ./%{_bindir}/divine
-ln -sf /opt/divine/bin/lart ./%{_bindir}/lart
-ln -sf /opt/divine/bin/runtime-cc ./%{_bindir}/runtime-cc
-ln -sf /opt/divine/bin/runtime-ld ./%{_bindir}/runtime-ld
+# make divine tools available in default $PATH
+mkdir -p %{buildroot}%{_bindir}
+ln -sf /opt/divine/bin/{dioscc,divcc,divcheck,divine,lart,runtime-{cc,ld}} \
+  %{buildroot}%{_bindir}
 
 %check
 # make check -- contains unit and functional
@@ -80,10 +75,4 @@ make unit
 
 %files
 /opt/divine/
-%{_bindir}/dioscc
-%{_bindir}/divcc
-%{_bindir}/divcheck
-%{_bindir}/divine
-%{_bindir}/lart
-%{_bindir}/runtime-cc
-%{_bindir}/runtime-ld
+%{_bindir}/*
