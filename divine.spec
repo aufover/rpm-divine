@@ -1,6 +1,6 @@
 Name:           divine
 Version:        4.3.4
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
@@ -63,9 +63,14 @@ export QA_RPATHS=$[ 0x0001 | 0x0010 | 0x0002 ]
 
 %make_install
 
+# create divc++ and diosc++ symlinks (if divcc is invoked as divc++, it should
+# automatically link C++ run-time libraries)
+ln -sf divcc  %{buildroot}/opt/divine/bin/divc++
+ln -sf dioscc %{buildroot}/opt/divine/bin/diosc++
+
 # make divine tools available in default $PATH
 mkdir -p %{buildroot}%{_bindir}
-ln -sf /opt/divine/bin/{dioscc,divcc,divcheck,divine,lart,runtime-{cc,ld}} \
+ln -sf /opt/divine/bin/{diosc{c,++},divc{c,++},divcheck,divine,lart,runtime-{cc,ld}} \
   %{buildroot}%{_bindir}
 
 %check
