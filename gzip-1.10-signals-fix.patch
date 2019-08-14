@@ -1,0 +1,194 @@
+diff --git a/NEWS b/NEWS
+index 72b4109..c09ec15 100644
+--- a/NEWS
++++ b/NEWS
+@@ -16,11 +16,6 @@ GNU gzip NEWS                                    -*- outline -*-
+   A use of uninitialized memory on some malformed inputs has been fixed.
+   [bug present since the beginning]
+ 
+-  A few theoretical race conditions in signal handers have been fixed.
+-  These bugs most likely do not happen on practical platforms.
+-  [bugs present since the beginning]
+-
+-
+ * Noteworthy changes in release 1.9 (2018-01-07) [stable]
+ 
+ ** Bug fixes
+diff --git a/gzip.c b/gzip.c
+index 9751c5e..571f99d 100644
+--- a/gzip.c
++++ b/gzip.c
+@@ -115,6 +115,21 @@ static char const *const license_msg[] = {
+   off_t lseek (int fd, off_t offset, int whence);
+ #endif
+ 
++#ifndef OFF_T_MAX
++# define OFF_T_MAX TYPE_MAXIMUM (off_t)
++#endif
++
++/* Use SA_NOCLDSTOP as a proxy for whether the sigaction machinery is
++   present.  */
++#ifndef SA_NOCLDSTOP
++# define SA_NOCLDSTOP 0
++# define sigprocmask(how, set, oset) /* empty */
++# define sigset_t int
++# if ! HAVE_SIGINTERRUPT
++#  define siginterrupt(sig, flag) /* empty */
++# endif
++#endif
++
+ #ifndef HAVE_WORKING_O_NOFOLLOW
+ # define HAVE_WORKING_O_NOFOLLOW 0
+ #endif
+@@ -196,10 +211,8 @@ static sigset_t caught_signals;
+    suppresses a "Broken Pipe" message with some shells.  */
+ static int volatile exiting_signal;
+ 
+-/* If nonnegative, close this file descriptor and unlink remove_ofname
+-   on error.  */
++/* If nonnegative, close this file descriptor and unlink ofname on error.  */
+ static int volatile remove_ofname_fd = -1;
+-static char volatile remove_ofname[MAX_PATH_LEN];
+ 
+ static bool stdin_was_read;
+ 
+@@ -310,8 +323,8 @@ local void do_list      (int ifd, int method);
+ local int  check_ofname (void);
+ local void copy_stat    (struct stat *ifstat);
+ local void install_signal_handlers (void);
+-static void remove_output_file (bool);
+-static void abort_gzip_signal (int);
++local void remove_output_file (void);
++local RETSIGTYPE abort_gzip_signal (int);
+ local noreturn void do_exit (int exitcode);
+ static void finish_out (void);
+       int main          (int argc, char **argv);
+@@ -1048,7 +1061,7 @@ local void treat_file(iname)
+ 
+     if (method == -1) {
+         if (!to_stdout)
+-          remove_output_file (false);
++          remove_output_file ();
+         return;
+     }
+ 
+@@ -1068,13 +1081,6 @@ local void treat_file(iname)
+     }
+ }
+ 
+-static void
+-volatile_strcpy (char volatile *dst, char const volatile *src)
+-{
+-  while ((*dst++ = *src++))
+-    continue;
+-}
+-
+ /* ========================================================================
+  * Create the output file. Return OK or ERROR.
+  * Try several times if necessary to avoid truncating the z_suffix. For
+@@ -1108,8 +1114,6 @@ local int create_outfile()
+       int open_errno;
+       sigset_t oldset;
+ 
+-      volatile_strcpy (remove_ofname, ofname);
+-
+       sigprocmask (SIG_BLOCK, &caught_signals, &oldset);
+       remove_ofname_fd = ofd = openat (atfd, base, flags, S_IRUSR | S_IWUSR);
+       open_errno = errno;
+@@ -2051,6 +2055,8 @@ install_signal_handlers ()
+ {
+   int nsigs = sizeof handled_sig / sizeof handled_sig[0];
+   int i;
++
++#if SA_NOCLDSTOP
+   struct sigaction act;
+ 
+   sigemptyset (&caught_signals);
+@@ -2072,6 +2078,16 @@ install_signal_handlers ()
+           foreground = 1;
+         sigaction (handled_sig[i], &act, NULL);
+       }
++#else
++  for (i = 0; i < nsigs; i++)
++    if (signal (handled_sig[i], SIG_IGN) != SIG_IGN)
++      {
++        if (i == 0)
++          foreground = 1;
++        signal (handled_sig[i], abort_gzip_signal);
++        siginterrupt (handled_sig[i], 1);
++      }
++#endif
+ }
+ 
+ /* ========================================================================
+@@ -2111,43 +2127,42 @@ finish_out (void)
+  * Close and unlink the output file.
+  */
+ static void
+-remove_output_file (bool signals_already_blocked)
++remove_output_file ()
+ {
+   int fd;
+   sigset_t oldset;
+ 
+-  if (!signals_already_blocked)
+-    sigprocmask (SIG_BLOCK, &caught_signals, &oldset);
++  sigprocmask (SIG_BLOCK, &caught_signals, &oldset);
+   fd = remove_ofname_fd;
+   if (0 <= fd)
+     {
+-      char fname[MAX_PATH_LEN];
+       remove_ofname_fd = -1;
+       close (fd);
+-      volatile_strcpy (fname, remove_ofname);
+-      xunlink (fname);
++      xunlink (ofname);
+     }
+-  if (!signals_already_blocked)
+-    sigprocmask (SIG_SETMASK, &oldset, NULL);
++  sigprocmask (SIG_SETMASK, &oldset, NULL);
+ }
+ 
+ /* ========================================================================
+  * Error handler.
+  */
+ void
+-abort_gzip (void)
++abort_gzip ()
+ {
+-   remove_output_file (false);
++   remove_output_file ();
+    do_exit(ERROR);
+ }
+ 
+ /* ========================================================================
+  * Signal handler.
+  */
+-static void
+-abort_gzip_signal (int sig)
++static RETSIGTYPE
++abort_gzip_signal (sig)
++     int sig;
+ {
+-   remove_output_file (true);
++  if (! SA_NOCLDSTOP)
++    signal (sig, SIG_IGN);
++   remove_output_file ();
+    if (sig == exiting_signal)
+      _exit (WARNING);
+    signal (sig, SIG_DFL);
+diff --git a/gzip.h b/gzip.h
+index 329c9a5..2499337 100644
+--- a/gzip.h
++++ b/gzip.h
+@@ -41,6 +41,10 @@
+ #include <stdnoreturn.h>
+ #define memzero(s, n) memset ((voidp)(s), 0, (n))
+ 
++#ifndef RETSIGTYPE
++#  define RETSIGTYPE void
++#endif
++
+ #define local static
+ 
+ typedef unsigned char  uch;
