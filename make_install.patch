@@ -491,3 +491,18 @@ diff -Nur a/tools/CMakeLists.txt b/tools/CMakeLists.txt
           DESTINATION ${INSTALL_BIN_DEST} COMPONENT console_tools )
  
  # NB. Must be here (and not in the toplevel cmakelists) to ensure correct
+--- a/tools/divcheck.hpp	2019-08-16 12:03:21.448389268 +0200
++++ b/tools/divcheck.hpp	2019-08-16 12:04:06.078320220 +0200
+@@ -139,10 +139,10 @@
+             expect->arm( cmdstr );
+         };
+ 
+-        auto o_expect = ui::cmd::make_option_set< Expect >( cli.validator() )
++        auto o_expect = ui::cmd::make_option_set( cli.validator() )
+             .option( "--result {result}", &Expect::_result, "verification result" )
+             .option( "[--location {string}]", &Expect::_location, "location of the expected error" );
+-        auto o_load = ui::cmd::make_option_set< Load >( cli.validator() )
++        auto o_load = ui::cmd::make_option_set( cli.validator() )
+             .option( "{string}+", &Load::args, "file path, file name" );
+ 
+         auto parser = cli.commands().command< Expect >( o_expect ).command< Load >( o_load );
