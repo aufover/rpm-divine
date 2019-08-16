@@ -1,6 +1,6 @@
 Name:           divine
-Version:        4.3.4
-Release:        5%{?dist}
+Version:        4.3.5
+Release:        1%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
@@ -33,7 +33,7 @@ sed -in '40 i set( LLVM_TARGETS_TO_BUILD "X86" CACHE STRING "" )' CMakeLists.txt
 # use build-id for divine build
 sed -in 's/ENABLE_LINKER_BUILD_ID OFF/ENABLE_LINKER_BUILD_ID ON/' clang/CMakeLists.txt
 
-# HOTFIX: remove undefinition of the __x86_64__ macro, fixes divcc, breaks dioscc
+# HOTFIX: remove undefinition of the __x86_64__ macro, fixes divcc
 sed -in '91,92 d' divine/cc/driver.cpp
 
 # use Python 3 explicitly
