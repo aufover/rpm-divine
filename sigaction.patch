@@ -1,0 +1,14 @@
+--- a/dios/sys/sched_base.hpp	2019-08-15 23:59:43.000000000 +0200
++++ b/dios/sys/sched_base.hpp	2019-08-19 14:51:35.395393816 +0200
+@@ -255,7 +255,10 @@
+ 
+         if ( oldact )
+             oldact->sa_handler = sighandlers[sig].f;
+-        sighandlers[sig].f = act->sa_handler;
++        
++        if ( act )
++            sighandlers[sig].f = act->sa_handler;
++
+         return 0;
+     }
+ 
