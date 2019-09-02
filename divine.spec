@@ -1,5 +1,5 @@
 Name:           divine
-Version:        4.3.5
+Version:        4.3.6
 Release:        2%{?dist}
 Summary:        Explicit-state model checker
 
@@ -9,7 +9,6 @@ Source0:        https://%{name}.fi.muni.cz/download/%{name}-%{version}.tar.gz
 
 Patch0:         make_install.patch
 Patch1:         disable-VC-checks.patch
-Patch2:         sigaction.patch
 
 BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel 
 
@@ -35,7 +34,7 @@ sed -in '40 i set( LLVM_TARGETS_TO_BUILD "X86" CACHE STRING "" )' CMakeLists.txt
 sed -in 's/ENABLE_LINKER_BUILD_ID OFF/ENABLE_LINKER_BUILD_ID ON/' clang/CMakeLists.txt
 
 # HOTFIX: remove undefinition of the __x86_64__ macro, fixes divcc
-sed -in '91,92 d' divine/cc/driver.cpp
+#sed -in '91,92 d' divine/cc/driver.cpp
 
 # use Python 3 explicitly
 sed -in 's/python$/python3/' clang/tools/clang-format/clang-format-diff.py
