@@ -15,10 +15,6 @@ BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurse
 # if some test fails, gdb is used to gather additional info
 BuildRequires: gdb
 
-# Not needed
-# divcc on x86_64 does not work well when glibc-devel.i686 is not installed
-# Requires: glibc-devel%(tmp="%{_isa}" && echo "${tmp/-64/-32}")
-
 %description
 TODO
 
@@ -33,8 +29,8 @@ sed -in '40 i set( LLVM_TARGETS_TO_BUILD "X86" CACHE STRING "" )' CMakeLists.txt
 # use build-id for divine build
 sed -in 's/ENABLE_LINKER_BUILD_ID OFF/ENABLE_LINKER_BUILD_ID ON/' clang/CMakeLists.txt
 
-# HOTFIX: remove undefinition of the __x86_64__ macro, fixes divcc
-#sed -in '91,92 d' divine/cc/driver.cpp
+# HOTFIX: remove undefinition of the __x86_64__ macro in dioscc
+sed -in '47,48 d' divine/rt/dios-cc.cpp
 
 # use Python 3 explicitly
 sed -in 's/python$/python3/' clang/tools/clang-format/clang-format-diff.py
