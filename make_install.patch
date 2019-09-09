@@ -480,3 +480,16 @@ diff -Nur a/tools/CMakeLists.txt b/tools/CMakeLists.txt
           DESTINATION ${INSTALL_BIN_DEST} COMPONENT console_tools )
  
  # NB. Must be here (and not in the toplevel cmakelists) to ensure correct
+
+diff -Nur a/divine/CMakeLists.txt b/divine/CMakeLists.txt
+--- a/divine/CMakeLists.txt	2019-09-09 14:27:22.313204059 +0200
++++ b/divine/CMakeLists.txt	2019-09-09 14:24:24.226257122 +0200
+@@ -53,8 +53,6 @@
+   add_library( divine-sim ${CPP_sim} ${doc_FILES} )
+   target_link_libraries( divine-sim ${LIBEDIT} ${LIBTINFO} divine-dbg )
+   target_link_libraries( divine-ui divine-sim )
++  set_target_properties( divine-sim PROPERTIES POSITION_INDEPENDENT_CODE ON )
++  install( TARGETS divine-sim DESTINATION lib )
+ endif()
+ 
+ # target_compile_features( libdivine PUBLIC cxx_relaxed_constexpr )
