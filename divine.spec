@@ -21,9 +21,11 @@ TODO
 %prep
 %autosetup -p1
 
+# make install fixes
 chmod +x dios/libcxx/utils/cat_files.py
 ln -rsf _build.toolchain/lld/lib/Driver/DarwinLdOptions.inc lld/include/DarwinLdOptions.inc
 
+# build LLVM only for X86
 sed -in '40 i set( LLVM_TARGETS_TO_BUILD "X86" CACHE STRING "" )' CMakeLists.txt
 
 # use build-id for divine build
@@ -76,7 +78,7 @@ ln -sf /opt/divine/bin/{diosc{c,++},divc{c,++},divcheck,divine,lart,runtime-{cc,
 %check
 # make check -- contains unit and functional
 make unit
-#make functional -- currently broken on fedora
+# make functional -- currently broken
 
 %files
 /opt/divine/
