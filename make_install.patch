@@ -32,7 +32,7 @@ diff -Nur a/Makefile b/Makefile
 diff -Nur a/releng/install-rpath.cmake b/releng/install-rpath.cmake
 --- a/releng/install-rpath.cmake	2019-07-16 02:14:40.000000000 +0200
 +++ b/releng/install-rpath.cmake	2019-07-26 11:29:49.799835648 +0200
-@@ -1,177 +1,262 @@
+@@ -1,177 +1,261 @@
  # the list of all installed files affected by our rpath hack
 +list( APPEND Fs lib/libc++.so )
 +list( APPEND Fs lib/libc++abi.so )
@@ -484,7 +484,7 @@ diff -Nur a/tools/CMakeLists.txt b/tools/CMakeLists.txt
 diff -Nur a/divine/CMakeLists.txt b/divine/CMakeLists.txt
 --- a/divine/CMakeLists.txt	2019-09-09 14:27:22.313204059 +0200
 +++ b/divine/CMakeLists.txt	2019-09-09 14:24:24.226257122 +0200
-@@ -53,8 +53,6 @@
+@@ -53,6 +53,8 @@
    add_library( divine-sim ${CPP_sim} ${doc_FILES} )
    target_link_libraries( divine-sim ${LIBEDIT} ${LIBTINFO} divine-dbg )
    target_link_libraries( divine-ui divine-sim )
