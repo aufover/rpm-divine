@@ -70,7 +70,7 @@ ln -sf dioscc %{buildroot}/opt/divine/bin/diosc++
 
 # make divine tools available in default $PATH
 mkdir -p %{buildroot}%{_bindir}
-ln -sf /opt/divine/bin/{diosc{c,++},divc{c,++},divcheck,divine,lart,runtime-{cc,ld}} \
+ln -sf /opt/divine/bin/{diosc{c,++},divc{c,++},divcheck,divine,lart,runtime-{cc,ld},shoop} \
   %{buildroot}%{_bindir}
 
 %check

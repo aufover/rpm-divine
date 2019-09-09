@@ -475,7 +475,7 @@ diff -Nur a/tools/CMakeLists.txt b/tools/CMakeLists.txt
    set( INSTALL_BIN_DEST bin )
  endif( WIN32 )
  
-+install( TARGETS divine divcc dioscc runtime-cc runtime-ld lart divcheck
++install( TARGETS divine divcc dioscc runtime-cc runtime-ld lart divcheck shoop
 -install( TARGETS divine
           DESTINATION ${INSTALL_BIN_DEST} COMPONENT console_tools )
  
