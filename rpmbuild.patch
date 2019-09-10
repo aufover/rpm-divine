@@ -1,0 +1,21 @@
+--- a/CMakeLists.txt	2019-09-10 11:18:36.902472997 +0200
++++ b/CMakeLists.txt	2019-09-10 13:44:05.827105962 +0200
+@@ -64,6 +64,7 @@
+ 
+ set( LLVM_MAIN_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/llvm" )
+ set( LLVM_MAIN_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/llvm/include" )
++set( LLVM_TARGETS_TO_BUILD "X86" CACHE STRING "" )
+ set( LLVM_TARGET_ARCH "host" )
+ 
+ if( WIN32 OR CYGWIN )
+--- a/clang/CMakeLists.txt	2019-09-10 11:20:07.766014505 +0200
++++ b/clang/CMakeLists.txt	2019-09-10 13:45:10.420640970 +0200
+@@ -207,7 +207,7 @@
+ set(DEFAULT_SYSROOT "" CACHE PATH
+   "Default <path> to all compiler invocations for --sysroot=<path>." )
+ 
+-set(ENABLE_LINKER_BUILD_ID OFF CACHE BOOL "pass --build-id to ld")
++set(ENABLE_LINKER_BUILD_ID ON CACHE BOOL "pass --build-id to ld")
+ 
+ set(ENABLE_X86_RELAX_RELOCATIONS OFF CACHE BOOL
+     "enable x86 relax relocations by default")

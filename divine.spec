@@ -9,6 +9,10 @@ Source0:        https://%{name}.fi.muni.cz/download/%{name}-%{version}.tar.gz
 
 Patch0:         make_install.patch
 Patch1:         disable-VC-checks.patch
+Patch2:         rpmbuild.patch
+
+# remove undefinition of __x86_64__ in dioscc and divine cc
+Patch3:         hotfix.patch
 
 BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel 
 
@@ -23,16 +27,8 @@ TODO
 
 # make install fixes
 chmod +x dios/libcxx/utils/cat_files.py
-ln -rsf _build.toolchain/lld/lib/Driver/DarwinLdOptions.inc lld/include/DarwinLdOptions.inc
-
-# build LLVM only for X86
-sed -in '40 i set( LLVM_TARGETS_TO_BUILD "X86" CACHE STRING "" )' CMakeLists.txt
-
-# use build-id for divine build
-sed -in 's/ENABLE_LINKER_BUILD_ID OFF/ENABLE_LINKER_BUILD_ID ON/' clang/CMakeLists.txt
-
-# HOTFIX: remove undefinition of the __x86_64__ macro in dioscc
-sed -in '47,48 d' divine/rt/dios-cc.cpp
+ln -rsf _build.toolchain/lld/lib/Driver/DarwinLdOptions.inc \
+  lld/include/DarwinLdOptions.inc
 
 # use Python 3 explicitly
 sed -in 's/python$/python3/' clang/tools/clang-format/clang-format-diff.py
