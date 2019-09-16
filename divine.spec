@@ -1,6 +1,6 @@
 Name:           divine
 Version:        4.3.6
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
@@ -15,10 +15,16 @@ Patch2:         rpmbuild.patch
 # remove undefinition of __x86_64__ in dioscc and divine cc
 # Patch3:         hotfix.patch
 
-BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel 
+BuildRequires: python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel 
+
+# optional dependencies
+BuildRequires: z3-devel python3-pygments
 
 # if some test fails, gdb is used to gather additional info
 BuildRequires: gdb
+
+# optional dependencies
+Requires: z3-lib python3-pygments
 
 %description
 TODO
