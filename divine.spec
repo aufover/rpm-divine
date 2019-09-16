@@ -73,8 +73,8 @@ ln -sf /opt/divine/bin/{diosc{c,++},divc{c,++},divcheck,divine,lart,runtime-{cc,
   %{buildroot}%{_bindir}
 
 %check
-# make check -- contains unit and functional
-make unit
+make check -- contains unit and functional
+# make unit
 # make functional -- currently broken
 
 %files
