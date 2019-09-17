@@ -1,6 +1,6 @@
 Name:           divine
 Version:        4.3.6
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
@@ -11,9 +11,8 @@ Patch0:         make_install.patch
 Patch1:         disable-VC-checks.patch
 Patch2:         rpmbuild.patch
 
-# not a bug according to mornfall
-# remove undefinition of __x86_64__ in dioscc and divine cc
-# Patch3:         hotfix.patch
+# Patches from next branch: Fix toolchain path in tests
+Patch3:         hotfix.patch
 
 BuildRequires: python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel 
 
@@ -79,9 +78,7 @@ ln -sf /opt/divine/bin/{diosc{c,++},divc{c,++},divcheck,divine,lart,runtime-{cc,
   %{buildroot}%{_bindir}
 
 %check
-make check -- contains unit and functional
-# make unit
-# make functional -- currently broken
+make check
 
 %files
 /opt/divine/
