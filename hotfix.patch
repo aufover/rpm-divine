@@ -26,3 +26,17 @@ diff -rN -u old-divine-next/test/lib/pkgc-unpack new-divine-next/test/lib/pkgc-u
  $cc = "$cc++ -std=c++14" if $ext eq "cpp";
  my $cflags = "-isystem $ENV{SRCDIR}/dios/include -isystem $ENV{BINDIR}/dios/include -D__divine__";
  $cflags .= " $2" if ( $file =~ m,^(/\*|//) CC_OPTS: (.*?)(\*/)?$,sm );
+
+# Fix Z3 on Fedora/RHEL
+diff -rN -u old-divine-next/test/lib/pkgc-unpack new-divine-next/test/lib/pkgc-unpack
+--- old/releng/cmake/FindZ3.cmake	2019-09-20 13:48:00.231141320 +0200
++++ new/releng/cmake/FindZ3.cmake	2019-09-20 13:48:53.721056119 +0200
+@@ -2,7 +2,7 @@
+   SET(Z3_FIND_QUIETLY TRUE)
+ ENDIF (Z3_INCLUDE_DIR)
+ 
+-FIND_PATH(Z3_INCLUDE_DIR z3.h z3++.h)
++FIND_PATH(Z3_INCLUDE_DIR z3.h z3++.h PATH_SUFFIXES z3)
+ 
+ SET(Z3_NAMES z3 libz3 ltz3 libz3 lz3)
+ FIND_LIBRARY(Z3_LIBRARY NAMES ${Z3_NAMES} )
