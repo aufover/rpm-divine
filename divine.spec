@@ -17,13 +17,13 @@ Patch3:         hotfix.patch
 BuildRequires: python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel 
 
 # optional dependencies
-BuildRequires: z3-devel python3-pygments
+BuildRequires: z3-devel
 
 # if some test fails, gdb is used to gather additional info
 BuildRequires: gdb
 
 # optional dependencies
-Requires: z3-lib python3-pygments
+Requires: python3-pygments
 
 %description
 TODO
