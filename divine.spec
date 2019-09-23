@@ -1,6 +1,6 @@
 Name:           divine
 Version:        4.3.6
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
@@ -11,16 +11,19 @@ Patch0:         make_install.patch
 Patch1:         disable-VC-checks.patch
 Patch2:         rpmbuild.patch
 
-# Patches from next branch: Fix toolchain path in tests
-Patch3:         hotfix.patch
+# Patch to rise the testsuite timeout values for Copr builds
+Patch3:         timeout.patch
 
-BuildRequires: python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel 
+# Patches from next branch: Fix toolchain path in tests + compilation with Z3
+Patch4:         hotfix.patch
+
+BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel 
 
 # optional dependencies
-BuildRequires: z3-devel
+BuildRequires:  z3-devel
 
 # if some test fails, gdb is used to gather additional info
-BuildRequires: gdb
+BuildRequires:  gdb
 
 # optional dependencies
 Requires: python3-pygments
