@@ -1,6 +1,6 @@
 Name:           divine
 Version:        4.3.6
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
@@ -20,13 +20,13 @@ Patch4:         hotfix.patch
 BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel 
 
 # optional dependencies
-BuildRequires:  z3-devel
+BuildRequires:  z3 z3-devel
 
 # if some test fails, gdb is used to gather additional info
 BuildRequires:  gdb
 
 # optional dependencies
-Requires: python3-pygments
+Requires: python3-pygments z3
 
 %description
 TODO
