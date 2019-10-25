@@ -1,6 +1,6 @@
 Name:           divine
-Version:        4.3.6
-Release:        8%{?dist}
+Version:        4.3.6+518+g1f07ac566
+Release:        1%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
@@ -8,16 +8,16 @@ URL:            https://%{name}.fi.muni.cz
 Source0:        https://%{name}.fi.muni.cz/download/%{name}-%{version}.tar.gz
 
 Patch0:         make_install.patch
-Patch1:         disable-VC-checks.patch
-Patch2:         rpmbuild.patch
+Patch1:         rpmbuild.patch
 
 # Patch to rise the testsuite timeout values for Copr builds
-Patch3:         timeout.patch
+Patch2:         timeout.patch
 
-# Patches from next branch: Fix toolchain path in tests + compilation with Z3
-Patch4:         hotfix.patch
+# Patches from next branch
+# Patch3:         hotfix.patch
 
-BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel ncurses-devel zlib-devel gtest-devel 
+BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel
+BuildRequires:  ncurses-devel zlib-devel gtest-devel 
 
 # optional dependencies
 BuildRequires:  z3 z3-devel
@@ -34,10 +34,8 @@ TODO
 %prep
 %autosetup -p1
 
-# make install fixes
+# FIXME: make install
 chmod +x dios/libcxx/utils/cat_files.py
-ln -rsf _build.toolchain/lld/lib/Driver/DarwinLdOptions.inc \
-  lld/include/DarwinLdOptions.inc
 
 # use Python 3 explicitly
 sed -in 's/python$/python3/' clang/tools/clang-format/clang-format-diff.py
@@ -61,7 +59,7 @@ sed -in 's/env python2.7$/python3/' clang/utils/check_cfc/check_cfc.py
 sed -in 's/env python2.7$/python3/' clang/utils/check_cfc/obj_diff.py
 
 %build
-make CMAKE_GENERATE_VC=OFF
+make
 
 %install
 
@@ -77,11 +75,11 @@ ln -sf dioscc %{buildroot}/opt/divine/bin/diosc++
 
 # make divine tools available in default $PATH
 mkdir -p %{buildroot}%{_bindir}
-ln -sf /opt/divine/bin/{diosc{c,++},divc{c,++},divcheck,divine,lart,runtime-{cc,ld},shoop} \
+ln -sf /opt/divine/bin/{diosc{c,++},divc{c,++},divine,lart} \
   %{buildroot}%{_bindir}
 
 %check
-make check
+make unit
 
 %files
 /opt/divine/
