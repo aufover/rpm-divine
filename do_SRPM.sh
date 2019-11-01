@@ -11,7 +11,7 @@ git clone https://gitlab.fi.muni.cz/paradise/mirror/divine.git
 
 # make package
 pushd divine
-VER=`sed "s/-/+/g" <(git describe)`
+VER=`sed "s/-/_/g" <(git describe)`
 PREFIX="divine-$VER/"
 
 echo Making divine-$VER.tar.gz ...
