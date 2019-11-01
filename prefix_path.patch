@@ -111,3 +111,27 @@ diff -rN -u a/tools/runtime-cc.cpp b/tools/runtime-cc.cpp
              TRACE( "rewrite", p, "to", n );
              return n;
          } );
+
+diff -rN -u a/test/lang-cpp/can-catch.cpp b/test/lang-cpp/can-catch.cpp
+--- a/test/lang-cpp/can-catch.cpp
++++ b/test/lang-cpp/can-catch.cpp
+@@ -1,5 +1,5 @@
+ /* TAGS: min c++ */
+-/* CC_OPTS: -I/dios */
++/* CC_OPTS: -I/opt/divine/include/dios */
+ #include <libcxxabi/src/private_typeinfo.h>
+ #include <memory>
+ #include <exception>
+
+diff -rN -u a/test/sim/call-dbg.sh b/test/sim/call-dbg.sh
+--- a/test/sim/call-dbg.sh
++++ b/test/sim/call-dbg.sh
+@@ -15,7 +15,7 @@
+ int main() {}
+ EOF
+ 
+-sim -std=c++17 -C,-I/,-I$SRCDIR/bricks file.cpp <<EOF
++sim -std=c++17 -C,-I/opt/divine/include,-I$SRCDIR/bricks file.cpp <<EOF
+ + ^# executing __boot at
+ > start
+ > call use_debug
