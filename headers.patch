@@ -1,0 +1,36 @@
+diff -rN -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
+--- a/dios/CMakeLists.txt	2019-11-01 15:57:40.145739566 +0100
++++ b/dios/CMakeLists.txt	2019-11-01 15:57:40.145739566 +0100
+@@ -133,3 +133,32 @@
+ target_link_libraries( divine-rt divine-cc )
+ set_target_properties( divine-rt PROPERTIES POSITION_INDEPENDENT_CODE ON )
+ install( TARGETS divine-rt DESTINATION lib )
++
++# Install headers
++foreach( D sys config vfs vfs include include/_PDCLIB include/util include/rst
++           include/sys include/bits include/machine include/netinet include/arpa
++           libcxxabi/src libcxx/include/support/xlocale libcxx/src/support
++           libcxx/include/support/divine )
++
++  file( GLOB HPP_${D} LIST_DIRECTORIES false ${D}/*.hpp ${D}/*.h ${D}/*.def
++        ${D}/*.ipp ${D}/*.undef )
++  install( FILES ${HPP_${D}} DESTINATION include/dios/${D} )
++endforeach()
++
++foreach( D libcxxabi/include libcxx/include libcxx/include/ext
++           libcxx/include/experimental libunwind/include )
++  file( GLOB HPP_${D} LIST_DIRECTORIES false ${D}/* )
++  install( FILES ${HPP_${D}} DESTINATION include/dios/${D} )
++endforeach()
++
++file( GLOB HPP_BRICKS LIST_DIRECTORIES false ../bricks/brick-* )
++install( FILES ${HPP_BRICKS} DESTINATION include/bricks )
++
++install( DIRECTORY ${SYSINC} DESTINATION include/dios/sys )
++
++# Install sources
++foreach( D host native sys vfs proxy config arch rst libc/*
++           libm libm/ld80 libcxxabi/src libcxx/src libpthread host )
++  file( GLOB SRC_${D} ${D}/*.c ${D}/*.cpp )
++  install( FILES ${SRC_${D}} DESTINATION include/dios/${D} )
++endforeach()

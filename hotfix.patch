@@ -1,3 +1,4 @@
+# Testsuite
 diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
 --- a/test/CMakeLists.txt
 +++ b/test/CMakeLists.txt
@@ -36,3 +37,16 @@ diff --git a/test/lib/verify b/test/lib/verify
      done
  done
  
+# Missing includes
+diff -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
+--- a/dios/CMakeLists.txt	2019-11-01 15:57:40.145739566 +0100
++++ b/dios/CMakeLists.txt	2019-11-01 15:57:40.145739566 +0100
+@@ -10,7 +10,7 @@
+       include/netinet/*.h include/arpa/*.h
+       libcxxabi/include/*
+       libcxxabi/src/*.h libcxxabi/src/*.hpp libcxxabi/src/*.ipp
+-      libcxx/include/* libcxx/ext/* libcxx/include/experimental/*
++      libcxx/include/* libcxx/include/ext/* libcxx/include/experimental/*
+       libcxx/src/*.h
+       libcxx/include/support/xlocale/*.h libcxx/src/support/atomic_support.h
+       libcxx/include/support/divine/*.h
