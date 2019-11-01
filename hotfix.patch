@@ -1,0 +1,38 @@
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -28,7 +28,7 @@l
+   COMMAND mkdir -p results
+   COMMAND env SRCDIR=${divine_SOURCE_DIR}
+               BINDIR=${divine_BINARY_DIR}
+-              sh ${CMAKE_CURRENT_SOURCE_DIR}/lib/testsuite
++	      sh ${CMAKE_CURRENT_BINARY_DIR}/lib/testsuite
+                  --testdir ${CMAKE_CURRENT_SOURCE_DIR}
+                  --exclude-tags ${EXCLUDE_TAGS}
+   USES_TERMINAL
+
+diff --git a/test/lib/testcase b/test/lib/testcase
+--- a/test/lib/testcase
++++ b/test/lib/testcase
+@@ -29,7 +29,7 @@
+ 
+ draw() { divine draw --render cat "$@"; }
+ 
+-PATH="$PWD/lib:$TOOLS:$TOOLS/../llvm/bin:$PATH"
++PATH="$PWD/lib:$TOOLS:$TOOLS/../llvm/bin:$TOOLS/../clang/bin:$PATH"
+ extracheck=:
+ export cesmiext=.so
+ test "$WIN32" = 1 && cesmiext=.dll
+
+diff --git a/test/lib/verify b/test/lib/verify
+--- a/test/lib/verify
++++ b/test/lib/verify
+@@ -84,7 +84,7 @@ 
+     addcmd load $dir/$f $f
+     for dep in $deps; do
+         if ! echo $dep | grep -q '^/'; then dep=$dir/$dep; fi
+-        addcmd load $dep $(echo $dep | sed -re "s,$dir/*,,")
++        addcmd load $dep $(basename $dep)
+     done
+ done
+ 

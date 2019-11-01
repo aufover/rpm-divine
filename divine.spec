@@ -1,6 +1,6 @@
 Name:           divine
 Version:        4.3.6+518+g1f07ac566
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
@@ -13,8 +13,8 @@ Patch1:         rpmbuild.patch
 # Patch to rise the testsuite timeout values for Copr builds
 Patch2:         timeout.patch
 
-# Patches from next branch
-# Patch3:         hotfix.patch
+# Downstream hotfixes or patches from the next branch
+Patch3:         hotfix.patch
 
 BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel
 BuildRequires:  ncurses-devel zlib-devel gtest-devel 
