@@ -1,17 +1,4 @@
 # Testsuite
-diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
---- a/test/CMakeLists.txt
-+++ b/test/CMakeLists.txt
-@@ -28,7 +28,7 @@l
-   COMMAND mkdir -p results
-   COMMAND env SRCDIR=${divine_SOURCE_DIR}
-               BINDIR=${divine_BINARY_DIR}
--              sh ${CMAKE_CURRENT_SOURCE_DIR}/lib/testsuite
-+	      sh ${CMAKE_CURRENT_BINARY_DIR}/lib/testsuite
-                  --testdir ${CMAKE_CURRENT_SOURCE_DIR}
-                  --exclude-tags ${EXCLUDE_TAGS}
-   USES_TERMINAL
-
 diff --git a/test/lib/testcase b/test/lib/testcase
 --- a/test/lib/testcase
 +++ b/test/lib/testcase
