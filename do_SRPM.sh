@@ -28,11 +28,6 @@ if ! grep -q "$VERSION" $SPEC; then
   sed -i "s/^Release:.*/Release:        1%{?dist}/" $SPEC
 fi
 
-if [ -v CHECK ]; then
-  sed '/make unit/a make functional' $SPEC > divine_check.spec
-  SPEC=divine_check.spec
-fi
-
 # copy patches
 cp ../*.patch .
 

@@ -21,7 +21,7 @@ Patch4:         timeout.patch
 Patch5:         hotfix.patch
 
 BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel
-BuildRequires:  ncurses-devel zlib-devel gtest-devel 
+BuildRequires:  ncurses-devel zlib-devel gtest-devel
 
 # optional dependencies
 BuildRequires:  z3 z3-devel
@@ -87,6 +87,7 @@ ln -sf /opt/divine/bin/{diosc{c,++},divc{c,++},divine,lart} \
 
 %check
 make unit
+make functional
 
 %files
 /opt/divine/
