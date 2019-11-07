@@ -1,7 +1,7 @@
 diff -rN -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
 --- a/dios/CMakeLists.txt	2019-11-01 15:57:40.145739566 +0100
 +++ b/dios/CMakeLists.txt	2019-11-01 15:57:40.145739566 +0100
-@@ -133,3 +133,32 @@
+@@ -133,3 +133,41 @@
  target_link_libraries( divine-rt divine-cc )
  set_target_properties( divine-rt PROPERTIES POSITION_INDEPENDENT_CODE ON )
  install( TARGETS divine-rt DESTINATION lib )
@@ -29,8 +29,18 @@ diff -rN -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
 +install( DIRECTORY ${SYSINC} DESTINATION include/dios/sys )
 +
 +# Install sources
-+foreach( D host native sys vfs proxy config arch rst libc/*
-+           libm libm/ld80 libcxxabi/src libcxx/src libpthread host )
++foreach( D host native sys vfs proxy config arch rst libm libm/ld80
++           libcxxabi/src libcxx/src libpthread host )
 +  file( GLOB SRC_${D} ${D}/*.c ${D}/*.cpp )
 +  install( FILES ${SRC_${D}} DESTINATION include/dios/${D} )
++endforeach()
++
++# Install libc sources
++file( GLOB LIBC_SUBDIRS libc/* )
++foreach( D ${LIBC_SUBDIRS} )
++  if( IS_DIRECTORY ${D} )
++    file( RELATIVE_PATH D "${CMAKE_CURRENT_SOURCE_DIR}/libc" "${D}" )
++    file( GLOB SRC_${D} LIST_DIRECTORIES false libc/${D}/*.c libc/${D}/*.cpp )
++    install( FILES ${SRC_${D}} DESTINATION include/dios/libc/${D} )
++  endif()
 +endforeach()
