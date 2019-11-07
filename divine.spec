@@ -1,6 +1,6 @@
 Name:           divine
 Version:        4.4.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
@@ -28,6 +28,9 @@ BuildRequires:  z3 z3-devel
 
 # if some test fails, gdb is used to gather additional info
 BuildRequires:  gdb
+
+# 'static-dynamic.sh' test requires a static version of glibc
+BuildRequires:  glibc-static
 
 # optional dependencies
 Requires: python3-pygments z3
