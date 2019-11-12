@@ -29,8 +29,8 @@ diff -rN -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
 +install( DIRECTORY ${SYSINC} DESTINATION include/dios/sys )
 +
 +# Install sources
-+foreach( D host native sys vfs proxy config arch rst libm libm/ld80
-+           libcxxabi/src libcxx/src libpthread host )
++foreach( D host native sys vfs proxy config arch/divm arch/klee arch/native
++           rst libm libm/ld80 libcxxabi/src libcxx/src libpthread host )
 +  file( GLOB SRC_${D} ${D}/*.c ${D}/*.cpp )
 +  install( FILES ${SRC_${D}} DESTINATION include/dios/${D} )
 +endforeach()
