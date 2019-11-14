@@ -1,0 +1,7 @@
+test.c: In funtion ‘main’:
+test.c:6: error: DIVINE FAULT: undefined pointer dereference: [global* 0 0 uun]
+test.c:6: note: [0] FATAL: memory error in userspace
+test.c:6: note: backtrace:
+/opt/divine/include/dios/sys/fault.hpp:118: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
+test.c:6: note: main
+/opt/divine/include/dios/libc/sys/start.cpp:89: note: __dios_start

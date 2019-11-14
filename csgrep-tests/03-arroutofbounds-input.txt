@@ -1,0 +1,157 @@
+states per second: 181.818
+state count: 4
+mips: 0.332182
+
+version: 4.4.0+a45973013549
+architecture: Intel Core Processor (Skylake, IBRS)
+memory used: 693040
+physical memory used: 224052
+user time: 1.545138
+system time: 0.086151
+wall time: 1.513010
+
+fragment memory:
+  total: { items: 140, used: 1611325, held: 2088352 }
+  1: { items: 3, used: 3, held: 8176 }
+  2: { items: 1, used: 2, held: 4088 }
+  4: { items: 4, used: 16, held: 12264 }
+  6: { items: 1, used: 6, held: 4088 }
+  8: { items: 7, used: 56, held: 8176 }
+  16: { items: 20, used: 320, held: 12240 }
+  24: { items: 6, used: 144, held: 12240 }
+  32: { items: 18, used: 576, held: 12192 }
+  36: { items: 1, used: 36, held: 8160 }
+  40: { items: 3, used: 120, held: 8160 }
+  44: { items: 1, used: 44, held: 4080 }
+  48: { items: 0, used: 0, held: 4080 }
+  49: { items: 1, used: 49, held: 4088 }
+  50: { items: 1, used: 50, held: 4088 }
+  52: { items: 1, used: 52, held: 4088 }
+  53: { items: 1, used: 53, held: 12264 }
+  56: { items: 5, used: 280, held: 4088 }
+  57: { items: 0, used: 0, held: 4032 }
+  58: { items: 1, used: 58, held: 8064 }
+  64: { items: 3, used: 192, held: 8064 }
+  65: { items: 3, used: 195, held: 12096 }
+  68: { items: 1, used: 68, held: 4032 }
+  69: { items: 1, used: 69, held: 8064 }
+  70: { items: 1, used: 70, held: 8064 }
+  72: { items: 1, used: 72, held: 4032 }
+  73: { items: 2, used: 146, held: 8160 }
+  77: { items: 1, used: 77, held: 8160 }
+  78: { items: 1, used: 78, held: 4080 }
+  79: { items: 0, used: 0, held: 4080 }
+  80: { items: 2, used: 160, held: 4080 }
+  81: { items: 1, used: 81, held: 4048 }
+  82: { items: 0, used: 0, held: 8096 }
+  84: { items: 0, used: 0, held: 4048 }
+  87: { items: 0, used: 0, held: 4048 }
+  88: { items: 2, used: 176, held: 8096 }
+  90: { items: 1, used: 90, held: 4032 }
+  91: { items: 1, used: 91, held: 12096 }
+  93: { items: 0, used: 0, held: 4032 }
+  96: { items: 2, used: 192, held: 4032 }
+  97: { items: 0, used: 0, held: 8112 }
+  104: { items: 1, used: 104, held: 4056 }
+  105: { items: 1, used: 105, held: 8064 }
+  108: { items: 2, used: 216, held: 4032 }
+  109: { items: 1, used: 109, held: 4032 }
+  112: { items: 1, used: 112, held: 4032 }
+  114: { items: 1, used: 114, held: 4080 }
+  117: { items: 1, used: 117, held: 4080 }
+  120: { items: 1, used: 120, held: 4080 }
+  124: { items: 0, used: 0, held: 3968 }
+  125: { items: 1, used: 125, held: 3968 }
+  127: { items: 1, used: 127, held: 3968 }
+  129: { items: 1, used: 129, held: 4080 }
+  130: { items: 0, used: 0, held: 4080 }
+  131: { items: 1, used: 131, held: 4080 }
+  133: { items: 1, used: 133, held: 8160 }
+  134: { items: 1, used: 134, held: 4080 }
+  148: { items: 0, used: 0, held: 3952 }
+  150: { items: 0, used: 0, held: 3952 }
+  152: { items: 2, used: 304, held: 7904 }
+  154: { items: 0, used: 0, held: 4000 }
+  156: { items: 1, used: 156, held: 4000 }
+  161: { items: 1, used: 161, held: 4032 }
+  162: { items: 1, used: 162, held: 12096 }
+  167: { items: 0, used: 0, held: 4032 }
+  181: { items: 0, used: 0, held: 4048 }
+  194: { items: 1, used: 194, held: 4000 }
+  210: { items: 0, used: 0, held: 3888 }
+  219: { items: 0, used: 0, held: 4032 }
+  232: { items: 0, used: 0, held: 3944 }
+  245: { items: 0, used: 0, held: 3968 }
+  251: { items: 0, used: 0, held: 3840 }
+  255: { items: 1, used: 255, held: 3840 }
+  256: { items: 1, used: 256, held: 3840 }
+  276: { items: 1, used: 276, held: 3920 }
+  291: { items: 1, used: 291, held: 3848 }
+  296: { items: 1, used: 296, held: 3848 }
+  304: { items: 0, used: 0, held: 3952 }
+  307: { items: 0, used: 0, held: 4056 }
+  319: { items: 1, used: 319, held: 3840 }
+  331: { items: 1, used: 331, held: 4032 }
+  370: { items: 1, used: 370, held: 3760 }
+  424: { items: 1, used: 424, held: 3816 }
+  433: { items: 1, used: 433, held: 3960 }
+  440: { items: 1, used: 440, held: 3960 }
+  502: { items: 1, used: 502, held: 4032 }
+  587: { items: 1, used: 587, held: 7104 }
+  679: { items: 3, used: 2037, held: 4080 }
+  1197: { items: 1, used: 1197, held: 3600 }
+  1292: { items: 2, used: 2584, held: 7776 }
+  563056: { items: 1, used: 563056, held: 563056 }
+  1031296: { items: 1, used: 1031296, held: 1031296 }
+snapshot memory:
+  total: { items: 4, used: 888, held: 15816 }
+  108: { items: 1, used: 108, held: 4032 }
+  228: { items: 1, used: 228, held: 3944 }
+  276: { items: 2, used: 552, held: 7840 }
+fragment table: { used: 31, capacity: 256 }
+snapshot table: { used: 4, capacity: 256 }
+input file: test4.c
+compile options:
+  - test4.c
+input options:
+  sys.0: "nofail:malloc"
+  divine.bcname: "test4.c"
+dios config: 
+smt solver: stp
+property type: safety
+
+timers:
+  lart: 0.511
+  loader: 0.595
+  boot: 0.052
+  search: 0.022
+  ce: 0.095
+error found: yes
+error trace: |
+  FAULT: access of size 4 at [alloca* 54c1a65 10h ddp] is 4 bytes out of bounds
+  [0] FATAL: memory error in userspace
+
+machine trace:
+  - choices: 0/1 
+    interrupts: C/1423/1:21 
+  - choices: 0/1 
+    interrupts: C/92/1:21 
+  - choices: 0/1 
+    interrupts: ""
+
+active stack:
+  - symbol: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
+    location: /opt/divine/include/dios/sys/fault.hpp:118
+    pc: code* 801a6 4
+    address: alloca* 100011 0+0
+
+  - symbol: main
+    location: test4.c:5
+    pc: code* 80001 10h
+    address: heap* 899e9442 0+0
+
+  - symbol: __dios_start
+    location: /opt/divine/include/dios/libc/sys/start.cpp:89
+    pc: code* 80467 21h
+    address: heap* 47fc22b9 0+0
+

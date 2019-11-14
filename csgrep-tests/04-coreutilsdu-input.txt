@@ -1,0 +1,303 @@
+states per second: 810.811
+state count: 30
+mips: 1.40857
+
+version: 4.4.0+a45973013549
+architecture: Intel Core Processor (Skylake, IBRS)
+memory used: 762908
+physical memory used: 285016
+user time: 3.079813
+system time: 0.110830
+wall time: 3.040090
+
+fragment memory:
+  total: { items: 260, used: 3402215, held: 4573712 }
+  1: { items: 7, used: 7, held: 16352 }
+  2: { items: 1, used: 2, held: 12264 }
+  4: { items: 10, used: 40, held: 16352 }
+  6: { items: 1, used: 6, held: 4088 }
+  7: { items: 1, used: 7, held: 4088 }
+  8: { items: 44, used: 352, held: 20440 }
+  10: { items: 0, used: 0, held: 4080 }
+  16: { items: 20, used: 320, held: 12240 }
+  20: { items: 0, used: 0, held: 4080 }
+  24: { items: 8, used: 192, held: 20400 }
+  25: { items: 0, used: 0, held: 12192 }
+  28: { items: 0, used: 0, held: 4064 }
+  32: { items: 22, used: 704, held: 20320 }
+  34: { items: 0, used: 0, held: 8160 }
+  35: { items: 0, used: 0, held: 4080 }
+  36: { items: 1, used: 36, held: 12240 }
+  37: { items: 0, used: 0, held: 4080 }
+  40: { items: 3, used: 120, held: 12240 }
+  41: { items: 0, used: 0, held: 4080 }
+  44: { items: 1, used: 44, held: 12240 }
+  45: { items: 0, used: 0, held: 8160 }
+  48: { items: 1, used: 48, held: 8160 }
+  49: { items: 1, used: 49, held: 16352 }
+  50: { items: 1, used: 50, held: 12264 }
+  52: { items: 1, used: 52, held: 4088 }
+  53: { items: 1, used: 53, held: 20440 }
+  56: { items: 5, used: 280, held: 12264 }
+  57: { items: 0, used: 0, held: 4032 }
+  58: { items: 1, used: 58, held: 8064 }
+  62: { items: 1, used: 62, held: 12096 }
+  64: { items: 3, used: 192, held: 12096 }
+  65: { items: 1, used: 65, held: 8064 }
+  68: { items: 1, used: 68, held: 4032 }
+  69: { items: 1, used: 69, held: 12096 }
+  70: { items: 1, used: 70, held: 16128 }
+  72: { items: 1, used: 72, held: 8064 }
+  73: { items: 2, used: 146, held: 12240 }
+  76: { items: 0, used: 0, held: 8160 }
+  77: { items: 1, used: 77, held: 8160 }
+  78: { items: 1, used: 78, held: 8160 }
+  79: { items: 0, used: 0, held: 4080 }
+  80: { items: 6, used: 480, held: 16320 }
+  81: { items: 1, used: 81, held: 12144 }
+  82: { items: 0, used: 0, held: 16192 }
+  84: { items: 0, used: 0, held: 12144 }
+  87: { items: 0, used: 0, held: 4048 }
+  88: { items: 2, used: 176, held: 8096 }
+  90: { items: 2, used: 180, held: 12096 }
+  91: { items: 1, used: 91, held: 20160 }
+  92: { items: 0, used: 0, held: 4032 }
+  93: { items: 0, used: 0, held: 4032 }
+  95: { items: 0, used: 0, held: 4032 }
+  96: { items: 2, used: 192, held: 4032 }
+  97: { items: 0, used: 0, held: 16224 }
+  98: { items: 0, used: 0, held: 4056 }
+  99: { items: 0, used: 0, held: 4056 }
+  101: { items: 2, used: 202, held: 12168 }
+  102: { items: 0, used: 0, held: 4056 }
+  104: { items: 1, used: 104, held: 12168 }
+  105: { items: 1, used: 105, held: 12096 }
+  108: { items: 2, used: 216, held: 12096 }
+  109: { items: 7, used: 763, held: 20160 }
+  110: { items: 0, used: 0, held: 4032 }
+  112: { items: 1, used: 112, held: 4032 }
+  113: { items: 0, used: 0, held: 4080 }
+  114: { items: 1, used: 114, held: 4080 }
+  115: { items: 0, used: 0, held: 4080 }
+  117: { items: 1, used: 117, held: 4080 }
+  118: { items: 0, used: 0, held: 8160 }
+  119: { items: 0, used: 0, held: 4080 }
+  120: { items: 1, used: 120, held: 4080 }
+  122: { items: 0, used: 0, held: 3968 }
+  124: { items: 0, used: 0, held: 3968 }
+  125: { items: 1, used: 125, held: 3968 }
+  127: { items: 1, used: 127, held: 3968 }
+  128: { items: 5, used: 640, held: 15872 }
+  129: { items: 1, used: 129, held: 4080 }
+  130: { items: 0, used: 0, held: 8160 }
+  131: { items: 1, used: 131, held: 4080 }
+  132: { items: 2, used: 264, held: 12240 }
+  133: { items: 1, used: 133, held: 8160 }
+  134: { items: 1, used: 134, held: 4080 }
+  136: { items: 2, used: 272, held: 12240 }
+  141: { items: 0, used: 0, held: 4032 }
+  144: { items: 0, used: 0, held: 4032 }
+  146: { items: 0, used: 0, held: 3952 }
+  147: { items: 2, used: 294, held: 11856 }
+  148: { items: 0, used: 0, held: 3952 }
+  150: { items: 0, used: 0, held: 3952 }
+  152: { items: 2, used: 304, held: 7904 }
+  154: { items: 0, used: 0, held: 4000 }
+  156: { items: 1, used: 156, held: 8000 }
+  157: { items: 0, used: 0, held: 8000 }
+  161: { items: 2, used: 322, held: 8064 }
+  162: { items: 1, used: 162, held: 20160 }
+  167: { items: 0, used: 0, held: 4032 }
+  169: { items: 0, used: 0, held: 4048 }
+  178: { items: 0, used: 0, held: 4048 }
+  181: { items: 0, used: 0, held: 4048 }
+  183: { items: 0, used: 0, held: 4048 }
+  185: { items: 2, used: 370, held: 12096 }
+  187: { items: 0, used: 0, held: 4032 }
+  189: { items: 0, used: 0, held: 4032 }
+  194: { items: 1, used: 194, held: 4000 }
+  203: { items: 0, used: 0, held: 3952 }
+  208: { items: 1, used: 208, held: 3952 }
+  210: { items: 0, used: 0, held: 3888 }
+  217: { items: 0, used: 0, held: 4032 }
+  219: { items: 0, used: 0, held: 4032 }
+  222: { items: 0, used: 0, held: 4032 }
+  232: { items: 0, used: 0, held: 3944 }
+  236: { items: 0, used: 0, held: 4080 }
+  245: { items: 0, used: 0, held: 3968 }
+  251: { items: 0, used: 0, held: 3840 }
+  252: { items: 0, used: 0, held: 7680 }
+  255: { items: 1, used: 255, held: 3840 }
+  256: { items: 1, used: 256, held: 11520 }
+  262: { items: 0, used: 0, held: 3960 }
+  264: { items: 5, used: 1320, held: 11880 }
+  267: { items: 0, used: 0, held: 8160 }
+  274: { items: 0, used: 0, held: 3920 }
+  276: { items: 1, used: 276, held: 7840 }
+  279: { items: 0, used: 0, held: 3920 }
+  284: { items: 0, used: 0, held: 4032 }
+  286: { items: 0, used: 0, held: 4032 }
+  291: { items: 1, used: 291, held: 3848 }
+  296: { items: 1, used: 296, held: 3848 }
+  304: { items: 0, used: 0, held: 3952 }
+  307: { items: 0, used: 0, held: 8112 }
+  315: { items: 0, used: 0, held: 7680 }
+  319: { items: 1, used: 319, held: 3840 }
+  320: { items: 0, used: 0, held: 3840 }
+  331: { items: 1, used: 331, held: 12096 }
+  351: { items: 2, used: 702, held: 11616 }
+  368: { items: 0, used: 0, held: 4048 }
+  370: { items: 1, used: 370, held: 3760 }
+  377: { items: 0, used: 0, held: 7680 }
+  424: { items: 1, used: 424, held: 3816 }
+  433: { items: 1, used: 433, held: 3960 }
+  440: { items: 1, used: 440, held: 3960 }
+  451: { items: 0, used: 0, held: 3648 }
+  456: { items: 20, used: 9120, held: 14592 }
+  485: { items: 0, used: 0, held: 3904 }
+  502: { items: 1, used: 502, held: 4032 }
+  503: { items: 0, used: 0, held: 4032 }
+  533: { items: 0, used: 0, held: 3752 }
+  578: { items: 0, used: 0, held: 8176 }
+  587: { items: 1, used: 587, held: 10656 }
+  625: { items: 0, used: 0, held: 3792 }
+  640: { items: 1, used: 640, held: 3840 }
+  656: { items: 1, used: 656, held: 7872 }
+  679: { items: 3, used: 2037, held: 4080 }
+  1024: { items: 0, used: 0, held: 6144 }
+  1186: { items: 2, used: 2372, held: 10728 }
+  1197: { items: 1, used: 1197, held: 3600 }
+  1224: { items: 2, used: 2448, held: 3672 }
+  1280: { items: 2, used: 2560, held: 3840 }
+  1326: { items: 0, used: 0, held: 3984 }
+  2872: { items: 3, used: 8616, held: 22976 }
+  3421: { items: 0, used: 0, held: 3424 }
+  3501: { items: 2, used: 7002, held: 10512 }
+  1002476: { items: 1, used: 1002476, held: 1002480 }
+  2345952: { items: 1, used: 2345952, held: 2345952 }
+snapshot memory:
+  total: { items: 30, used: 19380, held: 64920 }
+  228: { items: 1, used: 228, held: 3944 }
+  276: { items: 1, used: 276, held: 3920 }
+  444: { items: 4, used: 1776, held: 12096 }
+  696: { items: 20, used: 13920, held: 29928 }
+  744: { items: 2, used: 1488, held: 7440 }
+  804: { items: 1, used: 804, held: 4040 }
+  888: { items: 1, used: 888, held: 3552 }
+fragment table: { used: 148, capacity: 256 }
+snapshot table: { used: 30, capacity: 256 }
+input file: src/du
+input options:
+  sys.0: "nofail:malloc"
+  divine.bcname: "src/du"
+dios config: 
+smt solver: stp
+property type: safety
+
+timers:
+  lart: 0.711
+  loader: 1.78
+  boot: 0.061
+  search: 0.037
+  ce: 0.116
+error found: yes
+error trace: |
+  FAULT:  conditional jump depends on an undefined value
+  [0] FATAL: control error in userspace
+
+machine trace:
+  - choices: 0/1 
+    interrupts: C/1507/616:20 
+  - choices: 0/1 
+    interrupts: C/82/616:20 
+  - choices: 0/1 
+    interrupts: C/82/616:20 
+  - choices: 0/1 
+    interrupts: C/97/616:41 
+  - choices: 0/1 
+    interrupts: C/5052/391:41 
+  - choices: 0/1 
+    interrupts: C/4844/432:39 
+  - choices: 0/1 
+    interrupts: C/94/432:39 
+  - choices: 0/1 
+    interrupts: C/402/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/106/393:131 
+  - choices: 0/1 
+    interrupts: C/438/391:41 
+  - choices: 0/1 
+    interrupts: ""
+
+active stack:
+  - symbol: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
+    location: /opt/divine/include/dios/sys/fault.hpp:118
+    pc: code* 805d6 4
+    address: alloca* 100011 0+0
+
+  - symbol: timespec_cmp
+    location: ./lib/timespec.h:99
+    pc: code* 800c8 51h
+    address: heap* 3495e373 0+0
+
+  - symbol: duinfo_add
+    location: src/du.c:115
+    pc: code* 8000f 45h
+    address: heap* 6c92ea83 0+0
+
+  - symbol: process_file
+    location: src/du.c:651
+    pc: code* 8000a 1fc
+    address: heap* bb724916 0+0
+
+  - symbol: du_files
+    location: src/du.c:708
+    pc: code* 80008 37h
+    address: heap* afdd47e6 0+0
+
+  - symbol: main
+    location: src/du.c:1122
+    pc: code* 80006 2d5h
+    address: heap* b9a25ce1 0+0
+
+  - symbol: __dios_start
+    location: /opt/divine/include/dios/libc/sys/start.cpp:92
+    pc: code* 80271 25h
+    address: heap* 47fc22b9 0+0
+

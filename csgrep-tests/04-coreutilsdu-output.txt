@@ -1,0 +1,11 @@
+./lib/timespec.h: In funtion ‘timespec_cmp’:
+./lib/timespec.h:99: error: DIVINE FAULT:  conditional jump depends on an undefined value
+./lib/timespec.h:99: note: [0] FATAL: control error in userspace
+./lib/timespec.h:99: note: backtrace:
+/opt/divine/include/dios/sys/fault.hpp:118: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
+./lib/timespec.h:99: note: timespec_cmp
+src/du.c:115: note: duinfo_add
+src/du.c:651: note: process_file
+src/du.c:708: note: du_files
+src/du.c:1122: note: main
+/opt/divine/include/dios/libc/sys/start.cpp:92: note: __dios_start
