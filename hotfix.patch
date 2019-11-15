@@ -37,3 +37,18 @@ diff -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
        libcxx/src/*.h
        libcxx/include/support/xlocale/*.h libcxx/src/support/atomic_support.h
        libcxx/include/support/divine/*.h
+
+# getline
+diff -u a/dios/libc/stdio/getline.c b/dios/libc/stdio/getline.c
+--- a/dios/libc/stdio/getline.c	2019-11-15 14:29:47.130277649 +0100
++++ b/dios/libc/stdio/getline.c	2019-11-15 14:29:47.133610968 +0100
+@@ -23,7 +23,7 @@
+     if ( !(*lineptr) || *n <= 1 )
+     {
+         *lineptr = realloc( *lineptr, INIT_SIZE );
+-        if ( !lineptr )
++        if ( !(*lineptr) )
+             return -1;
+         *n = INIT_SIZE;
+     }
+
