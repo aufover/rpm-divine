@@ -30,6 +30,7 @@ fi
 
 # copy patches
 cp ../*.patch .
+cp ../divine2csgrep.py .
 
 # build SRPM
 echo Building SRPM ...

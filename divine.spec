@@ -1,11 +1,13 @@
 Name:           divine
 Version:        4.4.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
 URL:            https://%{name}.fi.muni.cz
+
 Source0:        https://%{name}.fi.muni.cz/download/%{name}-%{version}.tar.gz
+Source1:        divine2csgrep.py
 
 Patch0:         make_install.patch
 Patch1:         rpmbuild.patch
@@ -84,6 +86,9 @@ ln -sf dioscc %{buildroot}/opt/divine/bin/diosc++
 mkdir -p %{buildroot}%{_bindir}
 ln -sf /opt/divine/bin/{diosc{c,++},divc{c,++},divine,lart} \
   %{buildroot}%{_bindir}
+
+# install divine to csgrep convertor as an executable in path
+install -p -D -m 755 %{SOURCE1} %{buildroot}%{_bindir}/divine2csgrep
 
 %check
 make unit
