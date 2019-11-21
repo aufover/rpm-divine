@@ -17,6 +17,11 @@ def main():
         print(exc, file=sys.stderr)
         sys.exit(1)
 
+    if report is None:
+        print("divine: error: DIVINE FAULT: Divine crashed and no log was created")
+        print("divine: note: see stderr output of given divine process")
+        return
+
     if not report["error found"]:
         return
 
