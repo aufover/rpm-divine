@@ -44,3 +44,30 @@ diff -rN -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
 +    install( FILES ${SRC_${D}} DESTINATION include/dios/libc/${D} )
 +  endif()
 +endforeach()
+
+# assert
+diff -u a/dios/libc/_PDCLIB/assert.c b/dios/libc/_PDCLIB/assert.c
+--- a/dios/libc/_PDCLIB/assert.c  2019-11-21 15:21:35.671767809 +0100
++++ b/dios/libc/_PDCLIB/assert.c  2019-11-21 15:21:35.675101152 +0100
+@@ -19,7 +19,19 @@
+ {
+     int masked = __dios_mask( 1 );
+     char buffer[ 200 ];
+-    snprintf( buffer, 200, "%s:%u: %s: assertion '%s' failed", file, line, fun, stmt );
++
++    const char* prefix = "/opt/divine/include";
++    const int prefix_len = strlen(prefix);
++
++    int shift = 0;
++    char *bgn = strstr( file, "/dios/" );
++    if (bgn != NULL) {
++        file = bgn;
++        strcpy(buffer, prefix);
++        shift += prefix_len;
++    }
++
++    snprintf( buffer + prefix_len, 200 - prefix_len, "%s:%u: %s: assertion '%s' failed", file, line, fun, stmt );
+     __dios_fault( _VM_F_Assert, buffer );
+     __dios_mask( masked );
+ }
+

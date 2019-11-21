@@ -1,6 +1,6 @@
 Name:           divine
 Version:        4.4.0
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
