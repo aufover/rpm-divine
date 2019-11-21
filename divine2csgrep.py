@@ -9,49 +9,50 @@ def main():
         print("USAGE: %s [DIVINE REPORT]" % sys.argv[0], file=sys.stderr)
         sys.exit(1)
 
-    with open(sys.argv[1], "r") as stream:
-        try:
-            report = yaml.safe_load(stream)
-        except yaml.YAMLError as exc:
-            print(exc, file=sys.stderr)
-            sys.exit(1)
+    in_file = sys.stdin if sys.argv[1] == "-" else open(sys.argv[1], "r")
 
-    with open(sys.argv[1] + ".csgrep", "w") as stream:
-        if not report["error found"]:
-            return
+    try:
+        report = yaml.safe_load(in_file)
+    except yaml.YAMLError as exc:
+        print(exc, file=sys.stderr)
+        sys.exit(1)
 
-        if report["error found"] == "boot":
-            trace = report["error trace"].split("\n")
-            trace.pop()  # might break in future
-            for line in trace:
-                print(report["input file"] +
-                      (": error: DIOS BOOT: " if line is trace[0]
-                       else ": note: DIOS BOOT: ") + line, file=stream)
-            return
+    if not report["error found"]:
+        return
 
-        for frame in report["active stack"]:
-            if "/opt/divine/" in frame["location"]:
-                continue
+    if report["error found"] == "boot":
+        trace = report["error trace"].split("\n")
+        trace.pop()  # might break in future
 
-            location = frame["location"].split(":")
-            print(location[0] + ": In funtion ‘" +
-                  frame["symbol"] + "’:", file=stream)
+        for line in trace:
+            print(report["input file"] +
+                  (": error: DIOS BOOT: " if line is trace[0]
+                   else ": note: DIOS BOOT: ") + line)
+        return
 
-            location = location[0] + ":" + location[1]
-            trace = report["error trace"].split("\n")
-            trace.pop()  # might break in future
-            for line in trace:
-                print(location + (": error: DIVINE " if line is trace[0]
-                                  else ": note: ") + line, file=stream)
+    for frame in report["active stack"]:
+        if "/opt/divine/" in frame["location"]:
+            continue
 
-            print(location + ": note: backtrace:", file=stream)
-            break
+        location = frame["location"].split(":")
+        print(location[0] + ": In funtion ‘" + frame["symbol"] + "’:")
 
-        for frame in report["active stack"]:
-            location = frame["location"].split(":")
-            print(location[0] + ":" + location[1] +
-                  ": note: " + frame["symbol"], file=stream)
+        location = location[0] + ":" + location[1]
+        trace = report["error trace"].split("\n")
+        trace.pop()  # might break in future
 
+        for line in trace:
+            print(location + (": error: DIVINE " if line is trace[0]
+                              else ": note: ") + line)
+
+        print(location + ": note: backtrace:")
+        break
+
+    for frame in report["active stack"]:
+        location = frame["location"].split(":")
+        print(location[0] + ":" + location[1] + ": note: " + frame["symbol"])
+
+    in_file.close()
 
 if __name__ == "__main__":
     main()

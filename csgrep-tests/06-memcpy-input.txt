@@ -1,0 +1,176 @@
+states per second: 125
+state count: 2
+mips: 0.895
+
+version: 4.4.0+3560f2874d94
+architecture: Intel(R) Core(TM) i7-6820HQ CPU @ 2.70GHz
+memory used: 666312
+physical memory used: 237192
+user time: 1.514616
+system time: 0.086110
+wall time: 1.468890
+
+fragment memory:
+  total: { items: 131, used: 1612563, held: 2119096 }
+  1: { items: 3, used: 3, held: 8176 }
+  2: { items: 1, used: 2, held: 4088 }
+  4: { items: 2, used: 8, held: 8176 }
+  6: { items: 1, used: 6, held: 4088 }
+  8: { items: 7, used: 56, held: 8176 }
+  9: { items: 1, used: 9, held: 4080 }
+  16: { items: 18, used: 288, held: 8160 }
+  24: { items: 5, used: 120, held: 8160 }
+  28: { items: 0, used: 0, held: 4064 }
+  32: { items: 17, used: 544, held: 8128 }
+  36: { items: 1, used: 36, held: 8160 }
+  40: { items: 3, used: 120, held: 8160 }
+  44: { items: 1, used: 44, held: 4080 }
+  48: { items: 0, used: 0, held: 4080 }
+  49: { items: 1, used: 49, held: 4088 }
+  50: { items: 1, used: 50, held: 8176 }
+  52: { items: 1, used: 52, held: 4088 }
+  53: { items: 1, used: 53, held: 8176 }
+  56: { items: 5, used: 280, held: 8176 }
+  57: { items: 0, used: 0, held: 4032 }
+  58: { items: 1, used: 58, held: 8064 }
+  64: { items: 3, used: 192, held: 8064 }
+  65: { items: 1, used: 65, held: 8064 }
+  68: { items: 1, used: 68, held: 8064 }
+  69: { items: 1, used: 69, held: 8064 }
+  70: { items: 1, used: 70, held: 8064 }
+  72: { items: 1, used: 72, held: 8064 }
+  73: { items: 1, used: 73, held: 8160 }
+  77: { items: 1, used: 77, held: 8160 }
+  78: { items: 1, used: 78, held: 4080 }
+  79: { items: 0, used: 0, held: 4080 }
+  80: { items: 2, used: 160, held: 8160 }
+  81: { items: 1, used: 81, held: 4048 }
+  82: { items: 0, used: 0, held: 4048 }
+  84: { items: 0, used: 0, held: 4048 }
+  87: { items: 0, used: 0, held: 4048 }
+  88: { items: 2, used: 176, held: 8096 }
+  90: { items: 1, used: 90, held: 4032 }
+  91: { items: 1, used: 91, held: 8064 }
+  93: { items: 0, used: 0, held: 4032 }
+  94: { items: 0, used: 0, held: 4032 }
+  96: { items: 2, used: 192, held: 4032 }
+  97: { items: 0, used: 0, held: 4056 }
+  104: { items: 1, used: 104, held: 4056 }
+  105: { items: 1, used: 105, held: 8064 }
+  108: { items: 2, used: 216, held: 4032 }
+  109: { items: 1, used: 109, held: 4032 }
+  112: { items: 1, used: 112, held: 4032 }
+  113: { items: 0, used: 0, held: 4080 }
+  114: { items: 1, used: 114, held: 4080 }
+  117: { items: 1, used: 117, held: 8160 }
+  120: { items: 1, used: 120, held: 4080 }
+  124: { items: 0, used: 0, held: 3968 }
+  125: { items: 1, used: 125, held: 3968 }
+  127: { items: 1, used: 127, held: 3968 }
+  129: { items: 1, used: 129, held: 4080 }
+  130: { items: 0, used: 0, held: 4080 }
+  131: { items: 1, used: 131, held: 4080 }
+  133: { items: 1, used: 133, held: 8160 }
+  134: { items: 1, used: 134, held: 4080 }
+  148: { items: 0, used: 0, held: 3952 }
+  150: { items: 0, used: 0, held: 3952 }
+  152: { items: 2, used: 304, held: 7904 }
+  154: { items: 0, used: 0, held: 4000 }
+  156: { items: 1, used: 156, held: 8000 }
+  161: { items: 1, used: 161, held: 4032 }
+  162: { items: 1, used: 162, held: 8064 }
+  167: { items: 0, used: 0, held: 4032 }
+  181: { items: 0, used: 0, held: 4048 }
+  194: { items: 1, used: 194, held: 4000 }
+  200: { items: 0, used: 0, held: 4000 }
+  210: { items: 0, used: 0, held: 3888 }
+  219: { items: 0, used: 0, held: 4032 }
+  232: { items: 0, used: 0, held: 3944 }
+  245: { items: 0, used: 0, held: 3968 }
+  251: { items: 0, used: 0, held: 3840 }
+  255: { items: 1, used: 255, held: 3840 }
+  256: { items: 1, used: 256, held: 3840 }
+  272: { items: 0, used: 0, held: 4080 }
+  276: { items: 1, used: 276, held: 3920 }
+  291: { items: 1, used: 291, held: 3848 }
+  296: { items: 1, used: 296, held: 3848 }
+  304: { items: 0, used: 0, held: 3952 }
+  307: { items: 0, used: 0, held: 4056 }
+  319: { items: 1, used: 319, held: 3840 }
+  331: { items: 1, used: 331, held: 8064 }
+  370: { items: 1, used: 370, held: 3760 }
+  424: { items: 1, used: 424, held: 3816 }
+  433: { items: 1, used: 433, held: 3960 }
+  440: { items: 1, used: 440, held: 3960 }
+  502: { items: 1, used: 502, held: 4032 }
+  587: { items: 1, used: 587, held: 7104 }
+  679: { items: 3, used: 2037, held: 4080 }
+  743: { items: 0, used: 0, held: 3720 }
+  1000: { items: 0, used: 0, held: 4000 }
+  1197: { items: 1, used: 1197, held: 3600 }
+  1292: { items: 1, used: 1292, held: 7776 }
+  1338: { items: 0, used: 0, held: 4032 }
+  564244: { items: 1, used: 564244, held: 564248 }
+  1032928: { items: 1, used: 1032928, held: 1032928 }
+snapshot memory:
+  total: { items: 2, used: 336, held: 7976 }
+  108: { items: 1, used: 108, held: 4032 }
+  228: { items: 1, used: 228, held: 3944 }
+fragment table: { used: 21, capacity: 256 }
+snapshot table: { used: 2, capacity: 256 }
+input file: memcpy.c
+compile options:
+  - memcpy.c
+input options:
+  sys.0: "nofail:malloc"
+  divine.bcname: "memcpy.c"
+dios config: default
+smt solver: stp
+property type: safety
+
+timers:
+  lart: 0.528
+  loader: 0.554
+  boot: 0.054
+  search: 0.016
+  ce: 0.093
+error found: yes
+error trace: |
+  FAULT: /opt/divine/include/dios/libc/string/memcpy.c:16: void *memcpy(void *restrict, const void *restrict, size_t): assertion 's1 < s2 ? s1 + n <= s2 : s2 + n <= s1' failed
+  [0] FATAL: assertion failure in userspace
+
+machine trace:
+  - choices: 0/1 
+    interrupts: C/1460/13:42 C/1481/13:42 C/1502/13:42 C/1523/13:42 C/1545/13:36 C/1562/13:42 C/1583/13:42 C/1604/13:42 C/1625/13:42 C/1646/13:42 C/1667/13:42 C/1689/13:36 C/1706/13:42 C/1727/13:42 C/1748/13:42 C/1769/13:42 C/1790/13:42 C/1811/13:42 C/1832/13:42 C/1854/13:36 C/1872/13:36 C/1890/13:36 C/1907/13:42 C/1928/13:42 C/1949/13:42 C/1970/13:42 C/1991/13:42 C/2012/13:42 C/2033/13:42 C/2055/13:36 C/2073/13:36 C/2091/13:36 C/2108/13:42 C/2129/13:42 C/2150/13:42 C/2171/13:42 C/2192/13:42 C/2213/13:42 C/2234/13:42 C/2255/13:42 C/2276/13:42 C/2297/13:42 C/2318/13:42 C/2339/13:42 C/2361/13:36 C/2379/13:36 C/2397/13:36 C/2415/13:36 C/2433/13:36 C/2451/13:36 C/2869/25:28 C/2885/25:28 C/2901/25:28 C/2917/25:28 C/2933/25:28 C/2949/25:28 C/2965/25:28 C/2981/25:28 C/2997/25:28 C/3605/25:28 C/3621/25:28 C/3637/25:28 C/3653/25:28 C/3669/25:28 C/3685/25:28 C/3701/25:28 C/3717/25:28 C/3733/25:28 C/3974/17:98 C/3990/17:45 C/4002/17:45 C/4141/25:28 C/4157/25:28 C/4173/25:28 C/4189/25:28 C/4205/25:28 C/4221/25:28 C/4237/25:28 C/4253/25:28 C/4269/25:28 C/4872/17:98 C/4888/17:45 C/4900/17:45 C/4912/17:45 C/4924/17:45 C/4936/17:45 C/4948/17:45 C/4960/17:45 C/4972/17:45 C/4984/17:45 C/4996/17:45 C/5008/17:45 C/5020/17:45 C/5032/17:45 C/5277/25:28 C/5293/25:28 C/5309/25:28 C/5325/25:28 C/5341/25:28 C/5357/25:28 C/5373/25:28 C/5389/25:28 C/5405/25:28 C/5882/17:98 C/5898/17:45 C/5910/17:45 C/5922/17:45 C/5934/17:45 C/5946/17:45 C/5958/17:45 C/5970/17:45 C/5982/17:45 C/6045/17:98 
+
+active stack:
+  - symbol: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
+    location: /opt/divine/include/dios/sys/fault.hpp:118
+    pc: code* 801a7 4
+    address: heap* 91e86ee0 0+0
+
+  - symbol: __dios_fault
+    location: /opt/divine/include/dios/arch/divm/fault.c:12
+    pc: code* 8042e 1b
+    address: heap* 495fb7b4 0+0
+
+  - symbol: __assert_fail
+    location: /opt/divine/include/dios/libc/_PDCLIB/assert.c:35
+    pc: code* 8000b 1e
+    address: heap* 171cd63f 0+0
+
+  - symbol: memcpy
+    location: /opt/divine/include/dios/libc/string/memcpy.c:16
+    pc: code* 80002 13h
+    address: heap* 6ea5bf3b 0+0
+
+  - symbol: main
+    location: memcpy.c:7
+    pc: code* 80001 8
+    address: heap* 138cac37 0+0
+
+  - symbol: __dios_start
+    location: /opt/divine/include/dios/libc/sys/start.cpp:89
+    pc: code* 80468 21h
+    address: heap* 47fc22b9 0+0
+

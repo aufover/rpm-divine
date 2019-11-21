@@ -5,8 +5,7 @@ mkdir report
 
 for test in *input.txt; do
     echo -n "$test: "
-    ../divine2csgrep.py $test
-    OUTPUT=$()
+    ../divine2csgrep.py $test > $test.csgrep
 
     if diff -u $(echo $test | cut -d '-' -f1)*-output.txt $test.csgrep &> report/$test.diff
     then
