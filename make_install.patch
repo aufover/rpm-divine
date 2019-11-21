@@ -202,7 +202,7 @@
  list( APPEND Fs lib/libLLVMXRay.so )
  list( APPEND Fs lib/libclangAnalysis.so )
  list( APPEND Fs lib/libclangARCMigrate.so )
-@@ -162,6 +165,23 @@
+@@ -162,6 +165,22 @@
  list( APPEND Fs lib/libclangToolingInclusions.so )
  list( APPEND Fs lib/libclangToolingRefactor.so )
  list( APPEND Fs lib/libclangTooling.so )
@@ -218,7 +218,6 @@
 +list( APPEND Fs lib/liblart.so )
 +list( APPEND Fs lib/liblldCommon.so )
 +list( APPEND Fs lib/liblldCore.so )
-+list( APPEND Fs lib/liblldDriver.so )
 +list( APPEND Fs lib/liblldELF.so )
 +list( APPEND Fs lib/liblldMachO.so )
 +list( APPEND Fs lib/liblldReaderWriter.so )
