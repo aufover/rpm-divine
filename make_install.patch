@@ -1,6 +1,6 @@
---- a/releng/install_rpath.cmake	2019-10-25 11:16:59.930330095 +0200
-+++ b/releng/install-rpath.cmake	2019-10-25 11:19:21.831693157 +0200
-@@ -1,37 +1,38 @@
+--- a/releng/install-rpath.cmake	2019-10-25 10:36:35.484579412 +0200
++++ b/releng/install-rpath.cmake	2019-10-25 10:44:15.342510095 +0200
+@@ -1,37 +1,40 @@
  # the list of all installed files affected by our rpath hack
 -list( APPEND Fs lib/libLLVMAArch64AsmParser.so )
 -list( APPEND Fs lib/libLLVMAArch64AsmPrinter.so )
@@ -9,6 +9,8 @@
 -list( APPEND Fs lib/libLLVMAArch64Disassembler.so )
 -list( APPEND Fs lib/libLLVMAArch64Desc.so )
 -list( APPEND Fs lib/libLLVMAArch64Utils.so )
++list( APPEND Fs lib/libc++.so )
++list( APPEND Fs lib/libc++abi.so )
 +#list( APPEND Fs lib/libLLVMAArch64AsmParser.so )
 +#list( APPEND Fs lib/libLLVMAArch64AsmPrinter.so )
 +#list( APPEND Fs lib/libLLVMAArch64CodeGen.so )
@@ -65,7 +67,7 @@
  list( APPEND Fs lib/libLLVMCodeGen.so )
  list( APPEND Fs lib/libLLVMCore.so )
  list( APPEND Fs lib/libLLVMCoroutines.so )
-@@ -45,22 +46,22 @@
+@@ -45,22 +48,22 @@
  list( APPEND Fs lib/libLLVMExecutionEngine.so )
  list( APPEND Fs lib/libLLVMFuzzMutate.so )
  list( APPEND Fs lib/libLLVMGlobalISel.so )
@@ -99,7 +101,7 @@
  list( APPEND Fs lib/libLLVMLibDriver.so )
  list( APPEND Fs lib/libLLVMLineEditor.so )
  list( APPEND Fs lib/libLLVMLinker.so )
-@@ -69,51 +70,51 @@
+@@ -69,51 +72,51 @@
  list( APPEND Fs lib/libLLVMMCJIT.so )
  list( APPEND Fs lib/libLLVMMCParser.so )
  list( APPEND Fs lib/libLLVMMC.so )
@@ -183,7 +185,7 @@
  list( APPEND Fs lib/libLLVMTableGen.so )
  list( APPEND Fs lib/libLLVMTarget.so )
  list( APPEND Fs lib/libLLVMTransformUtils.so )
-@@ -126,11 +127,11 @@
+@@ -126,11 +129,11 @@
  list( APPEND Fs lib/libLLVMX86Disassembler.so )
  list( APPEND Fs lib/libLLVMX86Info.so )
  list( APPEND Fs lib/libLLVMX86Utils.so )
@@ -200,7 +202,31 @@
  list( APPEND Fs lib/libLLVMXRay.so )
  list( APPEND Fs lib/libclangAnalysis.so )
  list( APPEND Fs lib/libclangARCMigrate.so )
-@@ -174,11 +175,14 @@
+@@ -162,6 +165,23 @@
+ list( APPEND Fs lib/libclangToolingInclusions.so )
+ list( APPEND Fs lib/libclangToolingRefactor.so )
+ list( APPEND Fs lib/libclangTooling.so )
++list( APPEND Fs lib/libdivine-cc.so )
++list( APPEND Fs lib/libdivine-dbg.so )
++list( APPEND Fs lib/libdivine-ltl.so )
++list( APPEND Fs lib/libdivine-mc.so )
++list( APPEND Fs lib/libdivine-rt.so )
++list( APPEND Fs lib/libdivine-sim.so )
++list( APPEND Fs lib/libdivine-smt.so )
++list( APPEND Fs lib/libdivine-ui.so )
++list( APPEND Fs lib/libdivine-vm.so )
++list( APPEND Fs lib/liblart.so )
++list( APPEND Fs lib/liblldCommon.so )
++list( APPEND Fs lib/liblldCore.so )
++list( APPEND Fs lib/liblldDriver.so )
++list( APPEND Fs lib/liblldELF.so )
++list( APPEND Fs lib/liblldMachO.so )
++list( APPEND Fs lib/liblldReaderWriter.so )
++list( APPEND Fs lib/liblldYAML.so )
+ 
+ list( APPEND Fs bin/bugpoint )
+ list( APPEND Fs bin/c-index-test )
+@@ -174,11 +194,14 @@
  list( APPEND Fs bin/clang-refactor )
  list( APPEND Fs bin/clang-rename )
  list( APPEND Fs bin/diagtool )
@@ -215,7 +241,7 @@
  list( APPEND Fs bin/lli )
  list( APPEND Fs bin/llvm-ar )
  list( APPEND Fs bin/llvm-as )
-@@ -200,6 +204,7 @@
+@@ -200,6 +222,7 @@
  list( APPEND Fs bin/llvm-extract )
  list( APPEND Fs bin/llvm-link )
  list( APPEND Fs bin/llvm-lto2 )
@@ -223,7 +249,7 @@
  list( APPEND Fs bin/llvm-mca )
  list( APPEND Fs bin/llvm-modextract )
  list( APPEND Fs bin/llvm-mt )
-@@ -215,6 +220,7 @@
+@@ -215,17 +238,17 @@
  list( APPEND Fs bin/llvm-size )
  list( APPEND Fs bin/llvm-split )
  list( APPEND Fs bin/llvm-stress )
@@ -231,7 +257,10 @@
  list( APPEND Fs bin/llvm-symbolizer )
  list( APPEND Fs bin/llvm-tblgen )
  list( APPEND Fs bin/llvm-undname )
-@@ -225,7 +231,6 @@
+ list( APPEND Fs bin/llvm-xray )
+ list( APPEND Fs bin/obj2yaml )
+ list( APPEND Fs bin/opt )
+ list( APPEND Fs bin/sancov )
  list( APPEND Fs bin/sanstats )
  list( APPEND Fs bin/scan-build )
  list( APPEND Fs bin/scan-view )
