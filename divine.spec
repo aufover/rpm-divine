@@ -1,6 +1,6 @@
 Name:           divine
 Version:        4.4.0
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
@@ -33,6 +33,9 @@ BuildRequires:  gdb
 
 # 'static-dynamic.sh' test requires a static version of glibc
 BuildRequires:  glibc-static
+
+# required by 'divine2csgrep'
+Requires: python3-pyyaml
 
 # optional dependencies
 Requires: python3-pygments z3
