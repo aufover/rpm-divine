@@ -144,14 +144,14 @@ diff -u a/dios/libc/_PDCLIB/assert.c b/dios/libc/_PDCLIB/assert.c
      char buffer[ 200 ];
 -    snprintf( buffer, 200, "%s:%u: %s: assertion '%s' failed", file, line, fun, stmt );
 +
-+    const char* prefix = "/opt/divine/include";
++    const char * prefix = "/opt/divine/include";
 +    const int prefix_len = strlen( prefix );
 +
 +    int shift = 0;
-+    const char *bgn = strstr( file, "/dios/" );
-+    if (bgn != NULL) {
++    const char * bgn = strstr( file, "/dios/" );
++    if ( bgn != NULL ) {
 +        file = bgn;
-+        strcpy(buffer, prefix);
++        strcpy( buffer, prefix );
 +        shift += prefix_len;
 +    }
 +
