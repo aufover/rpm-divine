@@ -84,12 +84,10 @@ diff -rN -u a/divine/rt/dios-cc.cpp b/divine/rt/dios-cc.cpp
 diff -rN -u a/divine/rt/runtime.cpp b/divine/rt/runtime.cpp
 --- a/divine/rt/runtime.cpp	2019-11-01 15:57:40.145739566 +0100
 +++ b/divine/rt/runtime.cpp	2019-11-01 15:57:40.145739566 +0100
-@@ -33,11 +33,11 @@
+@@ -33,10 +33,10 @@
          using brick::string::endsWith;
  
          if ( n == "libcxx.a" ) n = "libc++.a";
--        if ( n == "libcxxabi.a" ) n = "libc++abi.a";
-+        if ( n == "libcxxabi.a") n = "libc++abi.a";
          if ( endsWith( n, ".bc" ) || endsWith( n, ".a" ) )
 -            return "/dios/lib/" + n;
 +            return "/opt/divine/include/dios/lib/" + n;
@@ -147,10 +145,10 @@ diff -u a/dios/libc/_PDCLIB/assert.c b/dios/libc/_PDCLIB/assert.c
 -    snprintf( buffer, 200, "%s:%u: %s: assertion '%s' failed", file, line, fun, stmt );
 +
 +    const char* prefix = "/opt/divine/include";
-+    const int prefix_len = strlen(prefix);
++    const int prefix_len = strlen( prefix );
 +
 +    int shift = 0;
-+    char *bgn = strstr( file, "/dios/" );
++    const char *bgn = strstr( file, "/dios/" );
 +    if (bgn != NULL) {
 +        file = bgn;
 +        strcpy(buffer, prefix);
