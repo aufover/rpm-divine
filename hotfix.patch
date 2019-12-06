@@ -75,9 +75,9 @@ diff -u a/dios/libc/string/strcpy.c b/dios/libc/string/strcpy.c
      while ( ( *s1++ = *s2++ ) );
      return rc;
 diff -u a/dios/libc/string/strncpy.c b/dios/libc/string/strncpy.c
---- a/dios/libc/string/strncpy.c  2019-12-05 15:31:14.301331969 +0100
-+++ b/dios/libc/string/strncpy.c  2019-12-05 15:31:14.301331969 +0100
-@@ -4,12 +4,15 @@
+--- a/dios/libc/string/strncpy.c  2019-12-06 15:27:21.991691262 +0100
++++ b/dios/libc/string/strncpy.c  2019-12-06 15:27:21.995024576 +0100
+@@ -4,12 +4,19 @@
     Permission is granted to use, modify, and / or redistribute at will.
  */
 
@@ -88,6 +88,10 @@ diff -u a/dios/libc/string/strncpy.c b/dios/libc/string/strncpy.c
 
  char * strncpy( char * _PDCLIB_restrict s1, const char * _PDCLIB_restrict s2, size_t n )
  {
++    size_t s2_len = strnlen( s2, n );
++    if ( s2_len < n )
++        n = s2_len;
++
 +    assert( s1 < s2 ? s1 + n <= s2 : s2 + n <= s1 );
 +
      char * rc = s1;
