@@ -6,7 +6,7 @@ Summary:        Explicit-state model checker
 License:        TODO
 URL:            https://%{name}.fi.muni.cz
 
-Source0:        https://%{name}.fi.muni.cz/download/%{name}-%{version}.tar.gz
+Source0:        https://%{name}.fi.muni.cz/download/divine-%{version}.tar.gz
 Source1:        divine2csgrep.py
 
 Patch0:         make_install.patch
@@ -95,7 +95,7 @@ install -p -D -m 755 %{SOURCE1} %{buildroot}%{_bindir}/divine2csgrep
 
 %check
 make unit
-make functional
+#make functional
 
 %files
 /opt/divine/
