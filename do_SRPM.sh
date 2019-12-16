@@ -17,12 +17,12 @@ pushd divine > /dev/null
 TAG=$(git describe | sed -e "s/-/_/g")
 PREFIX="divine-$TAG/"
 
-echo "Making divine-$TAG.tar.gz ..."
+echo "Making divine-$TAG.tar.gz..."
 git archive --prefix="$PREFIX" -o "../divine-$TAG.tar.gz" HEAD
 popd > /dev/null
 
 # update version
-echo "Updating $SPEC ..."
+echo "Updating $SPEC..."
 VERSION="Version:        $TAG"
 
 if ! grep -q "$VERSION" "$SPEC"; then
