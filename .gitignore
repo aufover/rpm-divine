@@ -1,0 +1,13 @@
+# Apply .gitignore
+*
+!.gitignore
+
+# Allow divine related stuff
+!divine.spec
+!do_SRPM.sh
+!*.patch
+
+# Allow csgrep related stuff
+!divine2csgrep.py
+!csgrep-tests/run-tests.sh
+!csgrep-tests/*.txt
