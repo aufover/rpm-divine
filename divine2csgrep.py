@@ -36,7 +36,7 @@ def main() -> None:
         sys.exit(1)
 
     if report is None:
-        print("divine: error: DIVINE FAULT: Divine crashed and no log was"
+        print("divine: error: DIVINE ERROR: Divine crashed and no log was"
               " created\ndivine: note: see stderr output of given divine"
               " process")
         return
