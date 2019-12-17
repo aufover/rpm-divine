@@ -1,2 +1,2 @@
-divine: error: DIVINE FAULT: Divine crashed and no log was created
+divine: error: DIVINE ERROR: Divine crashed and no log was created
 divine: note: see stderr output of given divine process

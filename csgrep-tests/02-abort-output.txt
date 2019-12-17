@@ -1,5 +1,5 @@
-test2.c: In funtion ‘foo’:
-test2.c:1: error: DIVINE FAULT: Uncaught signal.
+test2.c: In function ‘foo’:
+test2.c:1: error: DIVINE ERROR: FAULT: Uncaught signal.
 test2.c:1: note: [0] FATAL: control error in kernel
 test2.c:1: note: backtrace:
 /opt/divine/include/dios/sys/fault.hpp:118: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())

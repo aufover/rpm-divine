@@ -1,5 +1,5 @@
-test4.c: In funtion ‘main’:
-test4.c:5: error: DIVINE FAULT: access of size 4 at [alloca* 54c1a65 10h ddp] is 4 bytes out of bounds
+test4.c: In function ‘main’:
+test4.c:5: error: DIVINE ERROR: FAULT: access of size 4 at [alloca* 54c1a65 10h ddp] is 4 bytes out of bounds
 test4.c:5: note: [0] FATAL: memory error in userspace
 test4.c:5: note: backtrace:
 /opt/divine/include/dios/sys/fault.hpp:118: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())

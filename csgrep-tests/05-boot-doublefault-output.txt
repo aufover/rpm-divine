@@ -1,2 +1,2 @@
 test.c: error: DIOS BOOT: FAULT: null pointer dereference: [global* 0 0 ddn]
-test.c: note: DIOS BOOT: DOUBLE FAULT: trying to return without a caller
+test.c: note: DOUBLE FAULT: trying to return without a caller
