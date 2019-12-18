@@ -1,6 +1,6 @@
 Name:           divine
 Version:        4.4.0
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        Explicit-state model checker
 
 License:        TODO
@@ -46,13 +46,9 @@ TODO
 %prep
 %autosetup -p1
 
-# FIXME: make install
-chmod +x dios/libcxx/utils/cat_files.py
-
 # use Python 3 explicitly
 sed -in 's/python$/python3/' clang/tools/clang-format/clang-format-diff.py
 sed -in 's/python$/python3/' clang/tools/clang-format/git-clang-format
-sed -in 's/python$/python3/' dios/libcxx/utils/cat_files.py
 sed -in 's/python$/python3/' clang/utils/hmaptool/hmaptool
 sed -in 's/python$/python3/' clang/tools/scan-view/bin/scan-view
 

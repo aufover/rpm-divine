@@ -267,3 +267,14 @@
  list( APPEND Fs bin/verify-uselistorder )
  list( APPEND Fs bin/yaml2obj )
  
+diff -u a/dios/libcxx/include/CMakeLists.txt b/dios/libcxx/include/CMakeLists.txt
+--- a/dios/libcxx/include/CMakeLists.txt
++++ b/dios/libcxx/include/CMakeLists.txt
+@@ -181,6 +181,7 @@
+ if (LIBCXX_NEEDS_SITE_CONFIG)
+   # Generate a custom __config header. The new header is created
+   # by prepending __config_site to the current __config header.
++  include(FindPythonInterp)
+   add_custom_command(OUTPUT ${LIBCXX_BINARY_DIR}/__generated_config
+     COMMAND ${PYTHON_EXECUTABLE} ${LIBCXX_SOURCE_DIR}/utils/cat_files.py
+       ${LIBCXX_BINARY_DIR}/__config_site
