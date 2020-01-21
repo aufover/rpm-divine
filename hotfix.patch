@@ -1,17 +1,3 @@
-# Testsuite
-diff --git a/test/lib/testcase b/test/lib/testcase
---- a/test/lib/testcase
-+++ b/test/lib/testcase
-@@ -29,7 +29,7 @@
- 
- draw() { divine draw --render cat "$@"; }
- 
--PATH="$PWD/lib:$TOOLS:$TOOLS/../llvm/bin:$PATH"
-+PATH="$PWD/lib:$TOOLS:$TOOLS/../llvm/bin:$TOOLS/../clang/bin:$PATH"
- extracheck=:
- export cesmiext=.so
- test "$WIN32" = 1 && cesmiext=.dll
-
 # Missing includes
 diff -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
 --- a/dios/CMakeLists.txt	2019-11-01 15:57:40.145739566 +0100
@@ -26,123 +12,31 @@ diff -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
        libcxx/include/support/xlocale/*.h libcxx/src/support/atomic_support.h
        libcxx/include/support/divine/*.h
 
-# getline
-diff -u a/dios/libc/stdio/getline.c b/dios/libc/stdio/getline.c
---- a/dios/libc/stdio/getline.c	2019-11-15 14:29:47.130277649 +0100
-+++ b/dios/libc/stdio/getline.c	2019-11-15 14:29:47.133610968 +0100
-@@ -23,7 +23,7 @@
-     if ( !(*lineptr) || *n <= 1 )
-     {
-         *lineptr = realloc( *lineptr, INIT_SIZE );
--        if ( !lineptr )
-+        if ( !(*lineptr) )
-             return -1;
-         *n = INIT_SIZE;
-     }
-
-# Add strcpy & strncpy memory overlap check
-#patch 0f8c202d6e2713714bcdd8efc4ea9fb55f6a6929
-#Author: Petr Rockai <me@mornfall.net>
-#Date:   Thu Dec 12 15:59:36 CET 2019
-#  * libc: Assert that strcpy and strncpy arguments do not overlap.
-diff -rN -u old-divine-next/dios/libc/string/strcpy.c new-divine-next/dios/libc/string/strcpy.c
---- old-divine-next/dios/libc/string/strcpy.c	2019-12-16 10:42:47.451840126 +0100
-+++ new-divine-next/dios/libc/string/strcpy.c	2019-12-16 10:42:47.451840126 +0100
-@@ -5,14 +5,24 @@
- */
+# Fix compilation of shoop
+diff -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
+--- a/tools/shoop.cpp	2020-01-21 10:50:46.670265138 +0100
++++ b/tools/shoop.cpp	2020-01-21 13:09:18.709691652 +0100
+@@ -322,9 +322,12 @@
  
- #include <string.h>
-+#include <assert.h>
- #include <sys/cdefs.h>
+     // Now let's run Divine
+     auto bc = std::make_shared< divine::mc::BitCode >( std::move( tested_mod ), ctx );
+-    bc->dios_config( "static" );
  
- #ifndef REGTEST
- 
- __local_skipcfl char *strcpy( char * _PDCLIB_restrict s1, const char * _PDCLIB_restrict s2 )
- {
-+    int less = s1 < s2;
-     char * rc = s1;
-+    char * old = s2;
+-    bc->symbolic( true );
++    divine::mc::BCOptions bco;
++    bco.dios_config = "static";
++    bco.symbolic = true;
 +
-     while ( ( *s1++ = *s2++ ) );
-+
-+    if ( less )
-+        assert( s1 <= old );
-+    else
-+        assert( s2 <= rc );
-+
-     return rc;
- }
++    bc->set_options( bco );
+     bc->solver( "stp" );
+     bc->init();
  
-diff -rN -u old-divine-next/dios/libc/string/strncpy.c new-divine-next/dios/libc/string/strncpy.c
---- old-divine-next/dios/libc/string/strncpy.c	2019-12-16 10:42:47.451840126 +0100
-+++ new-divine-next/dios/libc/string/strncpy.c	2019-12-16 10:42:47.451840126 +0100
-@@ -5,25 +5,37 @@
- */
+@@ -356,7 +359,7 @@
+         Stepper step;
+         step._stop_on_error = true;
+         step._stop_on_accept = true;
+-        step._ff_components = divine::dbg::Component::Kernel;
++        step._ff_components = divine::dbg::component::kernel;
+         step.run( dbg, Stepper::Quiet );
  
- #include <string.h>
-+#include <assert.h>
- 
- #ifndef REGTEST
- 
--char * strncpy( char * _PDCLIB_restrict s1, const char * _PDCLIB_restrict s2, size_t n )
-+char *strncpy( char * _PDCLIB_restrict s1, const char * _PDCLIB_restrict s2, size_t n )
- {
--    char * rc = s1;
--    while ( ( n > 0 ) && ( *s1++ = *s2++ ) )
-+    char *rc = s1;
-+    const char *old = s2;
-+    int less = s1 < s2;
-+
-+    while ( n > 0 )
-     {
--        /* Cannot do "n--" in the conditional as size_t is unsigned and we have
--           to check it again for >0 in the next loop below, so we must not risk
--           underflow.
--        */
-         --n;
-+
-+        if ( ( *s1 = *s2 ) && n > 0 )
-+            s1 ++, s2 ++;
-+        else
-+            break;
-     }
--    /* Checking against 1 as we missed the last --n in the loop above. */
--    while ( n-- > 1 )
-+
-+    while ( n > 0 )
-     {
--        *s1++ = '\0';
-+        *++s1 = '\0';
-+        n --;
-     }
-+
-+    if ( less )
-+        assert( s1 < old );
-+    else
-+        assert( s2 < rc );
-+
-     return rc;
- }
- 
-#patch 62121dd32fffc024228e15b44ec1ed0ecc628de6
-#Author: Petr Rockai <me@mornfall.net>
-#Date:   Fri Dec 13 14:00:22 CET 2019
-#  * libc: Fix a warning in strcpy.c.
-diff -rN -u old-divine-next/dios/libc/string/strcpy.c new-divine-next/dios/libc/string/strcpy.c
---- old-divine-next/dios/libc/string/strcpy.c	2019-12-16 10:42:52.308619407 +0100
-+++ new-divine-next/dios/libc/string/strcpy.c	2019-12-16 10:42:52.308619407 +0100
-@@ -10,11 +10,11 @@
- 
- #ifndef REGTEST
- 
--__local_skipcfl char *strcpy( char * _PDCLIB_restrict s1, const char * _PDCLIB_restrict s2 )
-+__local_skipcfl char *strcpy( char * restrict s1, const char * restrict s2 )
- {
-     int less = s1 < s2;
--    char * rc = s1;
--    char * old = s2;
-+    char *rc = s1;
-+    const char *old = s2;
- 
-     while ( ( *s1++ = *s2++ ) );
- 
+         log->backtrace( dbg, 10 ); // How detailed we want the log to be?

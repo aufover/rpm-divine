@@ -12,8 +12,8 @@
 
 --- a/test/lib/testsuite	2019-09-23 15
 +++ b/test/lib/testsuite	2019-09-23 15
-@@ -11,7 +11,7 @@
- test -n "$TODO" && todo= && extra="--tags todo"
+@@ -20,7 +20,7 @@
+ native=$native:lang-c,!threads,!lifetime
  
  ./runner "$@" \
 -    --total-timeout 28800 --timeout 600  \

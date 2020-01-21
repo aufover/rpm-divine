@@ -1,21 +1,21 @@
 diff -rN -u a/divine/cc/driver.cpp b/divine/cc/driver.cpp
 --- a/divine/cc/driver.cpp	2019-11-01 15:57:40.145739566 +0100
 +++ b/divine/cc/driver.cpp	2019-11-01 15:57:40.145739566 +0100
-@@ -213,7 +213,7 @@
+@@ -211,7 +211,7 @@
          compiler.allowIncludePath( "." );  // TODO: necessary?
-         compiler.allowIncludePath( brick::string::dirname( lib ) );
+         compiler.allowIncludePath( brq::dirname( lib ) );
  
 -        dirs.insert( dirs.begin(), "/dios/lib" );
 +        dirs.insert( dirs.begin(), "/opt/divine/include/dios/lib" );
          for ( auto p : dirs )
              for ( auto suf : suffixes )
                  for ( auto pref : { "lib", "" } )
-@@ -227,7 +229,7 @@
+@@ -225,7 +225,7 @@
  
      std::string Driver::find_object( std::string name )
      {
--        return joinPath( "/dios/lib", name + ".bc"s );
-+        return joinPath( "/opt/divine/include/dios/lib", name + ".bc"s );
+-        return brq::join_path( "/dios/lib", name + ".bc"s );
++        return brq::join_path( "/opt/divine/include/dios/lib", name + ".bc"s );
      }
  
      Driver::ModulePtr Driver::load_object( std::string path )
@@ -23,41 +23,41 @@ diff -rN -u a/divine/cc/driver.cpp b/divine/cc/driver.cpp
 diff -rN -u a/dbg/info.cpp b/divine/dbg/info.cpp
 --- a/divine/dbg/info.cpp	2019-11-01 15:57:40.145739566 +0100
 +++ b/divine/dbg/info.cpp	2019-11-01 15:57:40.145739566 +0100
-@@ -60,28 +60,28 @@
+@@ -59,28 +59,28 @@
  
-     if ( comp & Component::LibC )
+     if ( comp & component::libc )
      {
--        if ( startsWith( file, "/dios/libc/" ) ||
--             startsWith( file, "/dios/arch/" ) ||
--             startsWith( file, "/dios/include/sys/" ) )
-+        if ( startsWith( file, "/opt/divine/include/dios/libc/" ) ||
-+             startsWith( file, "/opt/divine/include/dios/arch/" ) ||
-+             startsWith( file, "/opt/divine/include/dios/include/sys/" ) )
+-        if ( brq::starts_with( file, "/dios/libc/" ) ||
+-             brq::starts_with( file, "/dios/arch/" ) ||
+-             brq::starts_with( file, "/dios/include/sys/" ) )
++        if ( brq::starts_with( file, "/opt/divine/include/dios/libc/" ) ||
++             brq::starts_with( file, "/opt/divine/include/dios/arch/" ) ||
++             brq::starts_with( file, "/opt/divine/include/dios/include/sys/" ) )
              return true;
--        if ( startsWith( file, "/dios/include/" ) && file.substr( 14 ).find( '/' ) == std::string::npos )
-+        if ( startsWith( file, "/opt/divine/include/dios/include/" ) && file.substr( 33 ).find( '/' ) == std::string::npos )
+-        if ( brq::starts_with( file, "/dios/include/" ) && file.substr( 14 ).find( '/' ) == file.npos )
++        if ( brq::starts_with( file, "/opt/divine/include/dios/include/" ) && file.substr( 33 ).find( '/' ) == file.npos )
              return true;
      }
  
-     if ( comp & Component::LibCxx )
--        if ( startsWith( file, "/dios/libcxx" ) )
-+        if ( startsWith( file, "/opt/divine/include/dios/libcxx" ) )
+     if ( comp & component::libcxx )
+-        if ( brq::starts_with( file, "/dios/libcxx" ) )
++        if ( brq::starts_with( file, "/opt/divine/include/dios/libcxx" ) )
              return true;
  
-     if ( comp & Component::LibRst )
--        if ( startsWith( file, "/dios/rst/" ) ||
--             startsWith( file, "/dios/include/rst/" ) )
-+        if ( startsWith( file, "/opt/divine/include/dios/rst/" ) ||
-+             startsWith( file, "/opt/divine/include/dios/include/rst/" ) )
+     if ( comp & component::librst )
+-        if ( brq::starts_with( file, "/dios/rst/" ) ||
+-             brq::starts_with( file, "/dios/include/rst/" ) )
++        if ( brq::starts_with( file, "/opt/divine/include/dios/rst/" ) ||
++             brq::starts_with( file, "/opt/divine/include/dios/include/rst/" ) )
              return true;
  
-     if ( comp & Component::DiOS )
--        if ( startsWith( file, "/dios/sys/" ) || startsWith( file, "/dios/vfs/" ) )
-+        if ( startsWith( file, "/opt/divine/include/dios/sys/" ) || startsWith( file, "/opt/divine/include/dios/vfs/" ) )
+     if ( comp & component::dios )
+-        if ( brq::starts_with( file, "/dios/sys/" ) || brq::starts_with( file, "/dios/vfs/" ) )
++        if ( brq::starts_with( file, "/opt/divine/include/dios/sys/" ) || brq::starts_with( file, "/opt/divine/include/dios/vfs/" ) )
              return true;
  
--    if ( comp & Component::Program && !startsWith( file, "/dios/" ) )
-+    if ( comp & Component::Program && !startsWith( file, "/opt/divine/include/dios/" ) )
+-    if ( comp & component::program && !brq::starts_with( file, "/dios/" ) )
++    if ( comp & component::program && !brq::starts_with( file, "/opt/divine/include/dios/" ) )
          return true;
  
      return false;
@@ -66,8 +66,8 @@ diff -rN -u a/divine/rt/dios-cc.cpp b/divine/rt/dios-cc.cpp
 --- a/divine/rt/dios-cc.cpp	2019-11-01 15:57:40.145739566 +0100
 +++ b/divine/rt/dios-cc.cpp	2019-11-01 15:57:40.145739566 +0100
 @@ -30,10 +30,10 @@
-     using namespace brick::fs;
- 
+ void add_dios_header_paths( std::vector< std::string >& paths )
+ {
      paths.insert( paths.end(),
 -                 { "-isystem", "/dios/libcxx/include"
 -                 , "-isystem", "/dios/libcxxabi/include"
@@ -87,7 +87,7 @@ diff -rN -u a/divine/rt/runtime.cpp b/divine/rt/runtime.cpp
 @@ -33,9 +33,9 @@
          if ( n == "libcxx.a" ) n = "libc++.a";
          if ( n == "libcxxabi.a" ) n = "libc++abi.a";
-         if ( endsWith( n, ".bc" ) || endsWith( n, ".a" ) )
+         if ( brq::ends_with( n, ".bc" ) || brq::ends_with( n, ".a" ) )
 -            return "/dios/lib/" + n;
 +            return "/opt/divine/include/dios/lib/" + n;
          else
@@ -102,7 +102,7 @@ diff -rN -u a/tools/runtime-cc.cpp b/tools/runtime-cc.cpp
 +++ b/tools/runtime-cc.cpp	2019-11-01 15:57:40.145739566 +0100
 @@ -48,6 +48,7 @@
                  n = p.substr( srcDir.size() );
-             if ( string::startsWith( p, binDir ) )
+             if ( brq::starts_with( p, binDir ) )
                  n = p.substr( binDir.size() );
 +            n = "/opt/divine/include" + n;
              TRACE( "rewrite", p, "to", n );
