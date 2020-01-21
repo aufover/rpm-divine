@@ -6,7 +6,7 @@ Summary:        Explicit-state model checker
 License:        TODO
 URL:            https://%{name}.fi.muni.cz
 
-Source0:        https://%{name}.fi.muni.cz/download/divine-%{version}.tar.gz
+Source0:        https://%{name}.fi.muni.cz/download/%{name}-%{version}.tar.gz
 Source1:        divine2csgrep.py
 
 Patch0:         make_install.patch

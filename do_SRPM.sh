@@ -15,10 +15,12 @@ git clone https://gitlab.fi.muni.cz/paradise/mirror/divine.git
 # make package
 pushd divine > /dev/null
 TAG=$(git describe | sed -e "s/-/_/g")
-PREFIX="divine-$TAG/"
 
-echo "Making divine-$TAG.tar.gz..."
-git archive --prefix="$PREFIX" -o "../divine-$TAG.tar.gz" HEAD
+for NAME in "divine-$TAG" "divine-tested-$TAG"; do
+  echo "Making $NAME.tar.gz..."
+  git archive --prefix="$NAME/" -o "../$NAME.tar.gz" HEAD
+done
+
 popd > /dev/null
 
 # update version
