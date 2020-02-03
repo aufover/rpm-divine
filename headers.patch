@@ -1,7 +1,7 @@
 diff -rN -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
 --- a/dios/CMakeLists.txt	2019-11-01 15:57:40.145739566 +0100
 +++ b/dios/CMakeLists.txt	2019-11-01 15:57:40.145739566 +0100
-@@ -133,3 +133,42 @@
+@@ -133,3 +133,43 @@
  target_link_libraries( divine-rt divine-cc )
  set_target_properties( divine-rt PROPERTIES POSITION_INDEPENDENT_CODE ON )
  install( TARGETS divine-rt DESTINATION lib )
@@ -10,7 +10,7 @@ diff -rN -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
 +foreach( D sys config vfs vfs include include/_PDCLIB include/util include/rst
 +           include/sys include/bits include/machine include/netinet include/arpa
 +           libcxxabi/src libcxx/include/support/xlocale libcxx/src/support
-+           libcxx/include/support/divine )
++           libcxx/include/support/divine lava lamp )
 +
 +  file( GLOB HPP_${D} LIST_DIRECTORIES false ${D}/*.hpp ${D}/*.h ${D}/*.def
 +        ${D}/*.ipp ${D}/*.undef )
@@ -30,7 +30,8 @@ diff -rN -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
 +
 +# Install sources
 +foreach( D host native sys vfs proxy config arch/divm arch/klee arch/native
-+           rst libm libm/ld80 libcxxabi/src libcxx/src libpthread host )
++           rst libm libm/ld80 libcxxabi/src libcxx/src libpthread host lava
++           lamp )
 +  file( GLOB SRC_${D} ${D}/*.c ${D}/*.cpp )
 +  install( FILES ${SRC_${D}} DESTINATION include/dios/${D} )
 +endforeach()

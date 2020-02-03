@@ -202,7 +202,7 @@
  list( APPEND Fs lib/libLLVMXRay.so )
  list( APPEND Fs lib/libclangAnalysis.so )
  list( APPEND Fs lib/libclangARCMigrate.so )
-@@ -162,6 +165,22 @@
+@@ -162,6 +165,23 @@
  list( APPEND Fs lib/libclangToolingInclusions.so )
  list( APPEND Fs lib/libclangToolingRefactor.so )
  list( APPEND Fs lib/libclangTooling.so )
@@ -211,6 +211,7 @@
 +list( APPEND Fs lib/libdivine-ltl.so )
 +list( APPEND Fs lib/libdivine-mc.so )
 +list( APPEND Fs lib/libdivine-rt.so )
++list( APPEND Fs lib/libdivine-ra.so )
 +list( APPEND Fs lib/libdivine-sim.so )
 +list( APPEND Fs lib/libdivine-smt.so )
 +list( APPEND Fs lib/libdivine-ui.so )
@@ -225,7 +226,7 @@
  
  list( APPEND Fs bin/bugpoint )
  list( APPEND Fs bin/c-index-test )
-@@ -174,11 +194,14 @@
+@@ -174,11 +195,14 @@
  list( APPEND Fs bin/clang-refactor )
  list( APPEND Fs bin/clang-rename )
  list( APPEND Fs bin/diagtool )
@@ -240,7 +241,7 @@
  list( APPEND Fs bin/lli )
  list( APPEND Fs bin/llvm-ar )
  list( APPEND Fs bin/llvm-as )
-@@ -200,6 +222,7 @@
+@@ -200,6 +223,7 @@
  list( APPEND Fs bin/llvm-extract )
  list( APPEND Fs bin/llvm-link )
  list( APPEND Fs bin/llvm-lto2 )
@@ -248,7 +249,7 @@
  list( APPEND Fs bin/llvm-mca )
  list( APPEND Fs bin/llvm-modextract )
  list( APPEND Fs bin/llvm-mt )
-@@ -215,17 +238,17 @@
+@@ -215,17 +239,17 @@
  list( APPEND Fs bin/llvm-size )
  list( APPEND Fs bin/llvm-split )
  list( APPEND Fs bin/llvm-stress )
@@ -267,14 +268,3 @@
  list( APPEND Fs bin/verify-uselistorder )
  list( APPEND Fs bin/yaml2obj )
  
-diff -u a/dios/libcxx/include/CMakeLists.txt b/dios/libcxx/include/CMakeLists.txt
---- a/dios/libcxx/include/CMakeLists.txt
-+++ b/dios/libcxx/include/CMakeLists.txt
-@@ -181,6 +181,7 @@
- if (LIBCXX_NEEDS_SITE_CONFIG)
-   # Generate a custom __config header. The new header is created
-   # by prepending __config_site to the current __config header.
-+  include(FindPythonInterp)
-   add_custom_command(OUTPUT ${LIBCXX_BINARY_DIR}/__generated_config
-     COMMAND ${PYTHON_EXECUTABLE} ${LIBCXX_SOURCE_DIR}/utils/cat_files.py
-       ${LIBCXX_BINARY_DIR}/__config_site

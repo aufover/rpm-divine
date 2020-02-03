@@ -1,5 +1,5 @@
 Name:           divine
-Version:        4.4.1
+Version:        4.4.2
 Release:        1%{?dist}
 Summary:        Explicit-state model checker
 
@@ -91,7 +91,7 @@ install -p -D -m 755 %{SOURCE1} %{buildroot}%{_bindir}/divine2csgrep
 
 %check
 make unit
-#make functional
+# make functional
 
 %files
 /opt/divine/

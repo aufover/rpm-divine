@@ -12,31 +12,54 @@ diff -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
        libcxx/include/support/xlocale/*.h libcxx/src/support/atomic_support.h
        libcxx/include/support/divine/*.h
 
-# Fix compilation of shoop
+# Missing build dependencies
+diff -u a/divine/CMakeLists.txt b/divine/CMakeLists.txt
+--- a/divine/CMakeLists.txt
++++ b/divine/CMakeLists.txt
+@@ -69,7 +69,8 @@ target_link_libraries( divine-cc LLVMCore LLVMSupport LLVMMC LLVMIRReader
+                                  LLVMObject LLVMTransformUtils ${CC_TGTS}
+                                  clang clangBasic clangCodeGen lldELF )
+ target_link_libraries( divine-smt ${Z3_LIBRARIES} ${STP_LIBRARIES} )
+-target_link_libraries( divine-dbg divine-vm )
++target_link_libraries( divine-vm divine-cc )
++target_link_libraries( divine-dbg divine-vm divine-smt )
+ target_link_libraries( divine-mc divine-vm divine-dbg divine-smt divine-rt divine-cc # FIXME divine-cc
+                                  liblart LLVMBitReader LLVMBitWriter LLVMLinker )
+ target_link_libraries( divine-ui divine-rt divine-cc divine-mc divine-ltl divine-ra )
+
 diff -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
---- a/tools/shoop.cpp	2020-01-21 10:50:46.670265138 +0100
-+++ b/tools/shoop.cpp	2020-01-21 13:09:18.709691652 +0100
-@@ -322,9 +322,12 @@
+--- a/dios/CMakeLists.txt
++++ b/dios/CMakeLists.txt
+@@ -132,6 +132,7 @@ include_directories( ${divine_SOURCE_DIR} )
+ add_definitions( -Wno-overlength-strings ${DIVINE_DEFINES} )
+ file( GLOB SRC_rt ${divine_SOURCE_DIR}/divine/rt/*.cpp )
+ add_library( divine-rt ${SRC_rt} ${dios_FILES} ${dios_native_FILES} dios_list.cpp dios_native_list.cpp )
++add_dependencies( divine-rt cxxabi_static cxx_static )
+ target_link_libraries( divine-rt divine-cc )
+ set_target_properties( divine-rt PROPERTIES POSITION_INDEPENDENT_CODE ON )
+ install( TARGETS divine-rt DESTINATION lib )
+
+diff -u a/dios/libcxx/CMakeLists.txt b/dios/libcxx/CMakeLists.txt
+--- a/dios/libcxx/CMakeLists.txt
++++ b/dios/libcxx/CMakeLists.txt
+@@ -214,13 +214,13 @@ cmake_dependent_option(LIBCXX_STATICALLY_LINK_ABI_IN_SHARED_LIBRARY
+ # is on. This option is also disabled when the ABI library is not specified
+ # or is specified to be "none".
+ set(ENABLE_LINKER_SCRIPT_DEFAULT_VALUE OFF)
+-if (LLVM_HAVE_LINK_VERSION_SCRIPT AND NOT LIBCXX_STATICALLY_LINK_ABI_IN_SHARED_LIBRARY
+-      AND NOT LIBCXX_CXX_ABI_LIBNAME STREQUAL "none"
+-      AND NOT LIBCXX_CXX_ABI_LIBNAME STREQUAL "default"
+-      AND PYTHONINTERP_FOUND
+-      AND LIBCXX_ENABLE_SHARED)
+-    set(ENABLE_LINKER_SCRIPT_DEFAULT_VALUE ON)
+-endif()
++# if (LLVM_HAVE_LINK_VERSION_SCRIPT AND NOT LIBCXX_STATICALLY_LINK_ABI_IN_SHARED_LIBRARY
++#       AND NOT LIBCXX_CXX_ABI_LIBNAME STREQUAL "none"
++#       AND NOT LIBCXX_CXX_ABI_LIBNAME STREQUAL "default"
++#       AND PYTHONINTERP_FOUND
++#       AND LIBCXX_ENABLE_SHARED)
++#     set(ENABLE_LINKER_SCRIPT_DEFAULT_VALUE ON)
++# endif()
  
-     // Now let's run Divine
-     auto bc = std::make_shared< divine::mc::BitCode >( std::move( tested_mod ), ctx );
--    bc->dios_config( "static" );
- 
--    bc->symbolic( true );
-+    divine::mc::BCOptions bco;
-+    bco.dios_config = "static";
-+    bco.symbolic = true;
-+
-+    bc->set_options( bco );
-     bc->solver( "stp" );
-     bc->init();
- 
-@@ -356,7 +359,7 @@
-         Stepper step;
-         step._stop_on_error = true;
-         step._stop_on_accept = true;
--        step._ff_components = divine::dbg::Component::Kernel;
-+        step._ff_components = divine::dbg::component::kernel;
-         step.run( dbg, Stepper::Quiet );
- 
-         log->backtrace( dbg, 10 ); // How detailed we want the log to be?
+ option(LIBCXX_ENABLE_ABI_LINKER_SCRIPT
+       "Use and install a linker script for the given ABI library"
