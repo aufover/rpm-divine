@@ -1,0 +1,207 @@
+states per second: 619.048
+state count: 13
+mips: 0.44
+
+version: 4.4.1+d28773460be
+architecture: Intel Core Processor (Skylake, IBRS)
+memory used: 710712
+physical memory used: 299952
+user time: 3.232624
+system time: 0.140990
+wall time: 3.217245
+
+fragment memory:
+  total: { items: 216, used: 2815544, held: 3667456 }
+  1: { items: 15, used: 15, held: 20440 }
+  2: { items: 2, used: 4, held: 4088 }
+  3: { items: 1, used: 3, held: 20440 }
+  4: { items: 19, used: 76, held: 20440 }
+  6: { items: 1, used: 6, held: 4088 }
+  8: { items: 11, used: 88, held: 20440 }
+  16: { items: 19, used: 304, held: 12240 }
+  20: { items: 0, used: 0, held: 16320 }
+  24: { items: 11, used: 264, held: 20400 }
+  25: { items: 1, used: 25, held: 4064 }
+  32: { items: 18, used: 576, held: 20320 }
+  33: { items: 1, used: 33, held: 20400 }
+  36: { items: 1, used: 36, held: 20400 }
+  40: { items: 14, used: 560, held: 20400 }
+  41: { items: 0, used: 0, held: 4080 }
+  44: { items: 1, used: 44, held: 4080 }
+  47: { items: 0, used: 0, held: 4080 }
+  48: { items: 0, used: 0, held: 4080 }
+  49: { items: 1, used: 49, held: 12264 }
+  50: { items: 1, used: 50, held: 8176 }
+  52: { items: 1, used: 52, held: 4088 }
+  53: { items: 1, used: 53, held: 20440 }
+  56: { items: 10, used: 560, held: 20440 }
+  57: { items: 1, used: 57, held: 20160 }
+  58: { items: 1, used: 58, held: 12096 }
+  60: { items: 1, used: 60, held: 20160 }
+  64: { items: 2, used: 128, held: 8064 }
+  65: { items: 1, used: 65, held: 8064 }
+  68: { items: 1, used: 68, held: 4032 }
+  69: { items: 1, used: 69, held: 12096 }
+  70: { items: 1, used: 70, held: 20160 }
+  71: { items: 1, used: 71, held: 4032 }
+  72: { items: 1, used: 72, held: 20160 }
+  73: { items: 2, used: 146, held: 12240 }
+  77: { items: 1, used: 77, held: 8160 }
+  78: { items: 1, used: 78, held: 4080 }
+  79: { items: 0, used: 0, held: 4080 }
+  80: { items: 2, used: 160, held: 4080 }
+  81: { items: 1, used: 81, held: 4048 }
+  82: { items: 0, used: 0, held: 16192 }
+  84: { items: 0, used: 0, held: 4048 }
+  87: { items: 0, used: 0, held: 4048 }
+  88: { items: 2, used: 176, held: 8096 }
+  90: { items: 1, used: 90, held: 4032 }
+  91: { items: 1, used: 91, held: 20160 }
+  92: { items: 1, used: 92, held: 4032 }
+  93: { items: 0, used: 0, held: 4032 }
+  96: { items: 2, used: 192, held: 8064 }
+  97: { items: 0, used: 0, held: 16224 }
+  98: { items: 1, used: 98, held: 4056 }
+  104: { items: 1, used: 104, held: 4056 }
+  105: { items: 1, used: 105, held: 12096 }
+  108: { items: 2, used: 216, held: 4032 }
+  109: { items: 1, used: 109, held: 4032 }
+  110: { items: 0, used: 0, held: 4032 }
+  112: { items: 1, used: 112, held: 4032 }
+  114: { items: 1, used: 114, held: 4080 }
+  115: { items: 0, used: 0, held: 4080 }
+  117: { items: 1, used: 117, held: 4080 }
+  118: { items: 1, used: 118, held: 20400 }
+  119: { items: 0, used: 0, held: 4080 }
+  120: { items: 1, used: 120, held: 8160 }
+  121: { items: 1, used: 121, held: 3968 }
+  124: { items: 0, used: 0, held: 3968 }
+  125: { items: 1, used: 125, held: 3968 }
+  126: { items: 1, used: 126, held: 3968 }
+  127: { items: 1, used: 127, held: 3968 }
+  129: { items: 1, used: 129, held: 4080 }
+  130: { items: 0, used: 0, held: 4080 }
+  131: { items: 1, used: 131, held: 4080 }
+  132: { items: 0, used: 0, held: 4080 }
+  134: { items: 1, used: 134, held: 4080 }
+  138: { items: 1, used: 138, held: 8064 }
+  139: { items: 1, used: 139, held: 4032 }
+  142: { items: 1, used: 142, held: 4032 }
+  146: { items: 1, used: 146, held: 3952 }
+  150: { items: 1, used: 150, held: 3952 }
+  151: { items: 1, used: 151, held: 3952 }
+  152: { items: 2, used: 304, held: 7904 }
+  156: { items: 1, used: 156, held: 4000 }
+  161: { items: 1, used: 161, held: 4032 }
+  162: { items: 1, used: 162, held: 20160 }
+  167: { items: 0, used: 0, held: 4032 }
+  181: { items: 0, used: 0, held: 4048 }
+  194: { items: 1, used: 194, held: 4000 }
+  210: { items: 0, used: 0, held: 3888 }
+  219: { items: 0, used: 0, held: 4032 }
+  232: { items: 0, used: 0, held: 3944 }
+  245: { items: 0, used: 0, held: 3968 }
+  251: { items: 0, used: 0, held: 3840 }
+  255: { items: 1, used: 255, held: 3840 }
+  256: { items: 1, used: 256, held: 3840 }
+  276: { items: 1, used: 276, held: 3920 }
+  295: { items: 1, used: 295, held: 3848 }
+  296: { items: 1, used: 296, held: 3848 }
+  299: { items: 1, used: 299, held: 3952 }
+  304: { items: 0, used: 0, held: 3952 }
+  307: { items: 0, used: 0, held: 4056 }
+  319: { items: 1, used: 319, held: 3840 }
+  322: { items: 11, used: 3542, held: 15744 }
+  331: { items: 1, used: 331, held: 12096 }
+  370: { items: 1, used: 370, held: 3760 }
+  424: { items: 1, used: 424, held: 3816 }
+  433: { items: 1, used: 433, held: 3960 }
+  440: { items: 1, used: 440, held: 3960 }
+  502: { items: 1, used: 502, held: 4032 }
+  587: { items: 0, used: 0, held: 3552 }
+  679: { items: 3, used: 2037, held: 4080 }
+  1197: { items: 1, used: 1197, held: 3600 }
+  2120: { items: 2, used: 4240, held: 4240 }
+  942440: { items: 1, used: 942440, held: 942440 }
+  1848944: { items: 1, used: 1848944, held: 1848944 }
+snapshot memory:
+  total: { items: 13, used: 5880, held: 39456 }
+  276: { items: 1, used: 276, held: 3920 }
+  300: { items: 1, used: 300, held: 3952 }
+  408: { items: 1, used: 408, held: 4080 }
+  432: { items: 1, used: 432, held: 3888 }
+  456: { items: 1, used: 456, held: 3648 }
+  480: { items: 1, used: 480, held: 3840 }
+  504: { items: 7, used: 3528, held: 16128 }
+fragment table: { used: 81, capacity: 256 }
+snapshot table: { used: 13, capacity: 256 }
+input file: ../../aufover-benchmark/tests/single-c/arrays_and_loops/reverse-array-good-0007/test-0007.c
+compile options:
+  - ../../aufover-benchmark/tests/single-c/arrays_and_loops/reverse-array-good-0007/test-0007.c
+input options:
+  sys.0: "nofail:malloc"
+  divine.bcname: "../../aufover-benchmark/tests/single-c/arrays_and_loops/reverse-array-good-0007/test-0007.c"
+dios config: default
+leak check: [ "exit" ]
+static reduction: 1
+smt solver: stp
+property type: safety
+
+timers:
+  lart: 1.15
+  loader: 1.43
+  boot: 0.069
+  search: 0.021
+  ce: 0.101
+error found: yes
+error trace: |
+  FAULT: object marked* f493a8e4 0 leakedobject marked* f2f7a3a5 0 leakedobject marked* f15cd7c2 0 leakedobject marked* f0eafaf8 0 leakedobject marked* f087ec20 0 leakedobject marked* f4468f31 0 leakedobject marked* f06277f5 0 leakedobject marked* f634b127 0 leakedobject marked* f1420ee8 0 leaked
+  [0] FATAL: memory leak in userspace
+
+machine trace:
+  - choices: 0/1
+    interrupts: C/1472/1:31
+  - choices: 0/1
+    interrupts: C/276/1:31
+  - choices: 0/1
+    interrupts: C/276/1:31
+  - choices: 0/1
+    interrupts: C/276/1:31
+  - choices: 0/1
+    interrupts: C/276/1:31
+  - choices: 0/1
+    interrupts: C/119/1:66
+  - choices: 0/1
+    interrupts: C/114/1:66
+  - choices: 0/1
+    interrupts: C/114/1:66
+  - choices: 0/1
+    interrupts: C/114/1:66
+  - choices: 0/1
+    interrupts: C/114/1:66
+  - choices: 0/1
+    interrupts: C/143/1:126
+  - choices: 0/1
+    interrupts: ""
+
+active stack:
+  - symbol: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
+    location: /opt/divine/include/dios/sys/fault.hpp:118
+    pc: code* 802a7 4
+    address: alloca* 100011 0+0
+
+  - symbol: _Exit
+    location: /opt/divine/include/dios/libc/stdlib/_Exit.c:14
+    pc: code* 80628 4
+    address: heap* e185992e 0+0
+
+  - symbol: exit
+    location: /opt/divine/include/dios/libc/stdlib/exit.c:6
+    pc: code* 805b3 6
+    address: heap* e99c237a 0+0
+
+  - symbol: __dios_start
+    location: /opt/divine/include/dios/libc/sys/start.cpp:110
+    pc: code* 805a5 35h
+    address: heap* d48cf3ae 0+0
+

@@ -1,6 +1,6 @@
 Error: DIVINE_WARNING:
 test4.c: scope_hint: In function ‘main’:
-test4.c:5: error: FAULT: access of size 4 at [alloca*] is 4 bytes out of bounds
+test4.c:5: error: FAULT: access of size 4 at [alloca* 54c1a65 10h ddp] is 4 bytes out of bounds
 test4.c:5: note: FATAL: memory error in userspace
 /opt/divine/include/dios/sys/fault.hpp:118: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
 test4.c:5: note: main

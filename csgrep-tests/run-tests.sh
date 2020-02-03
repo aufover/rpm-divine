@@ -4,16 +4,23 @@ rm -rf report
 mkdir report
 
 for test in *input.txt; do
-    echo -n "$test: "
-    ../divine2csgrep.py $test > $test.csgrep
+  for mode in "" "-v"; do
+    echo -n "$test$mode: "
 
-    if diff -u $(echo $test | cut -d '-' -f1)*-output.txt $test.csgrep &> report/$test.diff
-    then
-        echo -e "\e[1m\e[92mPASS\e[0m"
-    else
-        echo -e "\e[1m\e[91mFAIL\e[0m"
-	cat report/$test.diff
+    if ! ../divine2csgrep.py $mode $test | tee $test$mode.csgrep | \
+          csgrep &> /dev/null; then
+      echo -e "\e[1m\e[91mCSGREP FAIL\e[0m"
+      continue
     fi
 
-    rm *.csgrep
-done	
+    if diff -u $(echo $test | cut -d '-' -f1)*-output$mode.txt \
+          $test$mode.csgrep &> report/$test$mode.diff; then
+      echo -e "\e[1m\e[92mPASS\e[0m"
+    else
+      echo -e "\e[1m\e[91mDIFF FAIL\e[0m"
+      cat report/$test$mode.diff
+    fi
+  done
+
+  rm ./*.csgrep
+done

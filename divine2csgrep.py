@@ -41,7 +41,7 @@ def print_error_trace(report, error_type: Error, verbose: bool,
         if report.get("symbolic") is not None and "ASSUME" in line:
             continue
 
-        if "FAULT" in line:
+        if line.startswith("FAULT"):
             if not verbose:
                 line = sanitise(line)
 
