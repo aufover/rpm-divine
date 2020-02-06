@@ -10,7 +10,8 @@ mkdir srpm
 cd srpm
 
 # clone git repo
-git clone https://gitlab.fi.muni.cz/paradise/mirror/divine.git
+echo "Cloning Divine..."
+git clone --quiet https://gitlab.fi.muni.cz/paradise/mirror/divine.git
 
 # make package
 pushd divine > /dev/null
