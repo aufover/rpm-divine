@@ -3,7 +3,6 @@
 set -e
 
 SPEC=${SPEC:-../divine.spec}
-SPEC_TESTED=${SPEC/%.spec/-tested.spec}
 
 rm -rf srpm
 mkdir srpm
@@ -32,15 +31,10 @@ if ! grep -q "$VERSION" "$SPEC"; then
   sed -i "s/^Release:.*/Release:        1%{?dist}/" "$SPEC"
 fi
 
-cp "$SPEC" "$SPEC_TESTED"
-sed -i "s/\(Name:.*\)divine/\1divine-tested/" "$SPEC_TESTED"
-sed -i "s/#make/make/" "$SPEC_TESTED"
-
 # copy patches
 cp ../*.patch .
 cp ../divine2csgrep.py .
 
 # build SRPM
 echo Building SRPMs...
-rpmbuild -bs {"$SPEC","$SPEC_TESTED"} --define "_sourcedir $PWD" \
-    --define "_srcrpmdir $PWD"
+rpmbuild -bs "$SPEC" --define "_sourcedir $PWD" --define "_srcrpmdir $PWD"
