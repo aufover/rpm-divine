@@ -1,0 +1,9 @@
+Error: DIVINE_WARNING:
+(unknown location): scope_hint: In function ‘__lart_abstract.tobool.i1’:
+(unknown location): error: 1 heap object leaked
+(unknown location): note: memory leak in userspace
+/opt/divine/include/dios/sys/fault.hpp:119: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
+/opt/divine/include/dios/include/util/array.hpp:136: note: __lamp_to_tristate
+(unknown location): note: __lart_abstract.tobool.i1
+./test-0002.c:9: note: main
+/opt/divine/include/dios/libc/sys/start.cpp:91: note: __dios_start

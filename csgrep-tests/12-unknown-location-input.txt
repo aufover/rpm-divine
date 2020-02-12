@@ -1,0 +1,21 @@
+states per second: 12.1951
+state count: 2
+mips: 0.061
+symbolic: 1
+
+error found: yes
+error trace: |
+  FAULT: leaked [marked* f3cecc0d 0]
+  [0] FATAL: memory leak in userspace
+
+active stack:
+  - symbol: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
+    location: /opt/divine/include/dios/sys/fault.hpp:119
+  - symbol: __lamp_to_tristate
+    location: /opt/divine/include/dios/include/util/array.hpp:136
+  - symbol: __lart_abstract.tobool.i1
+    location: (unknown location)
+  - symbol: main
+    location: ./test-0002.c:9
+  - symbol: __dios_start
+    location: /opt/divine/include/dios/libc/sys/start.cpp:91

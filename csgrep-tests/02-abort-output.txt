@@ -1,7 +1,7 @@
 Error: DIVINE_WARNING:
 test2.c: scope_hint: In function ‘foo’:
-test2.c:1: error: FAULT: Uncaught signal.
-test2.c:1: note: FATAL: control error in kernel
+test2.c:1: error: Uncaught signal.
+test2.c:1: note: control error in kernel
 /opt/divine/include/dios/sys/fault.hpp:118: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
 /opt/divine/include/dios/arch/divm/fault.c:12: note: __dios_fault
 /opt/divine/include/dios/sys/sched_base.hpp:408: note: int __dios::Scheduler<__dios::Base>::_kill<__dios::ProcessManager<__dios::Fault<__dios::Scheduler<__dios::Base> > >::kill(int, int)::'lambda'(auto*)>(int, int, auto)

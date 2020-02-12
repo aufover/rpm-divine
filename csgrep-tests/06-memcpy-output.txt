@@ -1,7 +1,7 @@
 Error: DIVINE_WARNING:
 memcpy.c: scope_hint: In function ‘main’:
-memcpy.c:7: error: FAULT: /opt/divine/include/dios/libc/string/memcpy.c: void *memcpy(void *restrict, const void *restrict, size_t): assertion 's1 < s2 ? s1 + n <= s2 : s2 + n <= s1' failed
-memcpy.c:7: note: FATAL: assertion failure in userspace
+memcpy.c:7: error: /opt/divine/include/dios/libc/string/memcpy.c: void *memcpy(void *restrict, const void *restrict, size_t): assertion 's1 < s2 ? s1 + n <= s2 : s2 + n <= s1' failed
+memcpy.c:7: note: assertion failure in userspace
 /opt/divine/include/dios/sys/fault.hpp:118: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
 /opt/divine/include/dios/arch/divm/fault.c:12: note: __dios_fault
 /opt/divine/include/dios/libc/_PDCLIB/assert.c:35: note: __assert_fail

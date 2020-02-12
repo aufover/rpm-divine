@@ -1,7 +1,7 @@
 Error: DIVINE_WARNING:
 /opt/divine/include/dios/libc/sys/start.cpp: scope_hint: In function ‘__dios_start’:
-/opt/divine/include/dios/libc/sys/start.cpp:110: error: FAULT: object heap* 3f8f742a 0 leaked
-/opt/divine/include/dios/libc/sys/start.cpp:110: note: FATAL: memory leak in userspace
+/opt/divine/include/dios/libc/sys/start.cpp:110: error: object heap* 3f8f742a 0 leaked
+/opt/divine/include/dios/libc/sys/start.cpp:110: note: memory leak in userspace
 /opt/divine/include/dios/sys/fault.hpp:118: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
 /opt/divine/include/dios/libc/stdlib/_Exit.c:14: note: _Exit
 /opt/divine/include/dios/libc/stdlib/exit.c:6: note: exit
