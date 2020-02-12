@@ -18,18 +18,18 @@ class Error(Enum):
 def sanitise(line: str) -> str:
     if "leaked" in line:
         leak_count: int = len(re.findall(r"leaked", line))
-        return "FAULT: %d heap object%s leaked" % (leak_count,
-                                                   "" if leak_count == 1
-                                                   else "s")
+        return "%d heap object%s leaked" % (leak_count, "" if leak_count == 1
+                                                        else "s")
 
-    return re.sub(
-            re.compile("((?<=heap\*)|(?<=alloca\*)|(?<=global\*))(.*(?= leaked)|[^]]+)||[0-9]+:",
-                       re.DOTALL),
-            "",
-            line)
+    return re.sub(r"((?<=heap\*)|(?<=alloca\*)|(?<=global\*))[^]]+|[0-9]+:",
+                  "", line)
 
 
-def print_error_trace(report, error_type: Error, verbose: bool,
+def parse_location(location: List[str]) -> str:
+    return location[0] + ("" if len(location) == 1 else ":" + location[1])
+
+
+def print_error_trace(report, error: Error, verbose: bool,
                       location: str = None) -> None:
     trace: List[str] = report["error trace"].split("\n")
     trace.pop()  # might break in future
@@ -45,11 +45,12 @@ def print_error_trace(report, error_type: Error, verbose: bool,
             if not verbose:
                 line = sanitise(line)
 
-            print(location + ": " + error_type.name.replace("_", " ") + ": " +
-                  line)
+            print(location + ": " + error.name.replace("_", " ") + ": " +
+                  line.replace("FAULT: ", ""))
             continue
 
-        print(location + ": note: " + line.replace("[0] ", ""))
+        print(location + ": note: " +
+              line.replace("[0] FATAL: ", "").replace("DOUBLE FAULT: ", ""))
 
     return
 
@@ -89,11 +90,11 @@ def main(args: argparse.Namespace) -> None:
     location: List[str] = frame["location"].split(":")
     print(location[0] + ": scope_hint: In function ‘" + frame["symbol"] + "’:")
     print_error_trace(report, Error.error, args.verbose,
-                      location[0] + ":" + location[1])
+                      parse_location(location))
 
     for frame in report["active stack"]:
-        location = frame["location"].split(":")
-        print(location[0] + ":" + location[1] + ": note: " + frame["symbol"])
+        print(parse_location(frame["location"].split(":")) + ": note: " +
+              frame["symbol"])
 
 
 if __name__ == "__main__":
