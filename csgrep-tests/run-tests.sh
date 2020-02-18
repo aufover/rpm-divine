@@ -3,6 +3,8 @@
 rm -rf report
 mkdir report
 
+FAIL=0
+
 for test in *input.txt; do
   for mode in "" "-v"; do
     echo -n "$test$mode: "
@@ -14,11 +16,13 @@ for test in *input.txt; do
       fi
 
       echo -e "\e[1m\e[91mCONVERT FAIL\e[0m"
+      FAIL=1
       continue
     fi
 
     if ! csgrep $test$mode.csgrep &> /dev/null; then
       echo -e "\e[1m\e[91mCSGREP FAIL\e[0m"
+      FAIL=1
       continue
     fi
 
@@ -27,9 +31,12 @@ for test in *input.txt; do
       echo -e "\e[1m\e[92mPASS\e[0m"
     else
       echo -e "\e[1m\e[91mDIFF FAIL\e[0m"
+      FAIL=1
       cat report/$test$mode.diff
     fi
   done
 
   rm ./*.csgrep
 done
+
+exit $FAIL
