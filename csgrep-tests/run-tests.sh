@@ -7,8 +7,17 @@ for test in *input.txt; do
   for mode in "" "-v"; do
     echo -n "$test$mode: "
 
-    if ! ../divine2csgrep.py $mode $test | tee $test$mode.csgrep | \
-          csgrep &> /dev/null; then
+    if ! ../divine2csgrep.py $mode $test > $test$mode.csgrep; then
+      if [[ $test =~ "invalid" ]]; then
+        echo -e "\e[1m\e[92mPASS\e[0m"
+        continue
+      fi
+
+      echo -e "\e[1m\e[91mCONVERT FAIL\e[0m"
+      continue
+    fi
+
+    if ! csgrep $test$mode.csgrep &> /dev/null; then
       echo -e "\e[1m\e[91mCSGREP FAIL\e[0m"
       continue
     fi
