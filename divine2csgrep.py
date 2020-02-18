@@ -69,6 +69,10 @@ def main(args: argparse.Namespace) -> None:
               "divine: note: see stderr output of given divine process")
         return
 
+    if type(report) == str:
+        print("Invalid input")
+        sys.exit(1)
+
     if not report["error found"]:
         return
 
