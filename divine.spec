@@ -3,7 +3,7 @@ Version:        4.4.2
 Release:        2%{?dist}
 Summary:        Explicit-state model checker
 
-License:        TODO
+License:        ISC License
 URL:            https://%{name}.fi.muni.cz
 
 Source0:        https://%{name}.fi.muni.cz/download/%{name}-%{version}.tar.gz
