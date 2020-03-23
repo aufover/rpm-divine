@@ -25,10 +25,6 @@ def sanitise(line: str) -> str:
                   "", line)
 
 
-def parse_location(location: List[str]) -> str:
-    return location[0] + ("" if len(location) == 1 else ":" + location[1])
-
-
 def print_error_trace(report, error: Error, verbose: bool,
                       location: str = None) -> None:
     trace: List[str] = report["error trace"].split("\n")
@@ -53,6 +49,10 @@ def print_error_trace(report, error: Error, verbose: bool,
               line.replace("[0] FATAL: ", "").replace("DOUBLE FAULT: ", ""))
 
     return
+
+
+def parse_location(location: str) -> str:
+    return "<unknown>" if "unknown" in location else location
 
 
 def main(args: argparse.Namespace) -> None:
@@ -91,14 +91,13 @@ def main(args: argparse.Namespace) -> None:
             continue
         break
 
-    location: List[str] = frame["location"].split(":")
-    print(location[0] + ": scope_hint: In function ‘" + frame["symbol"] + "’:")
-    print_error_trace(report, Error.error, args.verbose,
-                      parse_location(location))
+    location: str = parse_location(frame["location"])
+    print(location.split(":")[0] + ": scope_hint: In function ‘" +
+          frame["symbol"] + "’:")
+    print_error_trace(report, Error.error, args.verbose, location)
 
     for frame in report["active stack"]:
-        print(parse_location(frame["location"].split(":")) + ": note: " +
-              frame["symbol"])
+        print(parse_location(frame["location"]) + ": note: " + frame["symbol"])
 
 
 if __name__ == "__main__":
