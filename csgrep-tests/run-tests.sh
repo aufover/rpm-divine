@@ -26,14 +26,14 @@ for test in *input.txt; do
       continue
     fi
 
-    if diff -u $(echo $test | cut -d '-' -f1)*-output$mode.txt \
-          $test$mode.csgrep &> report/$test$mode.diff; then
-      echo -e "\e[1m\e[92mPASS\e[0m"
-    else
+    if ! diff -u $(echo $test | cut -d '-' -f1)*-output$mode.txt \
+        $test$mode.csgrep &> report/$test$mode.diff; then
       echo -e "\e[1m\e[91mDIFF FAIL\e[0m"
       FAIL=1
       cat report/$test$mode.diff
     fi
+
+    echo -e "\e[1m\e[92mPASS\e[0m"
   done
 
   rm ./*.csgrep
