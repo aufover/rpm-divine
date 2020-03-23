@@ -63,3 +63,19 @@ diff -u a/dios/libcxx/CMakeLists.txt b/dios/libcxx/CMakeLists.txt
  
  option(LIBCXX_ENABLE_ABI_LINKER_SCRIPT
        "Use and install a linker script for the given ABI library"
+
+diff -u a/dios/libc/_PDCLIB/glue.c b/dios/libc/_PDCLIB/glue.c
+--- a/dios/libc/_PDCLIB/glue.c    2020-03-06 10:34:29.466926505 +0100
++++ b/dios/libc/_PDCLIB/glue.c    2020-03-06 10:34:29.466926505 +0100
+@@ -101,8 +101,10 @@
+         void *mem = __vm_obj_make( n * size, _VM_PT_Heap ); // success
+         memset( mem, 0, n * size );
+         r = mem;
+-    } else
++    } else {
++        errno = ENOMEM;
+         r = NULL; // failure
++    }
+     __dios_mask( masked );
+     return r;
+ }
