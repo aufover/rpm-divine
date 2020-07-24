@@ -1,6 +1,6 @@
 Name:           divine
 Version:        4.4.2
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Explicit-state model checker
 
 License:        ISC License
@@ -8,6 +8,7 @@ URL:            https://%{name}.fi.muni.cz
 
 Source0:        https://%{name}.fi.muni.cz/download/%{name}-%{version}.tar.gz
 Source1:        divine2csgrep.py
+Source2:        csexec-divine.sh
 
 Patch0:         make_install.patch
 Patch1:         rpmbuild.patch
@@ -86,8 +87,9 @@ mkdir -p %{buildroot}%{_bindir}
 ln -sf /opt/divine/bin/{diosc{c,++},divc{c,++},divine,lart} \
   %{buildroot}%{_bindir}
 
-# install divine to csgrep convertor as an executable in path
+# install divine2grep and csexec-divine.sh as an executable in path
 install -p -D -m 755 %{SOURCE1} %{buildroot}%{_bindir}/divine2csgrep
+install -p -D -m 755 %{SOURCE2} %{buildroot}%{_bindir}/csexec-divine
 
 %check
 make unit

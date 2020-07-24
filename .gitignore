@@ -9,6 +9,7 @@
 
 # Allow csgrep related stuff
 !divine2csgrep.py
+!csexec-divine.sh
 !csgrep-tests
 !csgrep-tests/run-tests.sh
 !csgrep-tests/*.txt
