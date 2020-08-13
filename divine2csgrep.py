@@ -9,6 +9,10 @@ import sys
 import yaml
 
 
+# Separates reports
+separator: str = ""
+
+
 class Error(Enum):
     warning = 1
     error = 2
@@ -23,6 +27,11 @@ def sanitise(line: str) -> str:
 
     return re.sub(r"((?<=heap\*)|(?<=alloca\*)|(?<=global\*))[^]]+|[0-9]+:",
                   "", line)
+
+
+def sanitise_note(line: str) -> str:
+    return line.replace("[0] ", "").replace("(0) ", "") \
+               .replace("FATAL: ", "").replace("DOUBLE FAULT: ", "")
 
 
 def print_error_trace(report, error: Error, verbose: bool,
@@ -45,8 +54,7 @@ def print_error_trace(report, error: Error, verbose: bool,
                   line.replace("FAULT: ", ""))
             continue
 
-        print(location + ": note: " +
-              line.replace("[0] FATAL: ", "").replace("DOUBLE FAULT: ", ""))
+        print(location + ": note: " + sanitise_note(line))
 
     return
 
@@ -55,17 +63,42 @@ def parse_location(location: str) -> str:
     return "<unknown>" if "unknown" in location else location
 
 
-def main(args: argparse.Namespace) -> None:
-    try:
-        report = yaml.safe_load(args.infile)
-        args.infile.close()
-    except yaml.YAMLError as exc:
-        print(exc, file=sys.stderr)
-        sys.exit(1)
+def parse_reports(file) -> List[str]:
+    reports: List[str] = []
+    found: bool = False
+    rep: str = ""
+
+    for line in file:
+        if not found and "states per second" not in line:
+            continue
+
+        if "a report was written" in line:
+            found = False
+            reports.append(rep)
+            rep = ""
+            continue
+
+        if "states per second" in line:
+            if found:
+                reports.append(rep)
+            rep = ""
+
+        found = True
+        rep += line
+
+    if found:
+        reports.append(rep)
+
+    return reports if reports else [""]
+
+
+def process_report(args, report) -> None:
+    global separator
 
     if report is None:
-        print("Error: DIVINE_WARNING:\n" +
-              "divine: fatal error: Divine crashed and no log was created\n" +
+        print(separator + "Error: DIVINE_WARNING:\n" +
+              "divine: fatal error: Divine crashed and incomplete log was" +
+              " created\n" +
               "divine: note: see stderr output of given divine process")
         return
 
@@ -76,7 +109,7 @@ def main(args: argparse.Namespace) -> None:
     if not report["error found"]:
         return
 
-    print("Error: DIVINE_WARNING:")
+    print(separator + "Error: DIVINE_WARNING:")
     if report["error found"] == "unknown":
         print_error_trace(report, Error.fatal_error, args.verbose)
         return
@@ -98,6 +131,19 @@ def main(args: argparse.Namespace) -> None:
 
     for frame in report["active stack"]:
         print(parse_location(frame["location"]) + ": note: " + frame["symbol"])
+
+    separator = "\n"
+
+
+def main(args: argparse.Namespace) -> None:
+    for report in parse_reports(args.infile):
+        try:
+            report = yaml.safe_load(report)
+            args.infile.close()
+            process_report(args, report)
+        except yaml.YAMLError as exc:
+            print(exc, file=sys.stderr)
+            sys.exit(1)
 
 
 if __name__ == "__main__":
