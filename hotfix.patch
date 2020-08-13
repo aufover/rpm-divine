@@ -39,6 +39,7 @@ diff -u a/dios/CMakeLists.txt b/dios/CMakeLists.txt
  set_target_properties( divine-rt PROPERTIES POSITION_INDEPENDENT_CODE ON )
  install( TARGETS divine-rt DESTINATION lib )
 
+# Fix make install
 diff -u a/dios/libcxx/CMakeLists.txt b/dios/libcxx/CMakeLists.txt
 --- a/dios/libcxx/CMakeLists.txt
 +++ b/dios/libcxx/CMakeLists.txt
@@ -64,6 +65,7 @@ diff -u a/dios/libcxx/CMakeLists.txt b/dios/libcxx/CMakeLists.txt
  option(LIBCXX_ENABLE_ABI_LINKER_SCRIPT
        "Use and install a linker script for the given ABI library"
 
+# Set ENOMEM when calloc fails
 diff -u a/dios/libc/_PDCLIB/glue.c b/dios/libc/_PDCLIB/glue.c
 --- a/dios/libc/_PDCLIB/glue.c    2020-03-06 10:34:29.466926505 +0100
 +++ b/dios/libc/_PDCLIB/glue.c    2020-03-06 10:34:29.466926505 +0100
@@ -79,3 +81,23 @@ diff -u a/dios/libc/_PDCLIB/glue.c b/dios/libc/_PDCLIB/glue.c
      __dios_mask( masked );
      return r;
  }
+ 
+# Assume, that divine never reads from/writes to a terminal
+diff --git a/dios/libc/sys/fs.cpp b/dios/libc/sys/fs.cpp
+index d33696e8a..b0219eeec 100644
+--- a/dios/libc/sys/fs.cpp
++++ b/dios/libc/sys/fs.cpp
+@@ -260,13 +260,9 @@ extern "C" {
+         return res == 0 ? ENOTTY : res;
+     }
+ 
+-    int isatty(int fd)
++    int isatty(int /* fd */)
+     {
+-        struct stat fdStat;
+-
+-        //just to set errno if fd is not valid file descriptor
+-        int res = __libc_fstat( fd, &fdStat );
+-        return res == 0 ? EINVAL : res;
++        return 0;
+     }
