@@ -2,6 +2,11 @@
 *
 !.gitignore
 
+# CI
+!.github
+!.github/*
+!.github/workflows/*
+
 # Allow divine related stuff
 !divine.spec
 !do_SRPM.sh

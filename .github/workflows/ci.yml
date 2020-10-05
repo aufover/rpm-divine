@@ -1,0 +1,16 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  container:
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: update
+        run: dnf update --refresh -y
+      - name: install deps
+        run: dnf install -y python3 python3-pyyaml csdiff diffutils
+      - name: test
+        run: cd csgrep-tests; ./run-tests.sh
