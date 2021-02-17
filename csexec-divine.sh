@@ -2,79 +2,70 @@
 
 usage() {
   cat << EOF
-USAGE:
+USAGE: $0 -d DIVINE_ARGS ARGV
 1) Build the source with CC=dioscc CFLAGS='-g -O0' and
    LDFLAGS='-Wl,--dynamic-linker=/usr/bin/csexec-loader'.
-2) CSEXEC_WRAP_CMD=$'csexec-divine\acheck' make check
+2) CSEXEC_WRAP_CMD=$'--skip-ld-preload\acsexec-divine\a-d\acheck' make check
 3) Wait for some time.
 4) ...
 5) Profit!
 EOF
 }
 
-if [ $# -le 1 ]; then
-  usage
-  exit 1
-fi
+[[ $# -eq 0 ]] && usage && exit 1
 
-echo "Argv: $*" > /dev/tty
-
-i=1
-j=0
-# Parse divine args
-while [[ ! "${!i}" =~ "ld-linux" ]]; do
-  ARGS[$((j++))]="${!i}"
-  ((i++))
+while getopts "d:h" opt; do
+  case "$opt" in
+    d)
+      DIVINE_ARGS=($OPTARG)
+      ;;
+    h)
+      usage && exit 0
+      ;;
+    *)
+      usage && exit 1
+      ;;
+  esac
 done
 
-# Skip ld-linux and --argv0
-((i++))
-if [ "${!i}" = "--argv0" ]; then
-  ((i += 2))
-fi
+shift $((OPTIND - 1))
+ARGV=("$@")
 
-# Pipe stdin to divine if it is not terminal
+# Catch stdin for Divine if it is not a terminal
+# FIXME: what if /dev/zero is used?
 if [ ! -t 0 ]; then
-  tmp_stdin="$(/usr/bin/mktemp --tmpdir divine-stdinXXX)"
+  tmp_stdin="$(/usr/bin/mktemp --tmpdir divine-stdinXXXX)"
   /usr/bin/cat - >> "$tmp_stdin"
 
-  ARGS[$((j++))]="--stdin"
-  ARGS[$((j++))]="$tmp_stdin"
-
+  DIVINE_ARGS+=("--stdin" "$tmp_stdin")
   exec < "$tmp_stdin"
 fi
 
 # Process --capture entries
-i_bak=$((i++))
-while [ -n "${!i}" ]; do
+i=1
+while [ $i -le $# ]; do
   if [ -e "${!i}" ]; then
-    ARGS[((j++))]="--capture"
+    DIVINE_ARGS+=("--capture")
 
-    if [[ ! "${!i}" =~ "^/" ]]; then
+    if [[ "${!i}" =~ "^/" ]]; then
+      prefix=""
+    else
       prefix="./"
     fi
 
-    ARGS[((j++))]="${prefix}${!i}"
+    DIVINE_ARGS+=("$prefix${!i}")
     ((i++))
   fi
 
   ((i++))
 done
 
-# Process the rest of arguments
-i="$i_bak"
-while [ -n "${!i}" ]; do
-  ARGS[$((j++))]="${!i}"
-  ((i++))
-done
+# Make it parallel
+# FIXME: this may actually slow things down
+DIVINE_ARGS+=("--threads" "$(nproc)")
 
-echo "Executing 'divine ${ARGS[*]}'" 1> /dev/tty 2>&1
-divine "${ARGS[@]}" 1> /dev/tty 2>&1
+# Run!
+divine "${DIVINE_ARGS[@]}" "${ARGV[@]}" 1> /dev/tty 2>&1
 
-i=1
-while [[ ! "${!i}" =~ "ld-linux" ]]; do
-  ((i++))
-done
-
-ARGS=( "$@" )
-exec "${ARGS[@]:i-1}"
+# Continue
+exec $(csexec --print-ld-exec-cmd) "${ARGV[@]}"
