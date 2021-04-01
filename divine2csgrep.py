@@ -2,6 +2,7 @@
 
 from enum import Enum
 from typing import List
+from yaml import CLoader
 
 import argparse
 import re
@@ -138,7 +139,7 @@ def process_report(args, report) -> None:
 def main(args: argparse.Namespace) -> None:
     for report in parse_reports(args.infile):
         try:
-            report = yaml.safe_load(report)
+            report = yaml.load(report, Loader=CLoader)
             args.infile.close()
             process_report(args, report)
         except yaml.YAMLError as exc:
