@@ -5,7 +5,7 @@ usage() {
 USAGE: $0 -d DIVINE_ARGS ARGV
 1) Build the source with CC=dioscc CFLAGS='-g -O0' and
    LDFLAGS='-Wl,--dynamic-linker=/usr/bin/csexec-loader'.
-2) CSEXEC_WRAP_CMD=$'--skip-ld-preload\acsexec-divine\a-d\acheck' make check
+2) CSEXEC_WRAP_CMD=$'--skip-ld-linux\acsexec-divine\a-l\aLOGDIR\a-d\acheck' make check
 3) Wait for some time.
 4) ...
 5) Profit!
@@ -14,8 +14,11 @@ EOF
 
 [[ $# -eq 0 ]] && usage && exit 1
 
-while getopts "d:h" opt; do
+while getopts "l:d:h" opt; do
   case "$opt" in
+    l)
+      LOGDIR="$OPTARG"
+      ;;
     d)
       DIVINE_ARGS=($OPTARG)
       ;;
@@ -31,11 +34,16 @@ done
 shift $((OPTIND - 1))
 ARGV=("$@")
 
+if [ -z "$LOGDIR" ]; then
+  echo "-l LOGDIR option is mandatoty!"
+  exit 1
+fi
+
 # Catch stdin for Divine if it is not a terminal
-# FIXME: what if /dev/zero is used?
 if [ ! -t 0 ]; then
   tmp_stdin="$(/usr/bin/mktemp --tmpdir divine-stdinXXXX)"
-  /usr/bin/cat - >> "$tmp_stdin"
+  # FIXME: what if /dev/zero is used?
+  /usr/bin/timeout 5 /usr/bin/cat - >> "$tmp_stdin"
 
   DIVINE_ARGS+=("--stdin" "$tmp_stdin")
   exec < "$tmp_stdin"
@@ -61,11 +69,18 @@ while [ $i -le $# ]; do
 done
 
 # Make it parallel
-# FIXME: this may actually slow things down
-DIVINE_ARGS+=("--threads" "$(nproc)")
+DIVINE_ARGS+=("--threads" "2")
 
-# Run!
-divine "${DIVINE_ARGS[@]}" "${ARGV[@]}" 1> /dev/tty 2>&1
+# Save the report
+DIVINE_ARGS+=("--report-filename" "$LOGDIR/pid-$$.report")
+
+# Do not trace stdout
+DIVINE_ARGS+=("-o" "stdout:notrace")
+
+# Run and convert!
+divine "${DIVINE_ARGS[@]}" "${ARGV[@]}" 2> "$LOGDIR/pid-$$.err" | \
+  /usr/bin/tee "$LOGDIR/pid-$$.out" | \
+  divine2csgrep --absolute-paths > "$LOGDIR/pid-$$.out.conv"
 
 # Continue
 exec $(csexec --print-ld-exec-cmd) "${ARGV[@]}"
