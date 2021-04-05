@@ -9,7 +9,7 @@ mkdir srpm
 cd srpm
 
 # clone git repo
-git clone --depth 1 https://gitlab.fi.muni.cz/paradise/mirror/divine.git
+git clone https://gitlab.fi.muni.cz/paradise/mirror/divine.git
 
 # make package
 pushd divine > /dev/null

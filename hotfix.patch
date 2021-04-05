@@ -101,3 +101,57 @@ index d33696e8a..b0219eeec 100644
 -        return res == 0 ? EINVAL : res;
 +        return 0;
      }
+ 
+
+# patch 1a34f962f5e5640edf1b2215891a48ff5d7c9871
+# Author: Petr Rockai <me@mornfall.net>
+# Date:   Fri Mar 26 01:34:40 CET 2021
+#   * dios: Fix configuration of stdout/stderr tracing (#110).
+# diff -rN -u old-divine-next/dios/vfs/file.hpp new-divine-next/dios/vfs/file.hpp
+--- old-divine-next/dios/vfs/file.hpp	2021-04-05 23:00:21.867097482 +0200
++++ new-divine-next/dios/vfs/file.hpp	2021-04-05 23:00:21.867097482 +0200
+@@ -97,6 +97,12 @@
+     Array< char > _content;
+ };
+ 
++struct NullFile : INode
++{
++    bool canWrite( int, Node ) const override { return true; }
++    bool write( const char *, size_t, size_t &, Node ) override { return true; }
++};
++
+ /* Each write is propagated to the trace/counterexample. */
+ struct VmTraceFile : INode
+ {
+# diff -rN -u old-divine-next/dios/vfs/manager.h new-divine-next/dios/vfs/manager.h
+--- old-divine-next/dios/vfs/manager.h	2021-04-05 23:00:21.867097482 +0200
++++ new-divine-next/dios/vfs/manager.h	2021-04-05 23:00:21.867097482 +0200
+@@ -196,20 +196,20 @@
+ 
+         static Node make_tracefile( SysOpts& o, std::string_view stream )
+         {
+-            auto r = std::find_if( o.begin(), o.end(),
+-                                   [&]( const auto& o ) { return o.first == stream; } );
++            auto r = extract_opt( stream, o );
+ 
+-            if ( r == o.end() || r->second == "trace" )
++            if ( r.empty() || r == "trace" )
+                 return new VmBuffTraceFile();
+-            if ( r->second == "unbuffered" )
++            if ( r == "unbuffered" )
+                 return new VmTraceFile();
+-            if ( r->second == "notrace" )
+-                return nullptr;
++            if ( r == "notrace" )
++                return new NullFile();
+ 
+             __dios_trace_f( "Invalid configuration for file %.*s",
+                             int( stream.size() ), stream.begin() );
+-            __dios_fault( _DiOS_F_Config, "Invalid file tracing configuration" );
+-            __builtin_trap();
++            __vm_ctl_flag( 0, _VM_CF_Error );
++
++            return new NullFile();
+         }
+ 
+     private: /* helper methods */
