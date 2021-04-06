@@ -1,13 +1,15 @@
 #!/usr/bin/python3
 
 from enum import Enum
-from typing import List
+from typing import Any, Dict, List, Optional, TextIO, Union
 from yaml import CLoader
 
 import argparse
 import re
 import sys
 import yaml
+
+import os.path
 
 
 # Separates reports
@@ -35,20 +37,20 @@ def sanitise_note(line: str) -> str:
                .replace("FATAL: ", "").replace("DOUBLE FAULT: ", "")
 
 
-def print_error_trace(report, error: Error, verbose: bool,
-                      location: str = None) -> None:
+def print_error_trace(report: Dict[str, Any], error: Error, args: argparse.Namespace,
+                      location: Optional[str] = None) -> None:
     trace: List[str] = report["error trace"].split("\n")
     trace.pop()  # might break in future
 
     if location is None:
-        location = report["input file"]
+        location = parse_location(report["input file"], args.absolute_paths)
 
     for line in trace:
         if report.get("symbolic") is not None and "ASSUME" in line:
             continue
 
         if line.startswith("FAULT"):
-            if not verbose:
+            if not args.verbose:
                 line = sanitise(line)
 
             print(location + ": " + error.name.replace("_", " ") + ": " +
@@ -60,11 +62,23 @@ def print_error_trace(report, error: Error, verbose: bool,
     return
 
 
-def parse_location(location: str) -> str:
-    return "<unknown>" if "unknown" in location else location
+def parse_location(loc: str, absolute_paths: bool) -> str:
+    if "unknown" in loc:
+        return "<unknown>"
+
+    if not absolute_paths:
+        return loc
+
+    # make it absolute
+    locations = loc.split(":")
+
+    assert os.path.exists(locations[0])
+    locations[0] = os.path.abspath(locations[0])
+
+    return ":".join(locations)
 
 
-def parse_reports(file) -> List[str]:
+def parse_reports(file: TextIO) -> List[str]:
     reports: List[str] = []
     found: bool = False
     rep: str = ""
@@ -93,7 +107,8 @@ def parse_reports(file) -> List[str]:
     return reports if reports else [""]
 
 
-def process_report(args, report) -> None:
+def process_report(args: argparse.Namespace,
+                   report: Union[str, Dict[str, Any]]) -> None:
     global separator
 
     if report is None:
@@ -107,16 +122,17 @@ def process_report(args, report) -> None:
         print("Invalid input")
         sys.exit(1)
 
+    assert isinstance(report, dict)
     if not report["error found"]:
         return
 
     print(separator + "Error: DIVINE_WARNING:")
     if report["error found"] == "unknown":
-        print_error_trace(report, Error.fatal_error, args.verbose)
+        print_error_trace(report, Error.fatal_error, args)
         return
 
     if report["error found"] == "boot":
-        print_error_trace(report, Error.fatal_error, args.verbose)
+        print_error_trace(report, Error.fatal_error, args)
         return
 
     # FIXME: This is atrocious
@@ -125,13 +141,14 @@ def process_report(args, report) -> None:
             continue
         break
 
-    location: str = parse_location(frame["location"])
+    location: str = parse_location(frame["location"], args.absolute_paths)
     print(location.split(":")[0] + ": scope_hint: In function ‘" +
           frame["symbol"] + "’:")
-    print_error_trace(report, Error.error, args.verbose, location)
+    print_error_trace(report, Error.error, args, location)
 
     for frame in report["active stack"]:
-        print(parse_location(frame["location"]) + ": note: " + frame["symbol"])
+        print(parse_location(frame["location"], args.absolute_paths)
+                + ": note: " + frame["symbol"])
 
     separator = "\n"
 
@@ -149,6 +166,8 @@ def main(args: argparse.Namespace) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert Divine to csgrep")
+    parser.add_argument("-a", "--absolute-paths", action="store_true",
+                        help="make all paths absolute")
     parser.add_argument("-v", "--verbose", action="store_true",
                         help="do not sanitise the error cause")
     parser.add_argument("infile", nargs="?", type=argparse.FileType("r"),
