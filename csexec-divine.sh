@@ -55,7 +55,7 @@ while [ $i -le $# ]; do
   if [ -e "${!i}" ]; then
     DIVINE_ARGS+=("--capture")
 
-    if [[ "${!i}" =~ "^/" ]]; then
+    if [[ "${!i}" =~ ^/ ]]; then
       prefix=""
     else
       prefix="./"
