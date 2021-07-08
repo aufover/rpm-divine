@@ -34,7 +34,7 @@ def sanitise(line: str) -> str:
 
 def sanitise_note(line: str) -> str:
     return line.replace("[0] ", "").replace("(0) ", "") \
-               .replace("FATAL: ", "").replace("DOUBLE FAULT: ", "")
+               .replace("FATAL: ", "").replace("DOUBLE FAULT: ", "").strip()
 
 
 def print_error_trace(report: Dict[str, Any], error: Error, args: argparse.Namespace,
@@ -54,7 +54,7 @@ def print_error_trace(report: Dict[str, Any], error: Error, args: argparse.Names
                 line = sanitise(line)
 
             print(location + ": " + error.name.replace("_", " ") + ": " +
-                  line.replace("FAULT: ", ""))
+                  line.replace("FAULT: ", "").strip())
             continue
 
         print(location + ": note: " + sanitise_note(line))
