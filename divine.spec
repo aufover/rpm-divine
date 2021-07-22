@@ -1,6 +1,6 @@
 Name:           divine
 Version:        4.4.2_4_gd47985e0b
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Explicit-state model checker
 
 License:        ISC License
