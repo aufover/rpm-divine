@@ -1,5 +1,5 @@
 Error: DIVINE_WARNING:
-/home/lukas/empty.c: scope_hint: In function ‘main’:
+/home/lukas/empty.c: scope_hint: In function 'main':
 /home/lukas/empty.c:5: error: access of size 4 at [heap*] is 40 bytes out of bounds
 /home/lukas/empty.c:5: note: memory error in userspace
 /opt/divine/include/dios/sys/fault.hpp:118: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())

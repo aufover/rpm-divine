@@ -1,5 +1,5 @@
 Error: DIVINE_WARNING:
-test2.c: scope_hint: In function ‘foo’:
+test2.c: scope_hint: In function 'foo':
 test2.c:1: error: Uncaught signal.
 test2.c:1: note: control error in kernel
 /opt/divine/include/dios/sys/fault.hpp:118: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())

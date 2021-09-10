@@ -1,5 +1,5 @@
 Error: DIVINE_WARNING:
-/opt/divine/include/dios/libc/sys/start.cpp: scope_hint: In function ‘__dios_start’:
+/opt/divine/include/dios/libc/sys/start.cpp: scope_hint: In function '__dios_start':
 /opt/divine/include/dios/libc/sys/start.cpp:110: note: /home/lukas/coreutils/coreutils-8.32/src/ls: cannot access '/home/lukas/coreutils/coreutils-8.32/src/.': ENOENT (no such file or directory)
 /opt/divine/include/dios/libc/sys/start.cpp:110: note: Non-zero exit code: 2
 /opt/divine/include/dios/libc/sys/start.cpp:110: error: exit called with non-zero value
@@ -12,7 +12,7 @@ Error: DIVINE_WARNING:
 /opt/divine/include/dios/libc/sys/start.cpp:110: note: __dios_start
 
 Error: DIVINE_WARNING:
-/opt/divine/include/dios/libc/sys/start.cpp: scope_hint: In function ‘__dios_start’:
+/opt/divine/include/dios/libc/sys/start.cpp: scope_hint: In function '__dios_start':
 /opt/divine/include/dios/libc/sys/start.cpp:110: note: /home/lukas/coreutils/coreutils-8.32/src/ls: cannot access '/usr/lib64/cswrap/.': ENOENT (no such file or directory)
 /opt/divine/include/dios/libc/sys/start.cpp:110: note: Non-zero exit code: 2
 /opt/divine/include/dios/libc/sys/start.cpp:110: error: exit called with non-zero value

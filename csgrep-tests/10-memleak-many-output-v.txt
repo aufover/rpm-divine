@@ -1,5 +1,5 @@
 Error: DIVINE_WARNING:
-/opt/divine/include/dios/libc/sys/start.cpp: scope_hint: In function ‘__dios_start’:
+/opt/divine/include/dios/libc/sys/start.cpp: scope_hint: In function '__dios_start':
 /opt/divine/include/dios/libc/sys/start.cpp:110: error: object marked* f493a8e4 0 leakedobject marked* f2f7a3a5 0 leakedobject marked* f15cd7c2 0 leakedobject marked* f0eafaf8 0 leakedobject marked* f087ec20 0 leakedobject marked* f4468f31 0 leakedobject marked* f06277f5 0 leakedobject marked* f634b127 0 leakedobject marked* f1420ee8 0 leaked
 /opt/divine/include/dios/libc/sys/start.cpp:110: note: memory leak in userspace
 /opt/divine/include/dios/sys/fault.hpp:118: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())

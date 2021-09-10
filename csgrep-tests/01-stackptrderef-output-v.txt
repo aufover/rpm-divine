@@ -1,5 +1,5 @@
 Error: DIVINE_WARNING:
-test.c: scope_hint: In function ‘main’:
+test.c: scope_hint: In function 'main':
 test.c:6: error: undefined pointer dereference: [global* 0 0 uun]
 test.c:6: note: memory error in userspace
 /opt/divine/include/dios/sys/fault.hpp:118: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())

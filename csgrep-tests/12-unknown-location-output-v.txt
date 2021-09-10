@@ -1,5 +1,5 @@
 Error: DIVINE_WARNING:
-<unknown>: scope_hint: In function ‘__lart_abstract.tobool.i1’:
+<unknown>: scope_hint: In function '__lart_abstract.tobool.i1':
 <unknown>: error: leaked [marked* f3cecc0d 0]
 <unknown>: note: memory leak in userspace
 /opt/divine/include/dios/sys/fault.hpp:119: note: void __dios::FaultBase::handler<__dios::Context>(_VM_Fault, _VM_Frame*, void (*)())
