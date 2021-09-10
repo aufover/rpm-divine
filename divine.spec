@@ -1,6 +1,8 @@
+%global toolchain clang
+
 Name:           divine
 Version:        4.4.2_4_gd47985e0b
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Explicit-state model checker
 
 License:        ISC License
@@ -23,7 +25,7 @@ Patch4:         timeout.patch
 # Downstream hotfixes or patches from the next branch
 Patch5:         hotfix.patch
 
-BuildRequires:  python3 perl make cmake ninja-build gcc-c++ libedit-devel
+BuildRequires:  python3 perl make cmake ninja-build clang libedit-devel
 BuildRequires:  ncurses-devel zlib-devel gtest-devel
 
 # optional dependencies
@@ -68,6 +70,12 @@ sed -in 's/env python2.7$/python3/' clang/utils/check_cfc/check_cfc.py
 sed -in 's/env python2.7$/python3/' clang/utils/check_cfc/obj_diff.py
 
 %build
+# %%set_build_flags cannot be used as Divine's Clang 7 does not support all the
+# requied flags
+CC="${CC:-%{__cc}}"
+export CC
+CXX="${CXX:-%{__cxx}}"
+export CXX
 make
 
 %install
