@@ -142,8 +142,8 @@ def process_report(args: argparse.Namespace,
         break
 
     location: str = parse_location(frame["location"], args.absolute_paths)
-    print(location.split(":")[0] + ": scope_hint: In function ‘" +
-          frame["symbol"] + "’:")
+    print(location.split(":")[0] + ": scope_hint: In function '" +
+          frame["symbol"] + "':")
     print_error_trace(report, Error.error, args, location)
 
     for frame in report["active stack"]:
