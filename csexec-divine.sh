@@ -35,7 +35,7 @@ shift $((OPTIND - 1))
 ARGV=("$@")
 
 if [ -z "$LOGDIR" ]; then
-  echo "-l LOGDIR option is mandatoty!"
+  echo "-l LOGDIR option is mandatory!"
   exit 1
 fi
 
