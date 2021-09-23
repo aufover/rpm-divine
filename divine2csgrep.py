@@ -154,14 +154,15 @@ def process_report(args: argparse.Namespace,
 
 
 def main(args: argparse.Namespace) -> None:
-    for report in parse_reports(args.infile):
-        try:
-            report = yaml.load(report, Loader=CLoader)
-            args.infile.close()
-            process_report(args, report)
-        except yaml.YAMLError as exc:
-            print(exc, file=sys.stderr)
-            sys.exit(1)
+    for file in args.infiles:
+        for report in parse_reports(file):
+            try:
+                report = yaml.load(report, Loader=CLoader)
+                file.close()
+                process_report(args, report)
+            except yaml.YAMLError as exc:
+                print(exc, file=sys.stderr)
+                sys.exit(1)
 
 
 if __name__ == "__main__":
@@ -170,7 +171,7 @@ if __name__ == "__main__":
                         help="make all paths absolute")
     parser.add_argument("-v", "--verbose", action="store_true",
                         help="do not sanitise the error cause")
-    parser.add_argument("infile", nargs="?", type=argparse.FileType("r"),
-                        default=sys.stdin, help="input file (default: stdin)")
+    parser.add_argument("infiles", nargs="*", type=argparse.FileType("r"),
+                        default=[sys.stdin], help="input file (default: stdin)")
 
     main(parser.parse_args())
