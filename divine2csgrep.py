@@ -19,7 +19,7 @@ separator: str = ""
 class Error(Enum):
     warning = 1
     error = 2
-    fatal_error = 3
+    internal_error = 3
 
 
 def sanitise(line: str) -> str:
@@ -113,7 +113,7 @@ def process_report(args: argparse.Namespace,
 
     if report is None:
         print(separator + "Error: DIVINE_WARNING:\n" +
-              "divine: fatal error: Divine crashed and incomplete log was" +
+              "divine: internal error: Divine crashed and incomplete log was" +
               " created\n" +
               "divine: note: see stderr output of given divine process")
         return
@@ -133,11 +133,11 @@ def process_report(args: argparse.Namespace,
 
     print(separator + "Error: DIVINE_WARNING:")
     if report["error found"] == "unknown":
-        print_error_trace(report, Error.fatal_error, args)
+        print_error_trace(report, Error.internal_error, args)
         return
 
     if report["error found"] == "boot":
-        print_error_trace(report, Error.fatal_error, args)
+        print_error_trace(report, Error.internal_error, args)
         return
 
     # FIXME: This is atrocious

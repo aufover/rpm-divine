@@ -1,3 +1,3 @@
 Error: DIVINE_WARNING:
-divine: fatal error: Divine crashed and incomplete log was created
+divine: internal error: Divine crashed and incomplete log was created
 divine: note: see stderr output of given divine process
