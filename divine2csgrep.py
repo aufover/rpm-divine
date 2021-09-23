@@ -123,6 +123,11 @@ def process_report(args: argparse.Namespace,
         sys.exit(1)
 
     assert isinstance(report, dict)
+
+    # TODO: Is this always a case only if a resource (memory/time) is exhausted?
+    if "error found" not in report:
+        return
+
     if not report["error found"]:
         return
 

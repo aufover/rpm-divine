@@ -1,0 +1,115 @@
+states per second: 11022.9
+state count: 11078
+mips: 1.00409
+
+version: 4.4.2+cb3cd44b47b3
+architecture: Intel Core Processor (Skylake, IBRS)
+memory used: 689188
+physical memory used: 227284
+user time: 5.013354
+system time: 0.071661
+wall time: 2.081373
+
+cycle timers (search):
+  smt-f: { mcycles: 0, hits: 0, kc-avg: 0 }
+  smt-eq: { mcycles: 0, hits: 0, kc-avg: 0 }
+  divm: { mcycles: 1413, hits: 20570, kc-avg: 68 }
+  hash: { mcycles: 383, hits: 20571, kc-avg: 18 }
+
+fragment memory:
+  total: { items: 41310, used: 2432296, held: 3979576 }
+  1: { items: 6, used: 6, held: 8176 }
+  2: { items: 4, used: 8, held: 4088 }
+  3: { items: 2, used: 6, held: 4088 }
+  4: { items: 20572, used: 82288, held: 348056 }
+  6: { items: 1, used: 6, held: 4088 }
+  7: { items: 1, used: 7, held: 4088 }
+  8: { items: 9, used: 72, held: 8176 }
+  16: { items: 19, used: 304, held: 8160 }
+  20: { items: 0, used: 0, held: 4080 }
+  24: { items: 10, used: 240, held: 20400 }
+  32: { items: 22, used: 704, held: 20320 }
+  36: { items: 1, used: 36, held: 8160 }
+  40: { items: 3, used: 120, held: 8160 }
+  41: { items: 20570, used: 843370, held: 1654512 }
+  44: { items: 1, used: 44, held: 4080 }
+  45: { items: 1, used: 45, held: 4080 }
+  49: { items: 1, used: 49, held: 8176 }
+  50: { items: 1, used: 50, held: 8176 }
+  52: { items: 1, used: 52, held: 4088 }
+  53: { items: 1, used: 53, held: 4088 }
+  56: { items: 5, used: 280, held: 4088 }
+  58: { items: 1, used: 58, held: 4032 }
+  64: { items: 2, used: 128, held: 8064 }
+  65: { items: 1, used: 65, held: 4032 }
+  70: { items: 1, used: 70, held: 8064 }
+  72: { items: 1, used: 72, held: 4032 }
+  73: { items: 2, used: 146, held: 8160 }
+  77: { items: 1, used: 77, held: 4080 }
+  79: { items: 0, used: 0, held: 4080 }
+  80: { items: 2, used: 160, held: 4080 }
+  81: { items: 1, used: 81, held: 4048 }
+  82: { items: 3, used: 246, held: 16192 }
+  84: { items: 0, used: 0, held: 4048 }
+  87: { items: 1, used: 87, held: 8096 }
+  88: { items: 2, used: 176, held: 4048 }
+  89: { items: 1, used: 89, held: 4032 }
+  90: { items: 1, used: 90, held: 4032 }
+  91: { items: 4, used: 364, held: 20160 }
+  93: { items: 3, used: 279, held: 16128 }
+  96: { items: 2, used: 192, held: 8064 }
+  104: { items: 1, used: 104, held: 4056 }
+  105: { items: 1, used: 105, held: 8064 }
+  108: { items: 2, used: 216, held: 4032 }
+  109: { items: 1, used: 109, held: 4032 }
+  110: { items: 0, used: 0, held: 4032 }
+  112: { items: 1, used: 112, held: 4032 }
+  113: { items: 1, used: 113, held: 4080 }
+  114: { items: 1, used: 114, held: 4080 }
+  115: { items: 0, used: 0, held: 4080 }
+  117: { items: 1, used: 117, held: 4080 }
+  118: { items: 1, used: 118, held: 4080 }
+  119: { items: 0, used: 0, held: 4080 }
+  120: { items: 1, used: 120, held: 4080 }
+  129: { items: 1, used: 129, held: 4080 }
+  131: { items: 1, used: 131, held: 4080 }
+  132: { items: 0, used: 0, held: 4080 }
+  134: { items: 1, used: 134, held: 4080 }
+  142: { items: 1, used: 142, held: 4032 }
+  152: { items: 1, used: 152, held: 3952 }
+  155: { items: 0, used: 0, held: 4000 }
+  161: { items: 1, used: 161, held: 4032 }
+  162: { items: 3, used: 486, held: 16128 }
+  165: { items: 1, used: 165, held: 4032 }
+  170: { items: 1, used: 170, held: 4048 }
+  174: { items: 1, used: 174, held: 4048 }
+  184: { items: 1, used: 184, held: 4048 }
+  194: { items: 1, used: 194, held: 4000 }
+  196: { items: 1, used: 196, held: 8000 }
+  207: { items: 1, used: 207, held: 3952 }
+  276: { items: 1, used: 276, held: 3920 }
+  288: { items: 1, used: 288, held: 4032 }
+  296: { items: 1, used: 296, held: 3848 }
+  299: { items: 1, used: 299, held: 3952 }
+  313: { items: 1, used: 313, held: 3840 }
+  314: { items: 1, used: 314, held: 3840 }
+  331: { items: 1, used: 331, held: 8064 }
+  344: { items: 1, used: 344, held: 3784 }
+  362: { items: 1, used: 362, held: 4048 }
+  370: { items: 1, used: 370, held: 3760 }
+  375: { items: 1, used: 375, held: 3760 }
+  453: { items: 1, used: 453, held: 3648 }
+  465: { items: 1, used: 465, held: 3776 }
+  497: { items: 1, used: 497, held: 4032 }
+  502: { items: 1, used: 502, held: 4032 }
+  679: { items: 3, used: 2037, held: 4080 }
+  1197: { items: 1, used: 1197, held: 3600 }
+  1868: { items: 2, used: 3736, held: 7488 }
+  576412: { items: 1, used: 576412, held: 576416 }
+  909456: { items: 1, used: 909456, held: 909456 }
+snapshot memory:
+  total: { items: 20571, used: 6911796, held: 7160720 }
+  276: { items: 1, used: 276, held: 3920 }
+  336: { items: 20570, used: 6911520, held: 7156800 }
+fragment table: { used: 41170, capacity: 524288 }
+snapshot table: { used: 20571, capacity: 65536 }
