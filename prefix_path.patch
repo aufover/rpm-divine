@@ -160,3 +160,45 @@ diff -u a/dios/libc/_PDCLIB/assert.c b/dios/libc/_PDCLIB/assert.c
      __dios_mask( masked );
  }
 
+diff --git a/divine/dbg/info.cpp b/divine/dbg/info.cpp
+index 98b884d6d..db894ae9f 100644
+--- a/divine/dbg/info.cpp
++++ b/divine/dbg/info.cpp
+@@ -18,19 +18,33 @@
+ 
+ #include <divine/dbg/info.hpp>
+ 
++DIVINE_RELAX_WARNINGS
++#include <llvm/Support/Path.h>
++DIVINE_UNRELAX_WARNINGS
++
+ namespace divine::dbg
+ {
+ 
+ std::pair< llvm::StringRef, int > fileline( const llvm::Instruction &insn )
+ {
+     auto loc = insn.getDebugLoc().get();
+-    if ( loc && loc->getNumOperands() )
+-        return std::make_pair( loc->getFilename(),
++    if ( loc && loc->getNumOperands() ) {
++        llvm::SmallString<PATH_MAX> path( loc->getDirectory() );
++        llvm::sys::path::append( path, loc->getFilename() );
++        return std::make_pair( brq::starts_with( loc->getFilename().str(),
++                                                 "/opt/divine" )
++                               ? loc->getFilename() : path.str(),
+                                loc->getLine() );
++    }
+     auto prog = insn.getParent()->getParent()->getSubprogram();
+-    if ( prog )
+-        return std::make_pair( prog->getFilename(),
++    if ( prog ) {
++        llvm::SmallString<PATH_MAX> path( prog->getDirectory() );
++        llvm::sys::path::append( path, prog->getFilename() );
++        return std::make_pair( brq::starts_with( prog->getFilename().str(),
++                                                 "/opt/divine" )
++                               ? prog->getFilename() : path.str(),
+                                prog->getScopeLine() );
++    }
+     return std::make_pair( "", 0 );
+ }
+ 

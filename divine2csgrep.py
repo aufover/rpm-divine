@@ -43,7 +43,7 @@ def print_error_trace(report: Dict[str, Any], error: Error, args: argparse.Names
     trace.pop()  # might break in future
 
     if location is None:
-        location = parse_location(report["input file"], args.absolute_paths)
+        location = parse_location(report["input file"])
 
     for line in trace:
         if report.get("symbolic") is not None and "ASSUME" in line:
@@ -62,18 +62,13 @@ def print_error_trace(report: Dict[str, Any], error: Error, args: argparse.Names
     return
 
 
-def parse_location(loc: str, absolute_paths: bool) -> str:
+def parse_location(loc: str) -> str:
     if "unknown" in loc:
         return "<unknown>"
 
-    if not absolute_paths:
-        return loc
-
-    # make it absolute
+    # normalize it
     locations = loc.split(":")
-
-    assert os.path.exists(locations[0])
-    locations[0] = os.path.abspath(locations[0])
+    locations[0] = os.path.normpath(locations[0])
 
     return ":".join(locations)
 
@@ -146,14 +141,13 @@ def process_report(args: argparse.Namespace,
             continue
         break
 
-    location: str = parse_location(frame["location"], args.absolute_paths)
+    location: str = parse_location(frame["location"])
     print(location.split(":")[0] + ": scope_hint: In function '" +
           frame["symbol"] + "':")
     print_error_trace(report, Error.error, args, location)
 
     for frame in report["active stack"]:
-        print(parse_location(frame["location"], args.absolute_paths)
-                + ": note: " + frame["symbol"])
+        print(parse_location(frame["location"]) + ": note: " + frame["symbol"])
 
     separator = "\n"
 
@@ -172,8 +166,6 @@ def main(args: argparse.Namespace) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert Divine to csgrep")
-    parser.add_argument("-a", "--absolute-paths", action="store_true",
-                        help="make all paths absolute")
     parser.add_argument("-v", "--verbose", action="store_true",
                         help="do not sanitise the error cause")
     parser.add_argument("infiles", nargs="*", type=argparse.FileType("r"),
