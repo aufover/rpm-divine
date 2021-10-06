@@ -80,7 +80,7 @@ DIVINE_ARGS+=("-o" "stdout:notrace")
 # Run and convert!
 divine "${DIVINE_ARGS[@]}" "${ARGV[@]}" 2> "$LOGDIR/pid-$$.err" | \
   /usr/bin/tee "$LOGDIR/pid-$$.out" | \
-  divine2csgrep --absolute-paths > "$LOGDIR/pid-$$.out.conv"
+  divine2csgrep > "$LOGDIR/pid-$$.out.conv"
 
 # Continue
 exec $(csexec --print-ld-exec-cmd) "${ARGV[@]}"
