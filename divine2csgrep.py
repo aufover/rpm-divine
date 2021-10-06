@@ -5,11 +5,10 @@ from typing import Any, Dict, List, Optional, TextIO, Union
 from yaml import CLoader
 
 import argparse
+import os.path
 import re
 import sys
 import yaml
-
-import os.path
 
 
 # Separates reports
@@ -37,7 +36,9 @@ def sanitise_note(line: str) -> str:
                .replace("FATAL: ", "").replace("DOUBLE FAULT: ", "").strip()
 
 
-def print_error_trace(report: Dict[str, Any], error: Error, args: argparse.Namespace,
+def print_error_trace(report: Dict[str, Any],
+                      error: Error,
+                      args: argparse.Namespace,
                       location: Optional[str] = None) -> None:
     trace: List[str] = report["error trace"].split("\n")
     trace.pop()  # might break in future
@@ -119,7 +120,7 @@ def process_report(args: argparse.Namespace,
 
     assert isinstance(report, dict)
 
-    # TODO: Is this always a case only if a resource (memory/time) is exhausted?
+    # TODO: Is this a case only if a resource (memory/time) is exhausted?
     if "error found" not in report:
         return
 
@@ -169,6 +170,7 @@ if __name__ == "__main__":
     parser.add_argument("-v", "--verbose", action="store_true",
                         help="do not sanitise the error cause")
     parser.add_argument("infiles", nargs="*", type=argparse.FileType("r"),
-                        default=[sys.stdin], help="input file (default: stdin)")
+                        default=[sys.stdin],
+                        help="input files (default stdin)")
 
     main(parser.parse_args())
