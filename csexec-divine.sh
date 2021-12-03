@@ -78,9 +78,10 @@ DIVINE_ARGS+=("--report-filename" "$LOGDIR/pid-$$.report")
 DIVINE_ARGS+=("-o" "stdout:notrace")
 
 # Run and convert!
-divine "${DIVINE_ARGS[@]}" "${ARGV[@]}" 2> "$LOGDIR/pid-$$.err" | \
+/usr/bin/env -i /usr/bin/bash -lc 'exec "$@"' divine \
+  /usr/bin/divine "${DIVINE_ARGS[@]}" "${ARGV[@]}" 2> "$LOGDIR/pid-$$.err" | \
   /usr/bin/tee "$LOGDIR/pid-$$.out" | \
-  divine2csgrep > "$LOGDIR/pid-$$.out.conv"
+  /usr/bin/divine2csgrep > "$LOGDIR/pid-$$.out.conv"
 
 # Continue
-exec $(csexec --print-ld-exec-cmd) "${ARGV[@]}"
+exec $(/usr/bin/csexec --print-ld-exec-cmd) "${ARGV[@]}"
