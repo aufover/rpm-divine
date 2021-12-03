@@ -84,4 +84,4 @@ DIVINE_ARGS+=("-o" "stdout:notrace")
   /usr/bin/divine2csgrep > "$LOGDIR/pid-$$.out.conv"
 
 # Continue
-exec $(/usr/bin/csexec --print-ld-exec-cmd) "${ARGV[@]}"
+exec $(/usr/bin/csexec --print-ld-exec-cmd ${CSEXEC_ARGV0}) "${ARGV[@]}"
