@@ -226,7 +226,7 @@
  
  list( APPEND Fs bin/bugpoint )
  list( APPEND Fs bin/c-index-test )
-@@ -174,11 +195,14 @@
+@@ -174,11 +195,13 @@
  list( APPEND Fs bin/clang-refactor )
  list( APPEND Fs bin/clang-rename )
  list( APPEND Fs bin/diagtool )
@@ -234,7 +234,7 @@
 +list( APPEND Fs bin/divcc )
  list( APPEND Fs bin/divine )
  list( APPEND Fs bin/dsymutil )
- list( APPEND Fs bin/git-clang-format )
+-list( APPEND Fs bin/git-clang-format )
  list( APPEND Fs bin/hmaptool )
  list( APPEND Fs bin/llc )
 +list( APPEND Fs bin/lart )
