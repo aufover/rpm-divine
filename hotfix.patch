@@ -155,3 +155,54 @@ index d33696e8a..b0219eeec 100644
          }
  
      private: /* helper methods */
+diff --git a/divine/cc/cc1.cpp b/divine/cc/cc1.cpp
+index 5206553d8..edba4394c 100644
+--- a/divine/cc/cc1.cpp
++++ b/divine/cc/cc1.cpp
+@@ -147,6 +147,7 @@ namespace divine::cc
+                                              };
+         bool exceptions = type == FileType::Cpp || type == FileType::CppPreprocessed;
+         bool reloc_model_present = false;
++        bool no_strict_aliasing = false;
+ 
+         for ( auto &a : args )
+         {
+@@ -154,11 +155,16 @@ namespace divine::cc
+                 exceptions = false;
+             if ( a == "-mrelocation-model" )
+                 reloc_model_present = true;
++            if ( a == "-no-strict-aliasing" )
++                no_strict_aliasing = true;
+         }
+ 
+         if ( !reloc_model_present )
+             add( args, { "-mrelocation-model", "static" } );
+ 
++        if ( no_strict_aliasing )
++            add( args, { "-relaxed-aliasing" } );
++
+         add( args, cc1args );
+         if ( exceptions )
+             add( args, { "-fcxx-exceptions", "-fexceptions" } );
+@@ -168,7 +174,7 @@ namespace divine::cc
+         std::vector< const char * > cc1a;
+ 
+         for ( auto &a : args )
+-            if ( a != "-fno-exceptions" )
++            if ( a != "-fno-exceptions" && a != "-no-strict-aliasing" )
+                 cc1a.push_back( a.c_str() );
+ 
+         TRACE( "cc1", cc1a );
+diff --git a/divine/cc/options.cpp b/divine/cc/options.cpp
+index ff7e08dec..aad94b990 100644
+--- a/divine/cc/options.cpp
++++ b/divine/cc/options.cpp
+@@ -103,7 +103,7 @@ namespace divine::cc
+                 po.preprocessOnly = true;
+             else if ( *it == "-shared" )
+                 po.shared = true;
+-            else if ( *it == "-fPIC" )
++            else if ( *it == "-fPIC" || *it == "-fpic" )
+             {
+                 po.pic = true;
+                 add( po.cc1_args, { "-pic-level", "1",
