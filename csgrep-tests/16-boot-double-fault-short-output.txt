@@ -1,0 +1,3 @@
+Error: DIVINE_WARNING:
+<unknown>: internal error: null pointer dereference: [global*]
+<unknown>: note: trying to return without a caller

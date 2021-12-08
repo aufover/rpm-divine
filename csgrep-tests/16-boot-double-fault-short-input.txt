@@ -1,0 +1,8 @@
+states per second: 0
+state count: 0
+mips: 0
+
+error found: boot
+error trace: |
+  FAULT: null pointer dereference: [global* 0 0 ddn]
+  DOUBLE FAULT: trying to return without a caller

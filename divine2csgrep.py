@@ -44,7 +44,7 @@ def print_error_trace(report: Dict[str, Any],
     trace.pop()  # might break in future
 
     if location is None:
-        location = parse_location(report["input file"])
+        location = parse_location(report.get("input file", "unknown"))
 
     for line in trace:
         if report.get("symbolic") is not None and "ASSUME" in line:
