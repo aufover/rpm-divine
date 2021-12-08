@@ -77,6 +77,8 @@ DIVINE_ARGS+=("--report-filename" "$LOGDIR/pid-$$.report")
 # Do not trace stdout
 DIVINE_ARGS+=("-o" "stdout:notrace")
 
+echo "/usr/bin/divine ${DIVINE_ARGS[*]} ${ARGV[*]}" > "$LOGDIR/pid-$$.argv"
+
 # Run and convert!
 /usr/bin/env -i /usr/bin/bash -lc 'exec "$@"' divine \
   /usr/bin/divine "${DIVINE_ARGS[@]}" "${ARGV[@]}" 2> "$LOGDIR/pid-$$.err" | \
