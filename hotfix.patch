@@ -171,7 +171,7 @@ index 5206553d8..edba4394c 100644
                  exceptions = false;
              if ( a == "-mrelocation-model" )
                  reloc_model_present = true;
-+            if ( a == "-no-strict-aliasing" )
++            if ( a == "-fno-strict-aliasing" )
 +                no_strict_aliasing = true;
          }
  
@@ -189,7 +189,7 @@ index 5206553d8..edba4394c 100644
  
          for ( auto &a : args )
 -            if ( a != "-fno-exceptions" )
-+            if ( a != "-fno-exceptions" && a != "-no-strict-aliasing" )
++            if ( a != "-fno-exceptions" && a != "-fno-strict-aliasing" )
                  cc1a.push_back( a.c_str() );
  
          TRACE( "cc1", cc1a );
