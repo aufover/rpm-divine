@@ -230,3 +230,36 @@ index 137f6b059..b33041b97 100644
  }
  
  auto NativeDiosCC::link_dios_native( bool cxx )
+diff --git a/divine/rt/dios-cc.cpp b/divine/rt/dios-cc.cpp
+index 137f6b059..f5049d11c 100644
+--- a/divine/rt/dios-cc.cpp
++++ b/divine/rt/dios-cc.cpp
+@@ -107,17 +107,17 @@ std::unique_ptr< llvm::Module > NativeDiosCC::link_bitcode()
+ 
+     m = drv->takeLinked();
+ 
+-    if ( !_po.shared )
+-    {
+-        for ( auto& func : *m )
+-            if ( func.isDeclaration() && !whitelisted( func ) )
+-                throw cc::CompileError( "Symbol undefined (function): " + func.getName().str() );
+-
+-        for ( auto& val : m->globals() )
+-            if ( auto G = dyn_cast< llvm::GlobalVariable >( &val ) )
+-                if ( !G->hasInitializer() && !whitelisted( *G ) )
+-                    throw cc::CompileError( "Symbol undefined (global variable): " + G->getName().str() );
+-    }
++    // if ( !_po.shared )
++    // {
++    //     for ( auto& func : *m )
++    //         if ( func.isDeclaration() && !whitelisted( func ) )
++    //             throw cc::CompileError( "Symbol undefined (function): " + func.getName().str() );
++
++    //     for ( auto& val : m->globals() )
++    //         if ( auto G = dyn_cast< llvm::GlobalVariable >( &val ) )
++    //             if ( !G->hasInitializer() && !whitelisted( *G ) )
++    //                 throw cc::CompileError( "Symbol undefined (global variable): " + G->getName().str() );
++    // }
+ 
+     verifyModule( *m );
+     return m;
