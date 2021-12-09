@@ -206,3 +206,27 @@ index ff7e08dec..aad94b990 100644
              {
                  po.pic = true;
                  add( po.cc1_args, { "-pic-level", "1",
+
+# We are on x86_64 and link failures should not be fatal!
+diff --git a/divine/rt/dios-cc.cpp b/divine/rt/dios-cc.cpp
+index 137f6b059..b33041b97 100644
+--- a/divine/rt/dios-cc.cpp
++++ b/divine/rt/dios-cc.cpp
+@@ -46,8 +46,6 @@ void add_dios_defines( std::vector< std::string >& flags )
+                   , "-D__ELF__"
+                   , "-D__unix__"
+                   , "-D__divine__=4"
+-                  , "-U__x86_64"
+-                  , "-U__x86_64__"
+                   });
+ }
+ 
+@@ -73,7 +71,7 @@ NativeDiosCC::NativeDiosCC( const std::vector< std::string >& opts )
+     add_dios_header_paths( _po.opts );
+     add_dios_defines( _po.opts );
+     divine::rt::each( [&]( auto path, auto c ) { _clang.mapVirtualFile( path, c ); } );
+-    _missing_bc_fatal = true;
++    _missing_bc_fatal = false;
+ }
+ 
+ auto NativeDiosCC::link_dios_native( bool cxx )
